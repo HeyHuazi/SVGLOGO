@@ -1,9 +1,9 @@
-name = "svgl"
+name = "svglogo"
 compatibility_date = "2024-09-23"
 
 # Pages 项目配置
 [pages]
-project_name = "svgl"
+project_name = "svglogo"
 
 # 环境变量映射
 [vars]
