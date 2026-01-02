@@ -1,6 +1,10 @@
 name = "svglogo"
 compatibility_date = "2024-09-23"
 
+# Cloudflare Pages 静态资源目录
+[assets]
+directory = ".svelte-kit/output/client"
+
 # 机密变量（不提交到版本控制）
 # 使用 `npx wrangler pages secret put` 命令设置
 # 需设置的环境变量：
