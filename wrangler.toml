@@ -1,31 +1,9 @@
 name = "svglogo"
 compatibility_date = "2024-09-23"
 
-# Pages 项目配置
-[pages]
-project_name = "svglogo"
-
-# 环境变量映射
-[vars]
-NODE_ENV = "production"
-SITE_URL = "https://svglogo.top"
-
-# 缓存规则配置 - 为静态资源设置长期缓存
-[[mappings]]
-path = "/static/library"
-cache_ttl = 31536000  # 1年缓存
-
-[[mappings]]
-path = "/images"
-cache_ttl = 86400  # 1天缓存
-
-[[mappings]]
-path = "/fonts"
-cache_ttl = 31536000  # 1年缓存
-
 # 机密变量（不提交到版本控制）
-# 使用 `npx wrangler secret put` 命令设置
+# 使用 `npx wrangler pages secret put` 命令设置
 # 需设置的环境变量：
 # - UPSTASH_REDIS_URL
-# - UPSTASH_REDIS_TOKEN  
+# - UPSTASH_REDIS_TOKEN
 # - SVGL_API_REQUESTS

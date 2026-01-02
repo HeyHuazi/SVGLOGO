@@ -138,6 +138,9 @@ importers:
       vitest:
         specifier: 1.5.2
         version: 1.5.2
+      wrangler:
+        specifier: ^4.56.0
+        version: 4.56.0(@cloudflare/workers-types@4.20260101.0)
 
 packages:
 
@@ -4992,7 +4995,7 @@ snapshots:
 
   mlly@1.6.1:
     dependencies:
-      acorn: 8.11.3
+      acorn: 8.14.0
       pathe: 1.1.2
       pkg-types: 1.0.3
       ufo: 1.5.3
