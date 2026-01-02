@@ -8,6 +8,12 @@
 		"src/routes/about/+page.ts",
 		"src/routes/+layout.server.ts"
 	],
+	"/api/stats": [
+		"src/routes/api/stats/+server.ts"
+	],
+	"/api/visitor-count": [
+		"src/routes/api/visitor-count/+server.ts"
+	],
 	"/blog": [
 		"src/routes/blog/+page.ts",
 		"src/routes/+layout.server.ts"
