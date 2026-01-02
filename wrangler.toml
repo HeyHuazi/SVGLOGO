@@ -8,7 +8,7 @@ project_name = "svglogo"
 # 环境变量映射
 [vars]
 NODE_ENV = "production"
-SITE_URL = "https://svgl.app"
+SITE_URL = "https://svglogo.top"
 
 # 缓存规则配置 - 为静态资源设置长期缓存
 [[mappings]]
