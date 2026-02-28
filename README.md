@@ -14,7 +14,7 @@
         提交图标
     </a>
      <span>&nbsp;✦&nbsp;</span>
-     <a href="https://bonjour.bio/zh/huazi">
+     <a href="https://huazi.space/">
        关于我
     </a>
 </div>
