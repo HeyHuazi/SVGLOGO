@@ -1,10 +1,14 @@
 <script lang="ts">
-  export let iconSize: number;
+  export let size: number | undefined = undefined;
+  export let iconSize: number | undefined = undefined;
+
+  // 优先使用 iconSize，如果没有则使用 size
+  $: finalSize = iconSize || size || 16;
 </script>
 
 <svg
-  width={iconSize || 16}
-  height={iconSize || 16}
+  width={finalSize}
+  height={finalSize}
   fill="none"
   xmlns="http://www.w3.org/2000/svg"
   preserveAspectRatio="xMidYMid"
