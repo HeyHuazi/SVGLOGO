@@ -2,8 +2,8 @@
 import type { LayoutServerData } from "./$types";
 export let data: LayoutServerData;
 
-// 51LA 统计 ID（添加 fallback 确保 ID 始终可用）
-const PUBLIC_51LA_ID = import.meta.env.PUBLIC_51LA_ID || 'Kdb6i5hQGkAkkUoZ';
+// 51LA 统计 ID（从环境变量读取，未设置则不启用统计）
+const PUBLIC_51LA_ID = import.meta.env.PUBLIC_51LA_ID;
 
 // Global styles:
 import "../app.css";
