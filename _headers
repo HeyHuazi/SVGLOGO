@@ -1,0 +1,29 @@
+# 缓存控制策略 - Cloudflare Pages
+
+# SVG 图标文件 - 长期缓存（不可变）
+/static/library/*.svg
+  Cache-Control: public, max-age=31536000, immutable
+
+# 图片资源 - 中期缓存
+/images/*
+  Cache-Control: public, max-age=86400
+
+# 字体文件 - 长期缓存
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# HTML 文件 - 不缓存
+/*
+  Cache-Control: no-cache, no-store, must-revalidate
+
+# API 端点 - 允许跨域
+/api/*
+  Access-Control-Allow-Origin: *
+  Cache-Control: no-cache
+
+# 静态资源优化
+/*.js
+  Cache-Control: public, max-age=86400
+
+/*.css
+  Cache-Control: public, max-age=86400

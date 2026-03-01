@@ -45,7 +45,8 @@
       url: 'https://github.com/HeyHuazi/SVGLOGO',
       icon: GithubIcon,
       external: true,
-      label: "github"
+      label: "github",
+      isCustomIcon: true
     },
   ];
 </script>
@@ -92,8 +93,7 @@
               <svelte:component
                 this={link.icon}
                 size={16}
-                name="External link"
-                strokeWidth={1.5}
+                {...(!link.isCustomIcon && { name: "External link", strokeWidth: 1.5 })}
                 class="ml-1 transition-transform duration-300 group-hover:-translate-y-[1px] group-hover:translate-x-[1px] hidden md:block"
               />
             </button>

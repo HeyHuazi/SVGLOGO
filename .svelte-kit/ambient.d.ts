@@ -48,16 +48,14 @@ declare module '$env/static/private' {
 	export const TERM: string;
 	export const npm_package_devDependencies_vite: string;
 	export const TMPDIR: string;
+	export const isArchMatched: string;
 	export const HOMEBREW_REPOSITORY: string;
 	export const npm_package_dependencies_svelte_sonner: string;
 	export const npm_package_devDependencies_esbuild: string;
 	export const npm_package_scripts_lint: string;
 	export const TERM_PROGRAM_VERSION: string;
 	export const VSCODE_PYTHON_AUTOACTIVATE_GUARD: string;
-	export const npm_package_devDependencies_concurrently: string;
-	export const npm_package_scripts_dev: string;
 	export const MallocNanoZone: string;
-	export const ORIGINAL_XDG_CURRENT_DESKTOP: string;
 	export const ZDOTDIR: string;
 	export const npm_package_dependencies_lucide_svelte: string;
 	export const npm_package_private: string;
@@ -89,7 +87,8 @@ declare module '$env/static/private' {
 	export const npm_package_dependencies_tailwind_merge: string;
 	export const npm_package_devDependencies__typescript_eslint_parser: string;
 	export const PATH: string;
-	export const npm_package_dependencies__svgr_core: string;
+	export const LaunchInstanceID: string;
+	export const npm_package_json: string;
 	export const __CFBundleIdentifier: string;
 	export const USER_ZDOTDIR: string;
 	export const npm_package_author: string;
@@ -148,12 +147,8 @@ declare module '$env/static/private' {
 	export const INFOPATH: string;
 	export const GIT_ASKPASS: string;
 	export const VSCODE_GIT_ASKPASS_NODE: string;
-	export const npm_package_dependencies_clsx: string;
 	export const OSLogRateLimit: string;
-	export const npm_package_scripts_host: string;
-	export const npm_package_devDependencies__types_downloadjs: string;
-	export const npm_package_dependencies_shiki: string;
-	export const npm_package_scripts_check: string;
+	export const SECURITYSESSIONID: string;
 	export const COLORTERM: string;
 	export const npm_node_execpath: string;
 	export const NODE_ENV: string;
@@ -169,7 +164,7 @@ declare module '$env/static/private' {
  * ```
  */
 declare module '$env/static/public' {
-	
+	export const PUBLIC_51LA_ID: string;
 }
 
 /**
@@ -210,16 +205,14 @@ declare module '$env/dynamic/private' {
 		TERM: string;
 		npm_package_devDependencies_vite: string;
 		TMPDIR: string;
+		isArchMatched: string;
 		HOMEBREW_REPOSITORY: string;
 		npm_package_dependencies_svelte_sonner: string;
 		npm_package_devDependencies_esbuild: string;
 		npm_package_scripts_lint: string;
 		TERM_PROGRAM_VERSION: string;
 		VSCODE_PYTHON_AUTOACTIVATE_GUARD: string;
-		npm_package_devDependencies_concurrently: string;
-		npm_package_scripts_dev: string;
 		MallocNanoZone: string;
-		ORIGINAL_XDG_CURRENT_DESKTOP: string;
 		ZDOTDIR: string;
 		npm_package_dependencies_lucide_svelte: string;
 		npm_package_private: string;
@@ -251,7 +244,8 @@ declare module '$env/dynamic/private' {
 		npm_package_dependencies_tailwind_merge: string;
 		npm_package_devDependencies__typescript_eslint_parser: string;
 		PATH: string;
-		npm_package_dependencies__svgr_core: string;
+		LaunchInstanceID: string;
+		npm_package_json: string;
 		__CFBundleIdentifier: string;
 		USER_ZDOTDIR: string;
 		npm_package_author: string;
@@ -310,12 +304,8 @@ declare module '$env/dynamic/private' {
 		INFOPATH: string;
 		GIT_ASKPASS: string;
 		VSCODE_GIT_ASKPASS_NODE: string;
-		npm_package_dependencies_clsx: string;
 		OSLogRateLimit: string;
-		npm_package_scripts_host: string;
-		npm_package_devDependencies__types_downloadjs: string;
-		npm_package_dependencies_shiki: string;
-		npm_package_scripts_check: string;
+		SECURITYSESSIONID: string;
 		COLORTERM: string;
 		npm_node_execpath: string;
 		NODE_ENV: string;
@@ -338,6 +328,7 @@ declare module '$env/dynamic/private' {
  */
 declare module '$env/dynamic/public' {
 	export const env: {
+		PUBLIC_51LA_ID: string;
 		[key: `PUBLIC_${string}`]: string | undefined;
 	}
 }

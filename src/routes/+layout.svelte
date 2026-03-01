@@ -2,6 +2,9 @@
 import type { LayoutServerData } from "./$types";
 export let data: LayoutServerData;
 
+// 51LA 统计 ID
+const PUBLIC_51LA_ID = import.meta.env.PUBLIC_51LA_ID;
+
 // Global styles:
 import "../app.css";
 import { cn } from "@/utils/cn";
@@ -100,14 +103,33 @@ let visitorCount = '';
 let loading = true;
 
 onMount(async () => {
-  startAutoplay(); // 确保在组件挂载后立即启动自动轮播
-  
-  // 其他原有的onMount逻辑
+  // 动态加载 51LA SDK
+  if (typeof window !== 'undefined' && PUBLIC_51LA_ID) {
+    const script = document.createElement('script');
+    script.charset = 'UTF-8';
+    script.id = 'LA_COLLECT';
+    script.src = '//sdk.51.la/js-sdk-pro.min.js';
+    document.head.appendChild(script);
+
+    script.onload = () => {
+      // @ts-ignore - 51LA SDK 会在 window 上添加 LA 对象
+      const LA = window.LA || {};
+      if (LA.init) {
+        LA.init({ id: PUBLIC_51LA_ID, ck: PUBLIC_51LA_ID });
+      }
+    };
+  }
+
   try {
-    const response = await fetch("/api/visitor-count");
-    const data = await response.json();
-    if (data.count) {
-      visitorCount = data.count;
+    if (!PUBLIC_51LA_ID) {
+      loading = false;
+      return;
+    }
+    const response = await fetch(`https://v6-widget.51.la/v6/${PUBLIC_51LA_ID}/quote.js`);
+    const data = await response.text();
+    const num = data.match(/(?<=<\/span><span>).*?(?=<\/span><\/p>)/g);
+    if (num && num[6]) {
+      visitorCount = (parseInt(num[6], 10) + 7500).toString();
     }
   } catch (error) {
     console.error('Failed to fetch visitor count:', error);
