@@ -1,4 +1,4 @@
-import adapter from '@sveltejs/adapter-cloudflare';
+import adapter from '@sveltejs/adapter-auto';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
 // Extensions:
@@ -28,13 +28,7 @@ const config = {
   extensions: ['.svelte', '.md'],
   preprocess: [vitePreprocess(), mdsvex(mdsvexOptions)],
   kit: {
-    adapter: adapter({
-      // Cloudflare Pages 配置选项
-      imageService: 'cloudflare', // 使用 Cloudflare 的图片优化服务
-      routes: {
-        exclude: ['/api/*', '/static/*'] // 排除这些路径让 Cloudflare 直接服务
-      }
-    }),
+    adapter: adapter(),
     alias: {
       '@': './src/*'
     }
