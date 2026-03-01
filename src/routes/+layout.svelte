@@ -3,7 +3,7 @@ import type { LayoutServerData } from "./$types";
 export let data: LayoutServerData;
 
 // 51LA 统计 ID（从环境变量读取，未设置则不启用统计）
-const PUBLIC_51LA_ID = import.meta.env.PUBLIC_51LA_ID;
+import { PUBLIC_51LA_ID } from '$env/static/public';
 
 // Global styles:
 import "../app.css";
