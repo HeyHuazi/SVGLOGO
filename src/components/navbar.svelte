@@ -150,7 +150,7 @@
           <GithubIcon iconSize={19} />
         </a> -->
         <a
-          href="https://bonjour.bio/huazi"
+          href="https://huazi.space/"
           target="_blank"
           class="flex items-center space-x-1 opacity-80 hover:opacity-100 transition-opacity"
           title="Huazi"
