@@ -11,3 +11,17 @@ node_modules
 .svelte-kit
 out/
 dist/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Cloudflare
+.wrangler/
+build/
+
+# 编辑器
+*.swp
+*.swo
+*~
