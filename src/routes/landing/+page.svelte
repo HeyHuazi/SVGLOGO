@@ -39,6 +39,7 @@
   });
 
   let blogPostsPromise = getLatestPosts(3);
+  const currentYear = new Date().getFullYear();
 </script>
 
 <svelte:head>
@@ -65,7 +66,7 @@
     </p>
     
     <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-      <a href="/?view=original" data-sveltekit-reload class={cn(buttonStyles, 'bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-100')}>
+      <a href="/explore" data-sveltekit-reload class={cn(buttonStyles, 'bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-100')}>
         <span>开始探索</span>
         <ArrowUpRight size={16} />
       </a>
@@ -121,7 +122,7 @@
         <h2 class="text-3xl font-bold text-neutral-900 dark:text-white">
           最近更新
         </h2>
-        <a data-sveltekit-reload href="/?view=original" class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors text-base hover:underline flex items-center whitespace-nowrap">
+        <a data-sveltekit-reload href="/explore" class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors text-base hover:underline flex items-center whitespace-nowrap">
           查看全部
           <ArrowUpRight size={16} class="ml-1" />
         </a>
@@ -269,7 +270,7 @@
     <!-- 版权信息 -->
     <div class="border-t border-neutral-200 dark:border-neutral-800 mt-8 lg:mt-12 pt-8 text-center">
       <p class="text-sm text-neutral-600 dark:text-neutral-400">
-        © 2024 SVGLOGO. Made with ❤️ by 
+        © 2024-{currentYear} SVGLOGO. 由 
         <a href="https://huazi.space/" target="_blank" rel="noopener noreferrer" class="hover:text-neutral-900 dark:hover:text-white transition-colors duration-200">@Huazi</a>
       </p>
     </div>

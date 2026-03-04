@@ -147,7 +147,7 @@
     {#if svgInfo.category !== "气象预警"}
     <a
       href={svgInfo.url}
-      title="Website"
+      title="官网"
       target="_blank"
       rel="noopener noreferrer"
       class="flex items-center space-x-2 rounded-md p-2 duration-100 hover:bg-neutral-200 dark:hover:bg-neutral-700/40"
@@ -158,7 +158,7 @@
   
     {#if svgInfo.wordmark !== undefined}
       <button
-        title={wordmarkSvg ? 'Show logo SVG' : 'Show wordmark SVG'}
+        title={wordmarkSvg ? '显示 Logo SVG' : '显示 Wordmark SVG'}
         on:click={() => {
           wordmarkSvg = !wordmarkSvg;
         }}

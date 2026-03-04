@@ -27,7 +27,11 @@
 		"src/routes/+layout.server.ts",
 		"src/routes/+layout.server.ts"
 	],
+	"/explore": [
+		"src/routes/+layout.server.ts"
+	],
 	"/landing": [
+		"src/routes/landing/+page.server.ts",
 		"src/routes/+layout.server.ts",
 		"src/routes/+layout.server.ts"
 	]

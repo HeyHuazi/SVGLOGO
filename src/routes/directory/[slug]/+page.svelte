@@ -54,7 +54,7 @@
     bind:searchTerm
     on:input={searchSvgs}
     clearSearch={() => clearSearch()}
-    placeholder={`搜索 ${filteredSvgs.length} ${category} logos...`}
+    placeholder={`搜索 ${filteredSvgs.length} 个 ${category} Logo...`}
   />
   <Grid>
     {#each filteredSvgs as svg}

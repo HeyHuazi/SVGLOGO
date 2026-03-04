@@ -29,7 +29,7 @@
         svgUrlToCopy =
           typeof svgInfo.wordmark === 'string'
             ? svgInfo.wordmark
-            : "Something went wrong. Couldn't copy the SVG.";
+            : "出现异常，无法复制 SVG。";
       }
 
       svgUrlToCopy =
@@ -44,7 +44,7 @@
         svgUrlToCopy =
           typeof svgInfo.route === 'string'
             ? svgInfo.route
-            : "Something went wrong. Couldn't copy the SVG.";
+            : "出现异常，无法复制 SVG。";
       }
       svgUrlToCopy =
         typeof svgInfo.route !== 'string'
@@ -57,7 +57,7 @@
     return svgUrlToCopy;
   };
 
-  // Copy SVG to clipboard:
+  // 复制 SVG 到剪贴板:
   const copyToClipboard = async () => {
     const svgUrlToCopy = getSvgUrl();
     optionsOpen = false;
@@ -70,18 +70,18 @@
       : svgInfo.category;
 
     if (isWordmarkSvg) {
-      toast.success('Copied wordmark SVG to clipboard', {
+      toast.success('已复制 Wordmark SVG 到剪贴板', {
         description: `${svgInfo.title} - ${category}`
       });
       return;
     }
 
-    toast.success('Copied to clipboard', {
+    toast.success('已复制到剪贴板', {
       description: `${svgInfo.title} - ${category}`
     });
   };
 
-  // Copy PNG to clipboard:
+  // 复制 PNG 到剪贴板:
   const copyPngToClipboard = async (width: number, height: number) => {
     const svgUrlToCopy = getSvgUrl();
     optionsOpen = false;
@@ -110,7 +110,7 @@
         if (blob) {
           const clipboardItem = new ClipboardItem({ 'image/png': blob });
           await navigator.clipboard.write([clipboardItem]);
-          toast.success('Copied PNG to clipboard', {
+          toast.success('已复制 PNG 到剪贴板', {
             description: `${svgInfo.title} - ${svgInfo.category}`
           });
         }
@@ -124,7 +124,7 @@
 
 <Popover.Root open={optionsOpen} onOpenChange={(isOpen) => (optionsOpen = isOpen)}>
   <Popover.Trigger
-    title="Copy SVG or PNG"
+    title="复制 SVG 或 PNG"
     class="flex items-center space-x-2 rounded-md p-2 duration-100 hover:bg-neutral-200 dark:hover:bg-neutral-700/40"
   >
     {#if optionsOpen}
@@ -138,20 +138,20 @@
   <Popover.Content class="flex flex-col space-y-2" sideOffset={0.3}>
     <button
       class={cn(buttonStyles, 'rounded-md w-full')}
-      title={isWordmarkSvg ? 'Copy wordmark SVG to clipboard' : 'Copy SVG to clipboard'}
+      title={isWordmarkSvg ? '复制 Wordmark SVG 到剪贴板' : '复制 SVG 到剪贴板'}
       on:click={() => copyToClipboard()}
     >
       <ClipboardIcon size={16} strokeWidth={2} />
-      <span>Copy SVG</span>
+      <span>复制 SVG</span>
     </button>
     <button
       class={cn(buttonStyles, 'rounded-md w-full')}
-      title="Copy PNG to clipboard"
+      title="复制 PNG 到剪贴板"
       disabled={isLoading}
       on:click={() => copyPngToClipboard(500, 500)}
     >
       <ClipboardIcon size={16} strokeWidth={2} />
-      <span>Copy PNG</span>
+      <span>复制 PNG</span>
     </button>
   </Popover.Content>
 </Popover.Root>

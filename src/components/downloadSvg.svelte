@@ -16,6 +16,8 @@
   import { buttonStyles } from '@/ui/styles';
   import { cn } from '@/utils/cn';
 
+  type DownloadFormat = 'svg' | 'png';
+
   // Props:
   export let svgInfo: iSVG;
   export let isDarkTheme: () => boolean;
@@ -28,244 +30,464 @@
   let cardDownloadStyles =
     'flex w-full h-full flex-col p-4 rounded-md shadow-sm dark:bg-neutral-800/20 bg-neutral-200/10 border border-neutral-200 dark:border-neutral-800 space-y-2';
 
-  // Functions:
-  const downloadSvg = (url?: string) => {
-    download(url || '');
+  const getCategoryText = () =>
+    Array.isArray(svgInfo.category) ? svgInfo.category.sort().join(' - ') : svgInfo.category;
 
-    const category = Array.isArray(svgInfo.category)
-      ? svgInfo.category.sort().join(' - ')
-      : svgInfo.category;
+  const toPngBlob = async (url: string) => {
+    const svgText = await getSvgContent(url);
+    const svgBlob = new Blob([svgText], { type: 'image/svg+xml;charset=utf-8' });
+    const objectUrl = URL.createObjectURL(svgBlob);
+    const targetWidth = 512;
 
-    toast.success(`Downloading...`, {
-      description: `${svgInfo.title} - ${category}`
-    });
+    const getAspectRatioFromSvg = () => {
+      try {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(svgText, 'image/svg+xml');
+        const svgElement = doc.querySelector('svg');
+
+        if (!svgElement) return null;
+
+        const viewBox = svgElement.getAttribute('viewBox');
+        if (viewBox) {
+          const values = viewBox
+            .trim()
+            .split(/[\s,]+/)
+            .map(Number);
+
+          if (values.length === 4 && values[2] > 0 && values[3] > 0) {
+            return values[2] / values[3];
+          }
+        }
+
+        const widthAttr = Number.parseFloat(svgElement.getAttribute('width') || '');
+        const heightAttr = Number.parseFloat(svgElement.getAttribute('height') || '');
+
+        if (widthAttr > 0 && heightAttr > 0) {
+          return widthAttr / heightAttr;
+        }
+      } catch {
+        return null;
+      }
+
+      return null;
+    };
+
+    try {
+      return await new Promise<Blob>((resolve, reject) => {
+        const img = new Image();
+
+        img.onload = () => {
+          const parsedRatio = getAspectRatioFromSvg();
+          const fallbackRatio = img.naturalWidth > 0 && img.naturalHeight > 0
+            ? img.naturalWidth / img.naturalHeight
+            : 1;
+
+          const aspectRatio = parsedRatio && parsedRatio > 0 ? parsedRatio : fallbackRatio;
+          const targetHeight = Math.max(1, Math.round(targetWidth / aspectRatio));
+
+          const canvas = document.createElement('canvas');
+          canvas.width = targetWidth;
+          canvas.height = targetHeight;
+
+          const ctx = canvas.getContext('2d', { alpha: true });
+          if (!ctx) {
+            reject(new Error('Canvas context is unavailable'));
+            return;
+          }
+
+          // 透明底：先清空画布，不填充任何背景色。
+          ctx.clearRect(0, 0, targetWidth, targetHeight);
+          ctx.drawImage(img, 0, 0, targetWidth, targetHeight);
+
+          canvas.toBlob((blob) => {
+            if (!blob) {
+              reject(new Error('Failed to convert SVG to PNG'));
+              return;
+            }
+
+            resolve(blob);
+          }, 'image/png');
+        };
+
+        img.onerror = () => reject(new Error('Failed to load SVG image'));
+        img.src = objectUrl;
+      });
+    } finally {
+      URL.revokeObjectURL(objectUrl);
+    }
+  };
+
+  const downloadSingle = async ({
+    url,
+    filename,
+    format,
+    isWordmark
+  }: {
+    url?: string;
+    filename: string;
+    format: DownloadFormat;
+    isWordmark?: boolean;
+  }) => {
+    if (!url) return;
+
+    try {
+      if (format === 'svg') {
+        download(url, `${filename}.svg`, 'image/svg+xml');
+      } else {
+        const pngBlob = await toPngBlob(url);
+        download(pngBlob, `${filename}.png`, 'image/png');
+      }
+
+      const category = getCategoryText();
+      const itemType = isWordmark ? 'Wordmark' : 'Icon';
+      toast.success(`正在下载 ${format.toUpperCase()}...`, {
+        description: `${svgInfo.title} - ${itemType} - ${category}`
+      });
+    } catch {
+      toast.error(`下载 ${format.toUpperCase()} 失败`, {
+        description: `${svgInfo.title}`
+      });
+    }
   };
 
   // Download all variants:
   const downloadAllVariants = async ({
     lightRoute,
     darkRoute,
+    format,
     isWordmark
   }: {
     lightRoute: string;
     darkRoute: string;
+    format: DownloadFormat;
     isWordmark?: boolean;
   }) => {
-    const zip = new JSZip();
+    try {
+      const zip = new JSZip();
+      const prefix = isWordmark ? `${svgInfo.title}_wordmark` : `${svgInfo.title}`;
 
-    const lightSvg = await getSvgContent(lightRoute, false);
-    const darkSvg = await getSvgContent(darkRoute, false);
+      if (format === 'svg') {
+        const lightSvg = await getSvgContent(lightRoute);
+        const darkSvg = await getSvgContent(darkRoute);
 
-    if (isWordmark) {
-      zip.file(`${svgInfo.title}_wordmark_light.svg`, lightSvg);
-      zip.file(`${svgInfo.title}_wordmark_dark.svg`, darkSvg);
-    } else {
-      zip.file(`${svgInfo.title}_light.svg`, lightSvg);
-      zip.file(`${svgInfo.title}_dark.svg`, darkSvg);
+        zip.file(`${prefix}_light.svg`, lightSvg);
+        zip.file(`${prefix}_dark.svg`, darkSvg);
+      } else {
+        const lightPngBlob = await toPngBlob(lightRoute);
+        const darkPngBlob = await toPngBlob(darkRoute);
+
+        zip.file(`${prefix}_light.png`, lightPngBlob);
+        zip.file(`${prefix}_dark.png`, darkPngBlob);
+      }
+
+      const content = await zip.generateAsync({ type: 'blob' });
+      download(content, `${prefix}_light_dark_${format}.zip`, 'application/zip');
+
+      const category = getCategoryText();
+      toast.success(`正在下载 ${format.toUpperCase()} 的浅色与深色版本...`, {
+        description: isWordmark
+          ? `${svgInfo.title} - Wordmark - ${category}`
+          : `${svgInfo.title} - ${category}`
+      });
+    } catch {
+      toast.error(`下载 ${format.toUpperCase()} 版本失败`, {
+        description: `${svgInfo.title}`
+      });
     }
-
-    zip.generateAsync({ type: 'blob' }).then((content) => {
-      download(
-        content,
-        isWordmark ? `${svgInfo.title}_wordmark_light_dark.zip` : `${svgInfo.title}_light_dark.zip`,
-        'application/zip'
-      );
-    });
-
-    const category = Array.isArray(svgInfo.category)
-      ? svgInfo.category.sort().join(' - ')
-      : svgInfo.category;
-
-    toast.success('Downloading light & dark variants...', {
-      description: isWordmark
-        ? `${svgInfo.title} - Wordmark - ${category}`
-        : `${svgInfo.title} - ${category}`
-    });
   };
 </script>
 
-{#if typeof svgInfo.route === 'string' && svgInfo.wordmark === undefined}
-  <button
-    title="Download Light & Dark variants"
-    class={mainDownloadStyles}
-    on:click={() => {
-      if (typeof svgInfo.route === 'string') {
-        downloadSvg(svgInfo.route);
-        return;
-      }
-    }}
-  >
+<Dialog>
+  <DialogTrigger title="下载 SVG 或 PNG" class={mainDownloadStyles}>
     <DownloadIcon size={iconSize} strokeWidth={iconStroke} />
-  </button>
-{:else}
-  <Dialog>
-    <DialogTrigger title="Download SVG" class={mainDownloadStyles}>
-      <DownloadIcon size={iconSize} strokeWidth={iconStroke} />
-    </DialogTrigger>
-    <DialogContent class="max-w-[630px]">
-      <DialogHeader>
-        <DialogTitle>Download {svgInfo.title}</DialogTitle>
-        <DialogDescription>此 LOGO 有多种下载选项。</DialogDescription>
-      </DialogHeader>
+  </DialogTrigger>
+  <DialogContent class="max-w-[760px]">
+    <DialogHeader>
+      <DialogTitle>下载 {svgInfo.title}</DialogTitle>
+      <DialogDescription>请选择下载格式：SVG 或 PNG。</DialogDescription>
+    </DialogHeader>
 
-      <div
-        class={cn(
-          'flex flex-col space-y-2 mt-4 h-auto',
-          'md:space-y-0 md:flex-row md:space-x-2 md:items-center md:justify-center'
-        )}
-      >
-        {#if typeof svgInfo.route === 'string'}
-          <div class={cardDownloadStyles}>
-            <img
-              src={isDarkTheme() ? svgInfo.route : svgInfo.route}
-              alt={svgInfo.title}
-              class="h-auto my-4"
-            />
-            <button
-              title="Download logo"
-              class={buttonStyles}
-              on:click={() => {
-                if (typeof svgInfo.route === 'string') {
-                  downloadSvg(svgInfo.route);
-                  return;
-                }
-              }}
-            >
-              <DownloadIcon class="mr-2" size={iconSize} />
-              <p>Icon logo</p>
-            </button>
-          </div>
-        {:else}
-          <div class={cardDownloadStyles}>
-            <img
-              src={isDarkTheme() ? svgInfo.route.dark : svgInfo.route.light}
-              alt={svgInfo.title}
-              class="h-10 my-4"
-            />
-            <button
-              title="Logo with light & dark variants"
-              class={buttonStyles}
-              on:click={() => {
-                if (typeof svgInfo.route !== 'string') {
-                  downloadAllVariants({
-                    lightRoute: svgInfo.route.light,
-                    darkRoute: svgInfo.route.dark
-                  });
-                }
-              }}
-            >
-              <DownloadIcon size={iconSize} />
-              <p>Light & dark variants</p>
-            </button>
+    <div
+      class={cn(
+        'flex flex-col space-y-2 mt-4 h-auto',
+        'md:space-y-0 md:flex-row md:space-x-2 md:items-center md:justify-center'
+      )}
+    >
+      {#if typeof svgInfo.route === 'string'}
+        <div class={cardDownloadStyles}>
+          <img src={svgInfo.route} alt={svgInfo.title} class="h-auto my-4" />
 
-            <button
-              title="Download light variant"
-              class={buttonStyles}
-              on:click={() => {
-                if (typeof svgInfo.route !== 'string') {
-                  downloadSvg(svgInfo.route.light);
-                  return;
-                }
-              }}
-            >
-              <DownloadIcon class="mr-2" size={iconSize} />
-              Only light variant
-            </button>
+          <button
+            title="下载 Icon Logo 为 SVG"
+            class={buttonStyles}
+            on:click={() =>
+              downloadSingle({
+                url: svgInfo.route,
+                filename: `${svgInfo.title}`,
+                format: 'svg'
+              })}
+          >
+            <DownloadIcon class="mr-2" size={iconSize} />
+            <p>Icon Logo（SVG）</p>
+          </button>
 
-            <button
-              title="Download dark variant"
-              class={buttonStyles}
-              on:click={() => {
-                if (typeof svgInfo.route !== 'string') {
-                  downloadSvg(svgInfo.route.dark);
-                  return;
-                }
-              }}
-            >
-              <DownloadIcon class="mr-2" size={iconSize} />
-              Only dark variant
-            </button>
-          </div>
-        {/if}
+          <button
+            title="下载 Icon Logo 为 PNG"
+            class={buttonStyles}
+            on:click={() =>
+              downloadSingle({
+                url: svgInfo.route,
+                filename: `${svgInfo.title}`,
+                format: 'png'
+              })}
+          >
+            <DownloadIcon class="mr-2" size={iconSize} />
+            <p>Icon Logo（PNG）</p>
+          </button>
+        </div>
+      {:else}
+        <div class={cardDownloadStyles}>
+          <img
+            src={isDarkTheme() ? svgInfo.route.dark : svgInfo.route.light}
+            alt={svgInfo.title}
+            class="h-10 my-4"
+          />
 
-        {#if typeof svgInfo.wordmark === 'string' && svgInfo.wordmark !== undefined}
-          <div class={cardDownloadStyles}>
-            <img
-              src={isDarkTheme() ? svgInfo.wordmark : svgInfo.wordmark}
-              alt={svgInfo.title}
-              class="h-auto my-4"
-            />
-            <button
-              title="Download Wordmark logo"
-              class={buttonStyles}
-              on:click={() => {
-                if (typeof svgInfo.wordmark === 'string') {
-                  downloadSvg(svgInfo.wordmark);
-                  return;
-                }
-              }}
-            >
-              <DownloadIcon class="mr-2" size={iconSize} />
-              <p>Wordmark logo</p>
-            </button>
-          </div>
-        {/if}
+          <button
+            title="下载浅色与深色版本为 SVG"
+            class={buttonStyles}
+            on:click={() =>
+              typeof svgInfo.route !== 'string' &&
+              downloadAllVariants({
+                lightRoute: svgInfo.route.light,
+                darkRoute: svgInfo.route.dark,
+                format: 'svg'
+              })}
+          >
+            <DownloadIcon size={iconSize} />
+            <p>浅色与深色版本（SVG）</p>
+          </button>
 
-        {#if typeof svgInfo.wordmark !== 'string' && svgInfo.wordmark !== undefined}
-          <div class={cardDownloadStyles}>
-            <img
-              src={isDarkTheme() ? svgInfo.wordmark.dark : svgInfo.wordmark.light}
-              alt={svgInfo.title}
-              class="h-10 my-4"
-            />
-            <button
-              title="Download Wordmark light variant"
-              class={buttonStyles}
-              on:click={() => {
-                if (typeof svgInfo.wordmark !== 'string') {
-                  downloadAllVariants({
-                    lightRoute: svgInfo.wordmark?.light || '',
-                    darkRoute: svgInfo.wordmark?.dark || '',
-                    isWordmark: true
-                  });
-                  return;
-                }
-              }}
-            >
-              <DownloadIcon class="mr-2" size={iconSize} />
-              Light & dark variants
-            </button>
+          <button
+            title="下载浅色与深色版本为 PNG"
+            class={buttonStyles}
+            on:click={() =>
+              typeof svgInfo.route !== 'string' &&
+              downloadAllVariants({
+                lightRoute: svgInfo.route.light,
+                darkRoute: svgInfo.route.dark,
+                format: 'png'
+              })}
+          >
+            <DownloadIcon size={iconSize} />
+            <p>浅色与深色版本（PNG）</p>
+          </button>
 
-            <button
-              title="Download Wordmark light variant"
-              class={buttonStyles}
-              on:click={() => {
-                if (typeof svgInfo.wordmark !== 'string') {
-                  downloadSvg(svgInfo.wordmark?.light);
-                  return;
-                }
-              }}
-            >
-              <DownloadIcon class="mr-2" size={iconSize} />
-              Wordmark light variant
-            </button>
+          <button
+            title="下载浅色版本为 SVG"
+            class={buttonStyles}
+            on:click={() =>
+              typeof svgInfo.route !== 'string' &&
+              downloadSingle({
+                url: svgInfo.route.light,
+                filename: `${svgInfo.title}_light`,
+                format: 'svg'
+              })}
+          >
+            <DownloadIcon class="mr-2" size={iconSize} />
+            仅浅色版本（SVG）
+          </button>
 
-            <button
-              title="Download Wordmark dark variant"
-              class={buttonStyles}
-              on:click={() => {
-                if (typeof svgInfo.wordmark !== 'string') {
-                  downloadSvg(svgInfo.wordmark?.dark);
-                  return;
-                }
-              }}
-            >
-              <DownloadIcon class="mr-2" size={iconSize} />
-              Wordmark dark variant
-            </button>
-          </div>
-        {/if}
-      </div>
-    </DialogContent>
-  </Dialog>
-{/if}
+          <button
+            title="下载浅色版本为 PNG"
+            class={buttonStyles}
+            on:click={() =>
+              typeof svgInfo.route !== 'string' &&
+              downloadSingle({
+                url: svgInfo.route.light,
+                filename: `${svgInfo.title}_light`,
+                format: 'png'
+              })}
+          >
+            <DownloadIcon class="mr-2" size={iconSize} />
+            仅浅色版本（PNG）
+          </button>
+
+          <button
+            title="下载深色版本为 SVG"
+            class={buttonStyles}
+            on:click={() =>
+              typeof svgInfo.route !== 'string' &&
+              downloadSingle({
+                url: svgInfo.route.dark,
+                filename: `${svgInfo.title}_dark`,
+                format: 'svg'
+              })}
+          >
+            <DownloadIcon class="mr-2" size={iconSize} />
+            仅深色版本（SVG）
+          </button>
+
+          <button
+            title="下载深色版本为 PNG"
+            class={buttonStyles}
+            on:click={() =>
+              typeof svgInfo.route !== 'string' &&
+              downloadSingle({
+                url: svgInfo.route.dark,
+                filename: `${svgInfo.title}_dark`,
+                format: 'png'
+              })}
+          >
+            <DownloadIcon class="mr-2" size={iconSize} />
+            仅深色版本（PNG）
+          </button>
+        </div>
+      {/if}
+
+      {#if typeof svgInfo.wordmark === 'string' && svgInfo.wordmark !== undefined}
+        <div class={cardDownloadStyles}>
+          <img src={svgInfo.wordmark} alt={svgInfo.title} class="h-auto my-4" />
+
+          <button
+            title="下载 Wordmark Logo 为 SVG"
+            class={buttonStyles}
+            on:click={() =>
+              typeof svgInfo.wordmark === 'string' &&
+              downloadSingle({
+                url: svgInfo.wordmark,
+                filename: `${svgInfo.title}_wordmark`,
+                format: 'svg',
+                isWordmark: true
+              })}
+          >
+            <DownloadIcon class="mr-2" size={iconSize} />
+            <p>Wordmark Logo（SVG）</p>
+          </button>
+
+          <button
+            title="下载 Wordmark Logo 为 PNG"
+            class={buttonStyles}
+            on:click={() =>
+              typeof svgInfo.wordmark === 'string' &&
+              downloadSingle({
+                url: svgInfo.wordmark,
+                filename: `${svgInfo.title}_wordmark`,
+                format: 'png',
+                isWordmark: true
+              })}
+          >
+            <DownloadIcon class="mr-2" size={iconSize} />
+            <p>Wordmark Logo（PNG）</p>
+          </button>
+        </div>
+      {/if}
+
+      {#if typeof svgInfo.wordmark !== 'string' && svgInfo.wordmark !== undefined}
+        <div class={cardDownloadStyles}>
+          <img
+            src={isDarkTheme() ? svgInfo.wordmark.dark : svgInfo.wordmark.light}
+            alt={svgInfo.title}
+            class="h-10 my-4"
+          />
+
+          <button
+            title="下载 Wordmark 浅色与深色版本为 SVG"
+            class={buttonStyles}
+            on:click={() =>
+              typeof svgInfo.wordmark !== 'string' &&
+              downloadAllVariants({
+                lightRoute: svgInfo.wordmark?.light || '',
+                darkRoute: svgInfo.wordmark?.dark || '',
+                format: 'svg',
+                isWordmark: true
+              })}
+          >
+            <DownloadIcon class="mr-2" size={iconSize} />
+            Wordmark 浅色与深色版本（SVG）
+          </button>
+
+          <button
+            title="下载 Wordmark 浅色与深色版本为 PNG"
+            class={buttonStyles}
+            on:click={() =>
+              typeof svgInfo.wordmark !== 'string' &&
+              downloadAllVariants({
+                lightRoute: svgInfo.wordmark?.light || '',
+                darkRoute: svgInfo.wordmark?.dark || '',
+                format: 'png',
+                isWordmark: true
+              })}
+          >
+            <DownloadIcon class="mr-2" size={iconSize} />
+            Wordmark 浅色与深色版本（PNG）
+          </button>
+
+          <button
+            title="下载 Wordmark 浅色版本为 SVG"
+            class={buttonStyles}
+            on:click={() =>
+              typeof svgInfo.wordmark !== 'string' &&
+              downloadSingle({
+                url: svgInfo.wordmark?.light,
+                filename: `${svgInfo.title}_wordmark_light`,
+                format: 'svg',
+                isWordmark: true
+              })}
+          >
+            <DownloadIcon class="mr-2" size={iconSize} />
+            Wordmark 浅色版本（SVG）
+          </button>
+
+          <button
+            title="下载 Wordmark 浅色版本为 PNG"
+            class={buttonStyles}
+            on:click={() =>
+              typeof svgInfo.wordmark !== 'string' &&
+              downloadSingle({
+                url: svgInfo.wordmark?.light,
+                filename: `${svgInfo.title}_wordmark_light`,
+                format: 'png',
+                isWordmark: true
+              })}
+          >
+            <DownloadIcon class="mr-2" size={iconSize} />
+            Wordmark 浅色版本（PNG）
+          </button>
+
+          <button
+            title="下载 Wordmark 深色版本为 SVG"
+            class={buttonStyles}
+            on:click={() =>
+              typeof svgInfo.wordmark !== 'string' &&
+              downloadSingle({
+                url: svgInfo.wordmark?.dark,
+                filename: `${svgInfo.title}_wordmark_dark`,
+                format: 'svg',
+                isWordmark: true
+              })}
+          >
+            <DownloadIcon class="mr-2" size={iconSize} />
+            Wordmark 深色版本（SVG）
+          </button>
+
+          <button
+            title="下载 Wordmark 深色版本为 PNG"
+            class={buttonStyles}
+            on:click={() =>
+              typeof svgInfo.wordmark !== 'string' &&
+              downloadSingle({
+                url: svgInfo.wordmark?.dark,
+                filename: `${svgInfo.title}_wordmark_dark`,
+                format: 'png',
+                isWordmark: true
+              })}
+          >
+            <DownloadIcon class="mr-2" size={iconSize} />
+            Wordmark 深色版本（PNG）
+          </button>
+        </div>
+      {/if}
+    </div>
+  </DialogContent>
+</Dialog>

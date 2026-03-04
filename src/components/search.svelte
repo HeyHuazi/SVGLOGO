@@ -2,7 +2,7 @@
   import { inputStyles } from '@/ui/styles';
   import { Command, SearchIcon } from 'lucide-svelte';
   export let searchTerm: string;
-  export let placeholder: string = 'Search...';
+  export let placeholder: string = '搜索...';
   export let clearSearch: () => void;
   import { X } from 'lucide-svelte';
 

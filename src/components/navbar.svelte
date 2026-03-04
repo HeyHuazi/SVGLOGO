@@ -93,7 +93,7 @@
               <svelte:component
                 this={link.icon}
                 size={16}
-                {...(!link.isCustomIcon && { name: "External link", strokeWidth: 1.5 })}
+                {...(!link.isCustomIcon && { name: "外部链接", strokeWidth: 1.5 })}
                 class="ml-1 transition-transform duration-300 group-hover:-translate-y-[1px] group-hover:translate-x-[1px] hidden md:block"
               />
             </button>
@@ -123,7 +123,7 @@
                 <svelte:component
                   this={link.icon}
                   size={16}
-                  name="External link"
+                  name="外部链接"
                   strokeWidth={1.5}
                   class="ml-1 transition-transform duration-300 group-hover:-translate-y-[1px] group-hover:translate-x-[1px] hidden md:block"
                 />

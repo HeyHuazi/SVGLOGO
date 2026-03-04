@@ -139,7 +139,7 @@
       <!-- 版权信息 -->
       <div class="border-t border-neutral-200 dark:border-neutral-800 mt-8 lg:mt-12 pt-8 text-center">
         <p class="text-sm text-neutral-600 dark:text-neutral-400">
-          © 2024-{currentYear} SVGLOGO. Made with ❤️ by 
+          © 2024-{currentYear} SVGLOGO. 由 
           <a href="https://huazi.space/" target="_blank" rel="noopener noreferrer" class="hover:text-neutral-900 dark:hover:text-white transition-colors duration-200">@Huazi</a>
         </p>
       </div>

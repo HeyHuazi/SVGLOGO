@@ -34,6 +34,23 @@
   ],
   "redirects": [
     {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "view",
+          "value": "original"
+        }
+      ],
+      "destination": "/explore",
+      "permanent": true
+    },
+    {
+      "source": "/landing",
+      "destination": "/",
+      "permanent": true
+    },
+    {
       "source": "/git",
       "destination": "https://github.com/pheralb/svgl"
     },
