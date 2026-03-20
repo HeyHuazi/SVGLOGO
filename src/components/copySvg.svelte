@@ -66,7 +66,7 @@
     await clipboard(content);
 
     const category = Array.isArray(svgInfo.category)
-      ? svgInfo.category.sort().join(' - ')
+      ? [...svgInfo.category].sort().join(' - ')
       : svgInfo.category;
 
     if (isWordmarkSvg) {

@@ -11,13 +11,16 @@ import { cn } from "@/utils/cn";
 import { ModeWatcher, mode } from "mode-watcher";
 import { sidebarCategoryCountStyles } from "@/ui/styles";
 import { sidebarItemStyles } from "@/ui/styles";
-import { onMount, onDestroy } from 'svelte'; // 导入onDestroy
-import { X, ChevronLeft, ChevronRight } from "lucide-svelte";
+import { onMount, onDestroy } from 'svelte';
+import { X } from "lucide-svelte";
 
 // 广告弹窗状态
 let showAdPopup = true;
+let prefersReducedMotion = false;
+
 const closeAdPopup = () => {
   showAdPopup = false;
+  stopAutoplay();
 };
 
 // Banner数据
@@ -44,29 +47,31 @@ const banners = [
 
 // 轮播状态
 let currentBannerIndex = 0;
-let autoplayInterval: ReturnType<typeof setInterval>;
+let autoplayInterval: ReturnType<typeof setInterval> | null = null;
 
 // 切换到下一个banner
 function nextBanner() {
   currentBannerIndex = (currentBannerIndex + 1) % banners.length;
 }
 
-// 切换到上一个banner
-function prevBanner() {
-  currentBannerIndex = (currentBannerIndex - 1 + banners.length) % banners.length;
-}
-
 // 自动轮播
 function startAutoplay() {
-  stopAutoplay(); // 确保在启动前清除任何现有定时器
+  if (prefersReducedMotion || !showAdPopup || banners.length <= 1) {
+    return;
+  }
+
+  stopAutoplay();
   autoplayInterval = setInterval(() => {
     nextBanner();
-  }, 5000); // 调整为5秒切换一次，与注释保持一致
+  }, 5000);
 }
 
 // 停止自动轮播
 function stopAutoplay() {
-  clearInterval(autoplayInterval);
+  if (autoplayInterval) {
+    clearInterval(autoplayInterval);
+    autoplayInterval = null;
+  }
 }
 
 // 移除原有的 onMount 检查广告显示逻辑
@@ -96,13 +101,18 @@ import Warning from "@/components/warning.svelte";
 
 // Layout:
 import Navbar from "@/components/navbar.svelte";
-import { ArrowUpRight } from "lucide-svelte";
 
 // State for visitor statistics
 let visitorCount = '';
 let loading = true;
 
 onMount(async () => {
+  if (typeof window !== 'undefined') {
+    prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
+
+  startAutoplay();
+
   // 动态加载 51LA SDK
   if (typeof window !== 'undefined' && PUBLIC_51LA_ID) {
     const script = document.createElement('script');
@@ -149,7 +159,7 @@ $: isLandingHome = data.pathname === '/';
 <ModeWatcher />
 
 {#if isLandingHome}
-  <main class="w-full min-h-screen bg-white dark:bg-neutral-900">
+  <main class="w-full min-h-[100dvh] bg-white dark:bg-neutral-900">
     <Transition pathname={data.pathname}>
       <slot />
     </Transition>
@@ -193,7 +203,7 @@ $: isLandingHome = data.pathname === '/';
             data-sveltekit-preload-data>全部</a
           >
           <!-- Order alfabetically: -->
-          {#each categories.sort() as category}
+          {#each [...categories].sort() as category}
             <a
               href={`/directory/${category.toLowerCase()}`}
               data-sveltekit-preload-data
@@ -273,9 +283,12 @@ $: isLandingHome = data.pathname === '/';
           <div class="absolute bottom-1 left-0 right-0 flex justify-center gap-1">
             {#each banners as banner, index}
               <button
-                class="w-1.5 h-1.5 rounded-full ${currentBannerIndex === index
-                  ? 'bg-neutral-800 dark:bg-white'
-                  : 'bg-neutral-300 dark:bg-neutral-600'}"
+                class={cn(
+                  'w-1.5 h-1.5 rounded-full',
+                  currentBannerIndex === index
+                    ? 'bg-neutral-800 dark:bg-white'
+                    : 'bg-neutral-300 dark:bg-neutral-600'
+                )}
                 on:click={() => (currentBannerIndex = index)}
                 aria-label={`切换到第${index + 1}个广告`}
               ></button>

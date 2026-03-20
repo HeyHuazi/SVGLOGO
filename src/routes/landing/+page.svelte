@@ -9,34 +9,34 @@
   // 导入博客数据
   import { getLatestPosts } from '@/data/blogs';
   
-  // 获取最新的8个图标
-  const recentUpdates = svgs.slice(-16).reverse().map((svg, index) => {
-    // 处理route字段，支持ThemeOptions类型
-    const getImagePath = (route) => {
-      if (typeof route === 'string') {
-        return route;
-      } else if (route && typeof route === 'object' && route.light) {
-        return route.light; // 默认使用light主题
-      }
-      return '/library/default.svg'; // fallback
-    };
-    
-    // 处理category字段，支持数组类型
-    const getCategory = (category) => {
-      if (Array.isArray(category)) {
-        return category[0]; // 取第一个分类
-      }
-      return category;
-    };
-    
-    return {
-      id: index + 1,
-      title: svg.title,
-      category: getCategory(svg.category),
-      image: getImagePath(svg.route),
-      url: svg.url
-    };
-  });
+  const getImagePath = (route: string | { light: string; dark: string }) => {
+    if (typeof route === 'string') {
+      return route;
+    }
+
+    return route.light || '/library/default.svg';
+  };
+
+  const getCategory = (category: string | string[]) => {
+    if (Array.isArray(category)) {
+      return category[0];
+    }
+    return category;
+  };
+
+  const handleImageError = (event: Event) => {
+    const image = event.currentTarget as HTMLImageElement;
+    image.style.display = 'none';
+  };
+
+  // 获取最新的16个图标
+  const recentUpdates = svgs.slice(-16).reverse().map((svg, index) => ({
+    id: index + 1,
+    title: svg.title,
+    category: getCategory(svg.category),
+    image: getImagePath(svg.route),
+    url: svg.url
+  }));
 
   let blogPostsPromise = getLatestPosts(3);
   const currentYear = new Date().getFullYear();
@@ -142,7 +142,9 @@
                 src={update.image} 
                 alt={update.title} 
                 class="max-w-full max-h-full object-contain opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-200" 
-                onerror="this.style.display='none'" 
+                loading="lazy"
+                decoding="async"
+                on:error={handleImageError}
               />
             </div>
           </a>
@@ -210,10 +212,10 @@
                   </p>
                   
                   <div class="mt-4 pt-4 border-t border-neutral-100 dark:border-neutral-800">
-                    <button class="text-neutral-900 dark:text-white text-sm font-medium hover:text-neutral-700 dark:hover:text-neutral-200 transition-colors flex items-center group/btn whitespace-nowrap">
+                    <span class="text-neutral-900 dark:text-white text-sm font-medium hover:text-neutral-700 dark:hover:text-neutral-200 transition-colors flex items-center group/btn whitespace-nowrap">
                       查看详情
                       <ArrowUpRight size={14} class="ml-1 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
-                    </button>
+                    </span>
                   </div>
                 </div>
               </a>
@@ -236,7 +238,7 @@
       <!-- 品牌信息区域 -->
       <div class="lg:col-span-2 text-center lg:text-left">
         <h3 class="text-lg font-semibold text-neutral-900 dark:text-white mb-4">SVGLOGO</h3>
-        <p class="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed mb-6 max-w-md mx-auto lg:mx-0 whitespace-nowrap">
+        <p class="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed mb-6 max-w-md mx-auto lg:mx-0">
           专注收录国内矢量LOGO，为设计师和开发者提供高质量的品牌标识资源。
         </p>
         <div class="flex justify-center lg:justify-start space-x-4">

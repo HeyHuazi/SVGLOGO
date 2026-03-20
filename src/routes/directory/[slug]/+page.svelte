@@ -4,8 +4,8 @@
   import { queryParam } from 'sveltekit-search-params';
 
   export let data: PageData;
-  let svgsByCategory = data.svgs || [];
-  let category = data.category || '';
+  const svgsByCategory: iSVG[] = data.svgs || [];
+  const category = data.category || '';
 
   // Components:
   import Container from '@/components/container.svelte';
@@ -20,28 +20,33 @@
   // Search:
   let searchTerm = $searchParam || '';
   let filteredSvgs: iSVG[] = [];
+  let totalMatchedCount = 0;
 
-  if (searchTerm.length === 0) {
-    filteredSvgs = svgsByCategory.sort((a: iSVG, b: iSVG) => {
-      return a.title.localeCompare(b.title);
-    });
-  }
+  const sortAlphabetically = (list: iSVG[]) =>
+    [...list].sort((a, b) => a.title.localeCompare(b.title, 'zh-CN'));
+
+  const updateSearchParam = () => {
+    $searchParam = searchTerm || null;
+  };
 
   const searchSvgs = () => {
-    $searchParam = searchTerm || null;
-    return (filteredSvgs = svgsByCategory.filter((svg: iSVG) => {
-      let svgTitle = svg.title.toLowerCase();
-      return svgTitle.includes(searchTerm.toLowerCase());
-    }));
+    updateSearchParam();
   };
 
   const clearSearch = () => {
     searchTerm = '';
-    searchSvgs();
+    updateSearchParam();
   };
 
-  if ($searchParam) {
-    searchSvgs();
+  $: {
+    const query = searchTerm.trim().toLowerCase();
+    const searchedSvgs =
+      query.length === 0
+        ? svgsByCategory
+        : svgsByCategory.filter((svg) => svg.title.toLowerCase().includes(query));
+
+    filteredSvgs = sortAlphabetically(searchedSvgs);
+    totalMatchedCount = filteredSvgs.length;
   }
 </script>
 
@@ -54,7 +59,7 @@
     bind:searchTerm
     on:input={searchSvgs}
     clearSearch={() => clearSearch()}
-    placeholder={`搜索 ${filteredSvgs.length} 个 ${category} Logo...`}
+    placeholder={`搜索 ${totalMatchedCount} 个 ${category} Logo...`}
   />
   <Grid>
     {#each filteredSvgs as svg}

@@ -1,16 +1,17 @@
 <script lang="ts">
   import { inputStyles } from '@/ui/styles';
-  import { Command, SearchIcon } from 'lucide-svelte';
+  import { Command, SearchIcon, X } from 'lucide-svelte';
+
   export let searchTerm: string;
   export let placeholder: string = '搜索...';
   export let clearSearch: () => void;
-  import { X } from 'lucide-svelte';
 
-  let inputElement;
+  let inputElement: HTMLInputElement;
 
-  function focusInput(node: HTMLElement) {
+  function focusInput(node: HTMLInputElement) {
     const handleKeydown = (event: KeyboardEvent) => {
-      if ((event.metaKey || event.ctrlKey) && event.key === 'k') {
+      const isShortcut = (event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k';
+      if (isShortcut) {
         event.preventDefault();
         node.focus();
       }
@@ -36,6 +37,7 @@
     <input
       type="text"
       {placeholder}
+      aria-label="搜索 Logo"
       autocomplete="off"
       class={inputStyles}
       bind:value={searchTerm}
@@ -49,6 +51,8 @@
           type="button"
           class="focus:outline-none focus:ring-1 focus:ring-neutral-300"
           on:click={clearSearch}
+          aria-label="清空搜索"
+          title="清空搜索"
         >
           <X size={18} />
         </button>

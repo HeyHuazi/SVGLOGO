@@ -88,7 +88,7 @@
     </p>
     <div class="flex items-center space-x-1 justify-center">
       {#if Array.isArray(svgInfo.category)}
-        {#each svgInfo.category.sort() as c, index}
+        {#each [...svgInfo.category].sort() as c, index}
           <a href={`/directory/${c.toLowerCase()}`} class={badgeStyles}>{c} </a>
         {/each}
       {:else}

@@ -31,7 +31,7 @@
     'flex w-full h-full flex-col p-4 rounded-md shadow-sm dark:bg-neutral-800/20 bg-neutral-200/10 border border-neutral-200 dark:border-neutral-800 space-y-2';
 
   const getCategoryText = () =>
-    Array.isArray(svgInfo.category) ? svgInfo.category.sort().join(' - ') : svgInfo.category;
+    Array.isArray(svgInfo.category) ? [...svgInfo.category].sort().join(' - ') : svgInfo.category;
 
   const toPngBlob = async (url: string) => {
     const svgText = await getSvgContent(url);
@@ -132,7 +132,14 @@
 
     try {
       if (format === 'svg') {
-        download(url, `${filename}.svg`, 'image/svg+xml');
+        const svgText = await getSvgContent(url);
+
+        if (!svgText?.trim().startsWith('<svg')) {
+          throw new Error('Invalid SVG content');
+        }
+
+        const svgBlob = new Blob([svgText], { type: 'image/svg+xml;charset=utf-8' });
+        download(svgBlob, `${filename}.svg`, 'image/svg+xml');
       } else {
         const pngBlob = await toPngBlob(url);
         download(pngBlob, `${filename}.png`, 'image/png');

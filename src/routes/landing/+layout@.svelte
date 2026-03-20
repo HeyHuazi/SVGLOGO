@@ -24,7 +24,7 @@
     padding: 0 !important;
     width: 100vw !important;
     max-width: 100vw !important;
-    min-height: 100vh !important;
+    min-height: 100dvh !important;
   }
   
   /* 彻底隐藏全局布局元素 */
@@ -64,7 +64,7 @@
 </style>
 
 <!-- 完全独立的全宽布局 -->
-<main class="w-full min-h-screen bg-white dark:bg-neutral-900">
+<main class="w-full min-h-[100dvh] bg-white dark:bg-neutral-900">
   <Transition pathname={data.pathname}>
     <slot />
   </Transition>
