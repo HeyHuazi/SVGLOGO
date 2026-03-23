@@ -102,7 +102,7 @@
   <div class="flex items-center space-x-1">
     {#if isInFigma}
       <button
-        title="Insert to figma"
+        title="插入到 Figma"
         on:click={() => {
           const svgHasTheme = typeof svgInfo.route !== 'string';
 
@@ -110,7 +110,7 @@
             insertSVG(
               typeof svgInfo.route === 'string'
                 ? svgInfo.route
-                : "Something went wrong. Couldn't copy the SVG."
+                : "出现异常，无法复制 SVG。"
             );
             return;
           }

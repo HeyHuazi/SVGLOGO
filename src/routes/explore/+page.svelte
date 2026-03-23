@@ -104,7 +104,7 @@
 </script>
 
 <svelte:head>
-  <title>收录国内矢量 LOGO - SVGLOGO</title>
+  <title>探索矢量 LOGO - SVGLOGO</title>
 </svelte:head>
 
 <Search

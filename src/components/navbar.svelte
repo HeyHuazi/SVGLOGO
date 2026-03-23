@@ -62,7 +62,7 @@
   <!-- Se le puso un aria-label al href="/" -->
   <div class="flex items-center justify-between mx-auto">
     <div class="flex items-center space-x-2">
-      <a href="/" aria-label="Go to the SVGL v4.1 home page">
+      <a href="/" aria-label="返回 SVGLOGO 首页">
         <div class="flex items-center space-x-2 opacity-100 hover:opacity-80 transition-opacity">
           <svelte:component this={Logo} />
           <span class="text-[19px] font-medium tracking-wide hidden md:block">SVG-LOGO</span>

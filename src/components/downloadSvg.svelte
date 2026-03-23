@@ -146,12 +146,12 @@
       }
 
       const category = getCategoryText();
-      const itemType = isWordmark ? 'Wordmark' : 'Icon';
-      toast.success(`正在下载 ${format.toUpperCase()}...`, {
+      const itemType = isWordmark ? 'Wordmark 标志' : '图标';
+      toast.success(`正在下载 ${format === 'svg' ? 'SVG 矢量格式' : 'PNG 图片格式'}...`, {
         description: `${svgInfo.title} - ${itemType} - ${category}`
       });
     } catch {
-      toast.error(`下载 ${format.toUpperCase()} 失败`, {
+      toast.error(`下载 ${format === 'svg' ? 'SVG 矢量格式' : 'PNG 图片格式'}失败`, {
         description: `${svgInfo.title}`
       });
     }
@@ -191,13 +191,13 @@
       download(content, `${prefix}_light_dark_${format}.zip`, 'application/zip');
 
       const category = getCategoryText();
-      toast.success(`正在下载 ${format.toUpperCase()} 的浅色与深色版本...`, {
+      toast.success(`正在下载 ${format === 'svg' ? 'SVG 矢量格式' : 'PNG 图片格式'}的浅色与深色版本...`, {
         description: isWordmark
-          ? `${svgInfo.title} - Wordmark - ${category}`
+          ? `${svgInfo.title} - Wordmark 标志 - ${category}`
           : `${svgInfo.title} - ${category}`
       });
     } catch {
-      toast.error(`下载 ${format.toUpperCase()} 版本失败`, {
+      toast.error(`下载 ${format === 'svg' ? 'SVG 矢量格式' : 'PNG 图片格式'}版本失败`, {
         description: `${svgInfo.title}`
       });
     }
@@ -225,7 +225,7 @@
           <img src={svgInfo.route} alt={svgInfo.title} class="h-auto my-4" />
 
           <button
-            title="下载 Icon Logo 为 SVG"
+            title="下载 SVG 矢量格式"
             class={buttonStyles}
             on:click={() =>
               downloadSingle({
@@ -235,11 +235,11 @@
               })}
           >
             <DownloadIcon class="mr-2" size={iconSize} />
-            <p>Icon Logo（SVG）</p>
+            <p>下载 SVG 矢量格式</p>
           </button>
 
           <button
-            title="下载 Icon Logo 为 PNG"
+            title="下载 PNG 图片格式"
             class={buttonStyles}
             on:click={() =>
               downloadSingle({
@@ -249,7 +249,7 @@
               })}
           >
             <DownloadIcon class="mr-2" size={iconSize} />
-            <p>Icon Logo（PNG）</p>
+            <p>下载 PNG 图片格式</p>
           </button>
         </div>
       {:else}
@@ -357,7 +357,7 @@
           <img src={svgInfo.wordmark} alt={svgInfo.title} class="h-auto my-4" />
 
           <button
-            title="下载 Wordmark Logo 为 SVG"
+            title="下载 Wordmark SVG 矢量格式"
             class={buttonStyles}
             on:click={() =>
               typeof svgInfo.wordmark === 'string' &&
@@ -369,11 +369,11 @@
               })}
           >
             <DownloadIcon class="mr-2" size={iconSize} />
-            <p>Wordmark Logo（SVG）</p>
+            <p>下载 Wordmark SVG 矢量格式</p>
           </button>
 
           <button
-            title="下载 Wordmark Logo 为 PNG"
+            title="下载 Wordmark PNG 图片格式"
             class={buttonStyles}
             on:click={() =>
               typeof svgInfo.wordmark === 'string' &&
@@ -385,7 +385,7 @@
               })}
           >
             <DownloadIcon class="mr-2" size={iconSize} />
-            <p>Wordmark Logo（PNG）</p>
+            <p>下载 Wordmark PNG 图片格式</p>
           </button>
         </div>
       {/if}

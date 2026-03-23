@@ -14,7 +14,7 @@
       target="_blank"
       class={buttonStyles}
     >
-      <span>提交 logo</span>
+      <span>提交 Logo</span>
       <ArrowUpRight size={16} />
     </a>
     <!-- <a

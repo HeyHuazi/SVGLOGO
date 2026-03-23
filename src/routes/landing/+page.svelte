@@ -43,8 +43,8 @@
 </script>
 
 <svelte:head>
-  <title>SVGLOGO - 专注收录国内矢量LOGO</title>
-  <meta name="description" content="免费下载矢量LOGO素材，专注收录国内矢量LOGO，为设计师提供高质量的品牌标识资源。" />
+  <title>SVGLOGO - 专注收录国内矢量 LOGO</title>
+  <meta name="description" content="免费下载矢量 LOGO 素材，专注收录国内矢量 LOGO，为设计师提供高质量的品牌标识资源。" />
 </svelte:head>
 
 <!-- Hero Section - 保持全宽 -->
@@ -53,7 +53,7 @@
     <div class="flex items-center justify-center mb-6">
       <span class={cn(badgeStyles, 'text-sm')}>
         <Sparkles size={14} class="mr-1.5" />
-        专注国内矢量LOGO收录
+        专注国内矢量 LOGO 收录
       </span>
     </div>
     
@@ -62,7 +62,7 @@
     </h1>
     
     <p class="mb-8 text-xl font-normal text-neutral-600 lg:text-2xl sm:px-16 lg:px-48 dark:text-neutral-300 text-balance">
-      免费在线下载矢量LOGO素材，专注收录国内矢量LOGO
+      免费在线下载矢量 LOGO 素材，专注收录国内矢量 LOGO
     </p>
     
     <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -90,7 +90,7 @@
           </div>
           <h3 class="text-lg font-semibold text-neutral-900 dark:text-white mb-2">高质量资源</h3>
           <p class="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed">
-            精心收录国内知名品牌的矢量LOGO，确保每个图标都具备专业品质和清晰度。
+            精心收录国内知名品牌的矢量 LOGO，确保每个图标都具备专业品质和清晰度。
           </p>
         </div>
         <div class="text-center">
@@ -239,7 +239,7 @@
       <div class="lg:col-span-2 text-center lg:text-left">
         <h3 class="text-lg font-semibold text-neutral-900 dark:text-white mb-4">SVGLOGO</h3>
         <p class="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed mb-6 max-w-md mx-auto lg:mx-0">
-          专注收录国内矢量LOGO，为设计师和开发者提供高质量的品牌标识资源。
+          专注收录国内矢量 LOGO，为设计师和开发者提供高质量的品牌标识资源。
         </p>
         <div class="flex justify-center lg:justify-start space-x-4">
           <a href="https://github.com/HeyHuazi/SVGLOGO" target="_blank" rel="noopener noreferrer" 
@@ -258,12 +258,13 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-x-4 gap-y-2 max-w-xs mx-auto lg:max-w-none lg:mx-0">
           <div class="space-y-2 text-sm">
             <div><a href="https://designstroll.space/" class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors duration-200">设计漫步</a></div>
-            <div><a href="https://www.yanyi.pro/" class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors duration-200">言意</a></div>
+            <div><a href="https://rive.cool/" class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors duration-200">Rive.Cool</a></div>
             <div><a href="https://xiaobot.osguider.com/" target="_blank" rel="noopener noreferrer" class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors duration-200">小报童排行榜</a></div>
           </div>
           <div class="space-y-2 text-sm">
             <div><a href="https://osguider.com/blog/" class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors duration-200">开源服务指南</a></div>
             <div><a href="https://tagly.notion.site/" target="_blank" rel="noopener noreferrer" class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors duration-200">全网漫游指南</a></div>
+            <div><a href="https://xiaobot.net/p/DesignStroll" target="_blank" rel="noopener noreferrer" class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors duration-200">设计漫步周刊</a></div>
           </div>
         </div>
       </div>
