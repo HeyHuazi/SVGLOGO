@@ -9,6 +9,9 @@
   // 导入博客数据
   import { getLatestPosts } from '@/data/blogs';
   
+  // 导入更新日志数据
+  import { getLatestChangelog } from '@/data/changelog';
+  
   const getImagePath = (route: string | { light: string; dark: string }) => {
     if (typeof route === 'string') {
       return route;
@@ -148,6 +151,46 @@
               />
             </div>
           </a>
+        {/each}
+      </div>
+    </div>
+  </section>
+
+  <!-- Changelog Section -->
+  <section class="py-8 border-t border-neutral-200 dark:border-neutral-800">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex items-center justify-between mb-8">
+        <h2 class="text-3xl font-bold text-neutral-900 dark:text-white">
+          更新日志
+        </h2>
+        <a href="/about#更新日志" class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors text-base hover:underline flex items-center whitespace-nowrap">
+          查看全部
+          <ArrowUpRight size={16} class="ml-1" />
+        </a>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {#each getLatestChangelog(6) as entry}
+          <div class="p-4 bg-white dark:bg-neutral-800 rounded-lg border border-neutral-200 dark:border-neutral-700 hover:border-neutral-300 dark:hover:border-neutral-600 transition-all">
+            <div class="flex items-start gap-3">
+              <span class="text-2xl flex-shrink-0">
+                {#if entry.type === 'add'}✨{:else if entry.type === 'fix'}🐞{:else if entry.type === 'announce'}📢{:else}➖{/if}
+              </span>
+              <div class="flex-1 min-w-0">
+                <div class="text-sm text-neutral-500 dark:text-neutral-400 mb-1">
+                  {entry.date}
+                </div>
+                <p class="text-neutral-900 dark:text-white text-sm leading-relaxed">
+                  {entry.description}
+                  {#if entry.contributor}
+                    <span class="text-neutral-600 dark:text-neutral-400 ml-1">
+                      {entry.contributor}
+                    </span>
+                  {/if}
+                </p>
+              </div>
+            </div>
+          </div>
         {/each}
       </div>
     </div>

@@ -1,0 +1,177 @@
+order: 11
+items:
+  - title: 中国联合航空
+    file: ChinaUnitedAirlines.svg
+    url: https://www.flycua.com/
+  - title: 奥凯航空
+    file: OkayAirways.svg
+    url: https://www.okair.net/welcome.html
+  - title: 长龙航空
+    file: LoongAir.svg
+    url: https://www.loongair.com/
+  - title: 长安航空
+    file: AirChangan.svg
+    url: https://www.airchangan.com/
+  - title: 幸福航空
+    file: JoyAir.svg
+    url: http://www.joy-air.com/
+  - title: 香港航空
+    file: HongKongAirlines.svg
+    url: https://www.hongkongairlines.com/
+  - title: 天骄航空
+    file: GenghisKhanAirlines.svg
+    url: https://www.tianjiao-air.com/
+  - title: 苏南瑞丽航空
+    file: RuiliAirlines.svg
+    url: https://www.rlair.net/
+  - title: 青岛航空
+    file: QingdaoAirlines.svg
+    url: https://www.qdairlines.com/
+  - title: 河北航空
+    file: HebeiAirlines.svg
+    url: https://www.hbhk.com.cn/
+  - title: 重庆航空
+    file: ChongqingAirlines.svg
+    url: https://www.chongqingairlines.cn/
+  - title: 大新华航空
+    file: GrandChinaAir.svg
+    url: https://www.hnair.com/
+  - title: 江西航空
+    file: JiangxiAir.svg
+    url: https://www.airjiangxi.com/
+  - title: 福州航空
+    file: FuzhouAirlines.svg
+    url: https://www.fuzhou-air.cn/
+  - title: 昆明航空
+    file: KunmingAirlines.svg
+    url: https://www.airkunming.com/
+  - title: 中国邮政航空公司
+    file: ChinaPostalAirlines_wordmark.svg
+    url: http://www.cnpostair.com
+  - title: 中华航空
+    file: ChinaAirlines_wordmark.svg
+    url: https://www.china-airlines.com/hk/zh
+  - title: 中国南方航空
+    file: ChinaSouthernAirlines.svg
+    url: https://www.csair.com/cn/
+  - title: 中国国际货运航空
+    file: AirChinaCargo.svg
+    url: https://www.airchinacargo.com/
+  - title: 中国国际航空
+    file: AirChina.svg
+    url: https://www.airchina.com.cn/
+  - title: 中国东方航空
+    file: ChinaEasternAirlines.svg
+    url: https://www.ceair.com/
+  - title: 成都航空
+    file: CHENGDUAIRLINES.svg
+    url: https://www.cdal.com.cn/
+  - title: 北部湾航空
+    file: GXAirlines.svg
+    url: https://www.gxairlines.com/
+  - title: 澳门航空
+    file: AirMacau.svg
+    url: http://www.airmacau.com.mo/
+  - title: 长荣航空
+    file: EVAAirways.svg
+    url: https://www.evaair.com/
+  - title: 星宇航空
+    file: StarLuxAirlines.svg
+    url: https://www.starlux-airlines.com/
+  - title: 祥鹏航空
+    file: LuckyAir.svg
+    url: https://www.luckyair.net/
+  - title: 香港快运航空
+    file: HKExpress.svg
+    url: https://www.hkexpress.com/
+  - title: 西藏航空
+    file: TibetAirlines.svg
+    url: https://www.tibetairlines.com.cn/
+  - title: 西部航空
+    file: WestAir.svg
+    url: https://www.westair.cn/
+  - title: 乌鲁木齐航空
+    file: UrumqiAir.svg
+    url: https://www.urumqi-air.com/
+  - title: 天津航空
+    file: TianjinAirlines.svg
+    url: https://www.tianjin-air.com/
+    wordmark: TianjinAirlines_wordmark.svg
+  - title: 台湾虎航
+    file: TigerairTaiwan.svg
+    url: https://www.tigerairtw.com/
+  - title: 四川航空
+    file: SichuanAirlines.svg
+    url: https://www.sichuanair.com/
+  - title: 顺丰航空
+    file: SFAirlines.svg
+    url: https://www.sf-airlines.com/
+  - title: 首都航空
+    file: CapitalAirlines.svg
+    url: https://www.jdair.net/
+    wordmark: CapitalAirlines_wordmark.svg
+  - title: 深圳航空
+    file: ShenzhenAirlines.svg
+    url: https://www.shenzhenair.com/
+    wordmark: ShenzhenAirlines_wordmark.svg
+  - title: 上海航空公司
+    file: ShanghaiAirlines.svg
+    url: https://www.ceair.com/
+    wordmark: ShanghaiAirlines_wordmark.svg
+  - title: 山东航空公司
+    file: ShandongAirlines.svg
+    url: https://www.sda.cn/
+  - title: 厦门航空
+    file: XiamenAir.svg
+    url: https://www.xiamenair.com/
+    wordmark: XiamenAir_wordmark.svg
+  - title: 龙江航空
+    file: LJAir.svg
+    url: http://www.longjianghk.com/
+  - title: 立荣航空
+    file: UNIAir.svg
+    url: https://www.uniair.com.tw/
+  - title: 九元航空
+    file: 9Air.svg
+    url: https://www.9air.com/
+    wordmark: 9Air_wordmark.svg
+  - title: 金鹏航空
+    file: SuparnaAirlines.svg
+    url: https://www.yzr.com.cn/
+  - title: 吉祥航空
+    file: JuneyaoAir.svg
+    url: http://www.juneyaoair.com/
+  - title: 华信航空
+    file: MandarinAirlines.svg
+    url: https://www.mandarin-airlines.com/
+  - title: 华夏航空
+    file: ChinaExpress.svg
+    url: https://www.chinaexpressair.com/
+  - title: 湖南航空
+    file: AirTravel.svg
+    url: https://www.a6air.com/
+  - title: 海南航空
+    file: HainanAirlines.svg
+    url: "https://www.hnair.com/ "
+    wordmark: HainanAirlines_wordmark.svg
+  - title: 国泰航空
+    file: CathayPacific.svg
+    url: https://www.cathaypacific.com/
+  - title: 桂林航空
+    file: AirGuilin.svg
+    url: https://www.airguilin.com/
+  - title: 多彩贵州航空
+    file: ColorfulGuizhouAirlines.svg
+    url: https://www.cgzair.com/
+  - title: 东海航空
+    file: DonghaiAirlines.svg
+    url: https://www.donghaiair.com/
+  - title: 大湾区航空
+    file: GreaterBayAirlines.svg
+    url: https://www.greaterbay-airlines.com/
+  - title: 大连航空
+    file: DalianAirlines.svg
+    url: http://www.dalianair-china.com/
+  - title: 春秋航空
+    file: SpringAirlines.svg
+    url: https://www.ch.com/

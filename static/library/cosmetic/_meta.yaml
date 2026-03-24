@@ -1,0 +1,128 @@
+order: 8
+items:
+  - title: 阿玛尼
+    file: ArmaniCaiZhuang.svg
+    url: https://www.giorgioarmanibeauty.com
+  - title: 欧珀莱
+    file: aupres.svg
+    url: https://www.aupres.com.cn/
+  - title: 雅漾
+    file: avene.svg
+    url: https://www.aveneusa.com/
+  - title: 碧欧泉
+    file: biotherm.svg
+    url: https://www.biotherm.com/
+  - title: Bobbi Brown 芭比波朗
+    file: bobbibrown.svg
+    url: https://www.bobbibrown.com.cn/
+  - title: 香奈儿 CHANEL
+    file: chanel.svg
+    url: https://www.chanel.cn/cn/
+  - title: 娇韵诗 Clarins
+    file: Clarins.svg
+    url: https://www.clarins.com.cn/
+  - title: 肌肤之钥
+    file: cledepeau.svg
+    url: https://www.cledepeau-beaute.com.cn/
+    wordmark: cledepeau_wordmark.svg
+  - title: 迪奥 dior
+    file: dior.svg
+    url: https://www.dior.cn/zh_cn
+  - title: 雅诗兰黛 Estee Lauder
+    file: esteelauder.svg
+    url: https://www.esteelauder.com.cn/
+  - title: 樊文花
+    file: fanwenhua.svg
+    url: http://www.fawa1988.com/
+  - title: 纪梵希
+    file: givenchy.svg
+    url: https://www.givenchy.com/int/en/homepage
+    wordmark: givenchy_wordmark.svg
+  - title: 法国娇兰 Guerlain
+    file: guerlain.svg
+    url: https://www.guerlain.com.cn/
+  - title: HR 赫莲娜
+    file: HelenaRubinstein.svg
+    url: https://www.helenarubinstein.cn/
+  - title: "悦诗风吟 Innisfree "
+    file: Innisfree.svg
+    url: https://www.innisfree.cn/
+  - title: 茵芙莎IPSA
+    file: ipsa.svg
+    url: https://www.ipsa.com.cn/
+  - title: 茱莉蔻Jurlique
+    file: Jurlique.svg
+    url: https://www.jurlique.com.cn/
+  - title: 科颜氏Kiehl's
+    file: kiehls.svg
+    url: https://www.kiehls.com.cn/
+  - title: 欧舒丹 L'OCCITANE
+    file: loccitane.svg
+    url: https://www.loccitane.cn/
+  - title: 巴黎欧莱雅
+    file: loreal.svg
+    url: https://www.lorealparis.com.cn/
+  - title: 海蓝之谜
+    file: lamer.svg
+    url: https://www.lamer.com.cn/
+  - title: 兰蔻Lancome
+    file: lancome.svg
+    url: https://www.lancome.com.cn/
+  - title: "兰芝 Laneige "
+    file: laneige.svg
+    url: https://www.laneige.com.cn/
+  - title: M·A·C
+    file: mac.svg
+    url: https://www.maccosmetics.com.cn/
+  - title: makeupforever
+    file: makeupforever.svg
+    url: https://www.makeupforever.com/
+  - title: 梦妆 Mamonde
+    file: mamonde.svg
+    url: https://www.mamonde.com.cn/index.html
+  - title: 毛戈平 MAOGEPING
+    file: maogeping.svg
+    url: https://www.maogepingbeauty.com/
+  - title: MARUBI丸美
+    file: marubi.svg
+    url: https://www.marubi.cn/
+  - title: 玉兰油 OLAY
+    file: olay.svg
+    url: https://www.olay.com.cn/
+  - title: 悦木之源
+    file: origns.svg
+    url: https://www.origins.com.cn/
+  - title: 珀莱雅 PROYA
+    file: proya.svg
+    url: https://www.proya.com/
+  - title: SHISEIDO 资生堂
+    file: shiseido.svg
+    url: https://www.shiseido.com.cn/
+  - title: Shu Uemura植村秀
+    file: ShuUemura.svg
+    url: https://www.shuuemura.com.cn/
+  - title: Shu Uemura植村秀
+    file: ShuUemura.svg
+    url: https://www.shuuemura.com.cn/
+  - title: Sisley法国希思黎
+    file: Sisley.svg
+    url: https://www.sisley.com.cn/
+  - title: SK-II
+    file: skii.svg
+    url: https://www.skii.com.cn/
+  - title: 雪花秀 sulwhasoo
+    file: sulwhasoo.svg
+    url: https://www.sulwhasoo.com.cn/index.html
+  - title: TOM FORD
+    file: tomford.svg
+    url: https://www.tomford.com/
+  - title: Whoo 后
+    file: whoo.svg
+    url: https://www.whoo.com.cn/
+  - title: YSL圣罗兰
+    file: ysl.svg
+    url: https://www.yslbeautycn.com/
+    wordmark: ysl_wordmark.svg
+  - title: 羽西
+    file: yuxi.svg
+    url: https://www.yuesai.com/mob/index.html

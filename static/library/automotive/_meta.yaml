@@ -1,0 +1,23 @@
+order: 12
+items:
+  - title: 阿维塔
+    file: avatr.svg
+    url: https://www.avatr.com/
+  - title: 比亚迪
+    file: byd.svg
+    url: https://www.byd.com/cn
+  - title: 长安汽车
+    file: chanan.svg
+    url: https://www.changan.com.cn/
+  - title: 奇瑞汽车
+    file: chery.svg
+    url: https://www.chery.cn/
+  - title: 上汽集团
+    file: saicMotor.svg
+    url: https://www.saicmotor.com/chinese/
+  - title: 小鹏
+    file: xpeng.svg
+    url: https://www.xiaopeng.com/
+  - title: 极氪
+    file: zeekr.svg
+    url: https://www.zeekrlife.com/

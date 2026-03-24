@@ -1,0 +1,84 @@
+order: 1
+items:
+  - title: 广州锦杨科技有限公司
+    file: KamyangTechnology.svg
+    url: https://www.kamyang.com/
+    wordmark: KamyangTechnology_wordmark.svg
+  - title: 深物业集团
+    file: SZPRD.svg
+    url: https://www.szwuye.com.cn/
+    wordmark: SZPRD_wordmark.svg
+  - title: 小米
+    file: xiaomi.svg
+    url: https://www.mi.com/
+  - title: 中国石化
+    file: Sinopec.svg
+    url: http://www.sinopec.com/
+  - title: 五粮液
+    file: Wuliangye.svg
+    url: https://www.wuliangye.com.cn/
+    wordmark: Wuliangye_wordmark.svg
+  - title: 浪潮
+    file: inspur.svg
+    url: https://www.inspur.com/
+  - title: 字节跳动
+    file: bytedance.svg
+    url: https://www.bytedance.com/
+    wordmark: bytedance_wordmark.svg
+  - title: 腾讯
+    file: Tencent.svg
+    url: https://www.tencent.com.cn/
+  - title: 中国移动
+    file: chinaMobile.svg
+    url: https://www.chinamobileltd.com/
+    wordmark: chinaMobile_wordmark.svg
+  - title: 中国人寿
+    file: chinaLife.svg
+    url: https://www.chinalife.com.cn/
+    wordmark: chinaLife_wordmark.svg
+  - title: 国家电网
+    file: stateGrid.svg
+    url: http://www.sgcc.com.cn:8000/
+    wordmark: stateGrid_wordmark.svg
+  - title: 奈雪的茶
+    file: NaiXueDeCha.svg
+    url: https://www.naixue.com/
+  - title: 中国电信
+    file: chinatelecom.svg
+    url: http://www.chinatelecom.com.cn/
+  - title: 中国联通
+    file: chinaunicom.svg
+    url: https://www.chinaunicom.com.cn/
+  - title: 增长超人
+    file: zengzhangchaoren.svg
+    url: https://www.growthman.cn/
+    wordmark: zengzhangchaoren_wordmark.svg
+  - title: 凡科互动
+    file: fankehudong.svg
+    url: https://hd.fkw.com/
+    wordmark: fankehudong_wordmark.svg
+  - title: 华为
+    file: huawei.svg
+    url: https://www.huawei.com/cn/
+    wordmark: huawei_wordmark.svg
+  - title: 蚂蚁集团
+    file: AntGroup.svg
+    url: https://www.antgroup.com/
+    wordmark: AntGroup_wordmark.svg
+  - title: 蚂蚁公益基金会
+    file: AntFoundation.svg
+    url: https://www.antfoundation.org.cn/
+    wordmark: AntFoundation_wordmark.svg
+  - title: 京东科技
+    file: JDT.svg
+    url: https://www.jdt.com.cn/
+    wordmark: JDT_wordmark.svg
+  - title: 亚太财险
+    file: API.svg
+    url: https://www.apiins.com/
+    wordmark: API_wordmark.svg
+  - title: 昱宁
+    file: yndm.svg
+  - title: 花再
+    file: huazai.svg
+    url: http://www.huazai.store/

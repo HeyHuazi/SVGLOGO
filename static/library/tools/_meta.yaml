@@ -1,0 +1,131 @@
+order: 4
+items:
+  - title: Canva可画
+    file: Canva.svg
+    url: https://www.canva.cn/
+    wordmark: Canva_wordmark.svg
+  - title: QingIcon
+    file: qingicon.svg
+    url: https://qingicon.com/
+    wordmark: qing_wordmark.svg
+  - title: 光厂
+    file: vjshi.svg
+    url: https://www.vjshi.com/
+    wordmark: vjshi_wordmark.svg
+  - title: iconfont
+    file: iconfont.svg
+    url: https://www.iconfont.cn/
+    wordmark: iconfont_wordmark.svg
+  - title: 优酷
+    file: youku.svg
+    url: https://www.youku.com/
+    wordmark: youku_wordmark.svg
+  - title: 火山引擎
+    file: volcengine.svg
+    url: https://www.volcengine.com/
+  - title: 小牛翻译
+    file: niutrans.svg
+    url: https://niutrans.com/t
+  - title: 彩云小译
+    file: caiyunapp.svg
+    url: https://fanyi.caiyunapp.com/
+  - title: MasterGo 莫高设计
+    file: masterGo.svg
+    url: https://mastergo.com/
+    wordmark: masterGo_wordmark.svg
+  - title: 即时设计
+    file: jsdesign.svg
+    url: https://js.design/
+    wordmark: jsdesign_wordmark.svg
+  - title: Moonvy 月维
+    file: Moonvy.svg
+    url: https://moonvy.com/
+    wordmark: Moonvy_wordmark.svg
+  - title: Motiff 妙多
+    file: Motiff.svg
+    url: https://motiff.cn/
+    wordmark: Motiff_wordmark.svg
+  - title: Pixso
+    file: Pixso.svg
+    url: https://pixso.cn/
+    wordmark: Pixso_wordmark.svg
+  - title: Bodardmix
+    file: boardmix.svg
+    url: https://boardmix.cn/
+    wordmark: boardmix_wordmark.svg
+  - title: 墨刀
+    file: Modao.svg
+    url: https://modao.cc/brand
+    wordmark: Modao_wordmark.svg
+  - title: 新枝
+    file: xinzhi.svg
+    url: https://modao.cc/
+    wordmark: xinzhi_wordmark.svg
+  - title: 阿里云盘
+    file: alipan.svg
+    url: https://www.alipan.com/
+    wordmark: alipan_wordmark.svg
+  - title: 百度网盘
+    file: baiducould.svg
+    url: https://pan.baidu.com/
+  - title: 阿里云
+    file: aliyun.svg
+    url: https://www.aliyun.com/
+    wordmark: aliyun_wordmark.svg
+  - title: 夸克网盘
+    file: quarkpan.svg
+    url: https://pan.quark.cn/
+    wordmark: quarkpan_wordmark.svg
+  - title: Word
+    file: word.svg
+    url: https://www.microsoft.com/zh-cn/microsoft-365/word
+  - title: PoverPoint
+    file: ppt.svg
+    url: https://www.microsoft.com/zh-cn/microsoft-365/powerpoint
+  - title: Outlook
+    file: outlook.svg
+    url: https://www.microsoft.com/zh-cn/microsoft-365/outlook/email-and-calendar-software-microsoft-outlook
+  - title: Excel
+    file: excel.svg
+    url: https://www.microsoft.com/zh-cn/microsoft-365/excel
+  - title: OneNote
+    file: OneNote.svg
+    url: https://www.microsoft.com/zh-cn/microsoft-365/onenote/digital-note-taking-app
+  - title: MicrosoftTeams
+    file: MicrosoftTeams.svg
+    url: https://www.microsoft.com/zh-cn/microsoft-365/microsoft-teams/group-chat-software
+  - title: 知乎
+    file: zhi.svg
+    url: https://zhihu.com/
+    wordmark: zhiHu.svg
+  - title: 即刻
+    file: jike.svg
+    url: https://web.okjike.com/u/5fd3a866-55a2-4680-a19d-fec6d0d41c91
+    wordmark: jike_wordmark.svg
+  - title: 百度
+    file: baidu.svg
+    url: https://www.baidu.com/
+  - title: 网易云
+    file: wangyiyun-music.svg
+    url: https://music.163.com/
+  - title: DeepSeek
+    file: deepseek.svg
+    url: https://www.deepseek.com/
+    wordmark: deepseek_wordmark.svg
+  - title: 小鹅通
+    file: XET.svg
+    url: https://www.xiaoe-tech.com/
+  - title: 蚂蚁森林
+    file: AntForest.svg
+    url: https://www.antgroup.com/
+    wordmark: AntForest_wordmark.svg
+  - title: 蚂蚁链
+    file: Antchan.svg
+    url: https://www.antgroup.com/
+    wordmark: Antchan_wordmark.svg
+  - title: 卡奥斯COSMOPlat
+    file: cosmoplat_wordmark.svg
+    url: https://www.cosmoplat.com/
+  - title: Svglogo
+    file: SVGLOGO.svg
+    url: TODO

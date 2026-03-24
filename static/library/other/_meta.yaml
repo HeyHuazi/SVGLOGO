@@ -1,0 +1,73 @@
+order: 6
+items:
+  - title: 联合国
+    file: UnitedNations.svg
+    url: https://www.un.org/zh
+  - title: 联合国发展目标-01-无贫穷
+    file: unitedNationsDevelopmentGoals_ZH_1.svg
+    url: https://www.un.org/zh
+    wordmark: unitedNationsDevelopmentGoals_EN_1.svg
+  - title: 联合国发展目标-02-零饥饿
+    file: unitedNationsDevelopmentGoals_ZH_2.svg
+    url: https://www.un.org/zh
+    wordmark: unitedNationsDevelopmentGoals_EN_2.svg
+  - title: 联合国发展目标-03-良好健康与福祉
+    file: unitedNationsDevelopmentGoals_ZH_3.svg
+    url: https://www.un.org/zh
+    wordmark: unitedNationsDevelopmentGoals_EN_3.svg
+  - title: 联合国发展目标-04-优质教育
+    file: unitedNationsDevelopmentGoals_ZH_4.svg
+    url: https://www.un.org/zh
+    wordmark: unitedNationsDevelopmentGoals_EN_4.svg
+  - title: 联合国发展目标-05-性别平等
+    file: unitedNationsDevelopmentGoals_ZH_5.svg
+    url: https://www.un.org/zh
+    wordmark: unitedNationsDevelopmentGoals_EN_5.svg
+  - title: 联合国发展目标-06-清洁饮水和卫生设施
+    file: unitedNationsDevelopmentGoals_ZH_6.svg
+    url: https://www.un.org/zh
+    wordmark: unitedNationsDevelopmentGoals_EN_6.svg
+  - title: 联合国发展目标-07-经济适用的清洁能源
+    file: unitedNationsDevelopmentGoals_ZH_7.svg
+    url: https://www.un.org/zh
+    wordmark: unitedNationsDevelopmentGoals_EN_7.svg
+  - title: 联合国发展目标-08-体面工作和经济增长
+    file: unitedNationsDevelopmentGoals_ZH_8.svg
+    url: https://www.un.org/zh
+    wordmark: unitedNationsDevelopmentGoals_EN_8.svg
+  - title: 联合国发展目标-09-产业、创新和基础设施
+    file: unitedNationsDevelopmentGoals_ZH_9.svg
+    url: https://www.un.org/zh
+    wordmark: unitedNationsDevelopmentGoals_EN_9.svg
+  - title: 联合国发展目标-10-减少不平等
+    file: unitedNationsDevelopmentGoals_ZH_10.svg
+    url: https://www.un.org/zh
+    wordmark: unitedNationsDevelopmentGoals_EN_10.svg
+  - title: 联合国发展目标-11-可持续城市和社区
+    file: unitedNationsDevelopmentGoals_ZH_11.svg
+    url: https://www.un.org/zh
+    wordmark: unitedNationsDevelopmentGoals_EN_11.svg
+  - title: 联合国发展目标-12-负责任消费和生产
+    file: unitedNationsDevelopmentGoals_ZH_12.svg
+    url: https://www.un.org/zh
+    wordmark: unitedNationsDevelopmentGoals_EN_12.svg
+  - title: 联合国发展目标-13-气候行动
+    file: unitedNationsDevelopmentGoals_ZH_13.svg
+    url: https://www.un.org/zh
+    wordmark: unitedNationsDevelopmentGoals_EN_13.svg
+  - title: 联合国发展目标-14-水下生物
+    file: unitedNationsDevelopmentGoals_ZH_14.svg
+    url: https://www.un.org/zh
+    wordmark: unitedNationsDevelopmentGoals_EN_14.svg
+  - title: 联合国发展目标-15-陆地生物
+    file: unitedNationsDevelopmentGoals_ZH_15.svg
+    url: https://www.un.org/zh
+    wordmark: unitedNationsDevelopmentGoals_EN_15.svg
+  - title: 联合国发展目标-16-和平、正义与强大机构
+    file: unitedNationsDevelopmentGoals_ZH_16.svg
+    url: https://www.un.org/zh
+    wordmark: unitedNationsDevelopmentGoals_EN_16.svg
+  - title: 联合国发展目标-17-促进目标实现的伙伴关系
+    file: unitedNationsDevelopmentGoals_ZH_17.svg
+    url: https://www.un.org/zh
+    wordmark: unitedNationsDevelopmentGoals_EN_17.svg

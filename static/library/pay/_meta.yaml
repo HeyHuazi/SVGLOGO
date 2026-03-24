@@ -1,0 +1,636 @@
+order: 7
+items:
+  - title: 支付宝
+    file: zhifubao.svg
+    url: https://www.alipay.com/
+  - title: 花呗
+    file: huabei.svg
+    url: https://www.alipay.com/
+    wordmark: huabei_wordmark.svg
+  - title: 微信支付
+    file: weixinpay.svg
+    url: https://pay.weixin.qq.com/
+  - title: 西安银行
+    file: XABANK.svg
+    url: https://www.xacbank.com/
+    wordmark: XABANK_wordmark.svg
+  - title: 桂林银行
+    file: GLBANK.svg
+    url: https://www.guilinbank.com.cn/
+    wordmark: GLBANK_wordmark.svg
+  - title: 泰安银行
+    file: TACCB.svg
+    url: https://www.taccb.com.cn/
+    wordmark: TACCB_wordmark.svg
+  - title: 浙江稠州商业银行
+    file: CZCB.svg
+    url: https://www.czcb.com.cn/
+    wordmark: CZCB_wordmark.svg
+  - title: 营口沿海银行
+    file: YKYHB.svg
+    url: http://www.coastalbank.cn/
+  - title: 晋中银行
+    file: JZB.svg
+    url: https://www.shxibank.com/
+  - title: 青海银行
+    file: QHBANK.svg
+    url: http://www.bankqh.com/
+    wordmark: QHBANK_wordmark.svg
+  - title: 雅安市商业银行
+    file: YACCB.svg
+    url: https://www.yaccb.cn/
+    wordmark: YACCB_wordmark.svg
+  - title: 广州银行
+    file: GZCB.svg
+    url: http://www.gzcb.com.cn/
+    wordmark: GZCB_wordmark.svg
+  - title: 德州银行
+    file: DZBANK.svg
+    url: https://www.dzbchina.com/
+    wordmark: DZBANK_wordmark.svg
+  - title: 湖州银行
+    file: BOHZ.svg
+    url: http://www.hzccb.com/
+    wordmark: BOHZ_wordmark.svg
+  - title: 抚顺银行
+    file: FSCB.svg
+    url: https://www.bankoffs.com.cn/
+    wordmark: FSCB_wordmark.svg
+  - title: 唐山银行
+    file: BOTS.svg
+    url: https://www.ts-bank.cn/
+    wordmark: BOTS_wordmark.svg
+  - title: 昆仑银行
+    file: KLB.svg
+    url: https://www.klb.cn/
+    wordmark: KLB_wordmark.svg
+  - title: 长城华西银行
+    file: GWB.svg
+    url: https://www.gwbank.com.cn/
+    wordmark: GWB_wordmark.svg
+  - title: 江西银行
+    file: JXB.svg
+    url: https://www.jx-bank.com/
+    wordmark: JXB_wordmark.svg
+  - title: 苏州银行
+    file: BOSZ.svg
+    url: http://www.suzhoubank.com/
+    wordmark: BOSZ_wordmark.svg
+  - title: 大连银行
+    file: DLB.svg
+    url: http://www.bankofdl.com/
+    wordmark: DLB_wordmark.svg
+  - title: 沧州银行
+    file: BOCZ.svg
+    url: https://www.bankcz.com/
+    wordmark: BOCZ_wordmark.svg
+  - title: 长安银行
+    file: CABANK.svg
+    url: https://www.ccabchina.com/
+    wordmark: CABANK_wordmark.svg
+  - title: 柳州银行
+    file: LZCCB.svg
+    url: http://www.bolz.cn/
+    wordmark: LZCCB_wordmark.svg
+  - title: 威海市商业银行
+    file: WHCCB.svg
+    url: https://www.whccb.com/
+    wordmark: WHCCB_wordmark.svg
+  - title: 浙江民泰商业银行
+    file: MTBANK.svg
+    url: https://www.mintaibank.com/
+    wordmark: MTBANK_wordmark.svg
+  - title: 营口银行
+    file: BOYK.svg
+    url: http://www.bankofyk.com/
+    wordmark: BOYK_wordmark.svg
+  - title: 阳泉市商业银行
+    file: YQCCB.svg
+    url: https://www.shxibank.com/
+    wordmark: YQCCB_wordmark.svg
+  - title: 西藏银行
+    file: BOXZ.svg
+    url: https://www.xzbc.com.cn/
+    wordmark: BOXZ_wordmark.svg
+  - title: 宜宾市商业银行
+    file: YBCCB.svg
+    url: http://www.ybccb.com/
+    wordmark: YBCCB_wordmark.svg
+  - title: 东莞银行
+    file: BOD.svg
+    url: https://www.dongguanbank.cn/
+    wordmark: BOD_wordmark.svg
+  - title: 东营银行
+    file: DYCCB.svg
+    url: https://www.dyccb.net/
+    wordmark: DYCCB_wordmark.svg
+  - title: 嘉兴银行
+    file: JXBANK.svg
+    url: https://www.bojx.com/
+    wordmark: JXBANK_wordmark.svg
+  - title: 阜阳银行
+    file: FXCB.svg
+    url: https://www.fuxinbank.com/
+    wordmark: FXCB_wordmark.svg
+  - title: 邢台银行
+    file: XTB.svg
+    url: https://xtbank.com/
+    wordmark: XTB_wordmark.svg
+  - title: 哈密市商业银行
+    file: HMCCB.svg
+    url: http://www.hmccb.com/
+    wordmark: HMCCB_wordmark.svg
+  - title: 乐山市商业银行
+    file: LSCCB.svg
+    url: http://www.lsccb.com/
+    wordmark: LSCCB_wordmark.svg
+  - title: 焦作中旅银行
+    file: CTS.svg
+    url: http://www.jzctb.com/
+    wordmark: CTS_wordmark.svg
+  - title: 九江银行
+    file: JJCCB.svg
+    url: http://www.jjccb.com/
+    wordmark: JJCCB_wordmark.svg
+  - title: 江苏长江商业银行
+    file: JSCJCB.svg
+    url: http://www.cjccb.com/
+    wordmark: JSCJCB_wordmark.svg
+  - title: 锦州银行
+    file: JZBANK.svg
+    url: https://jinzhoubank.com/jzbank/index.html
+    wordmark: JZBANK_wordmark.svg
+  - title: 承德银行
+    file: CDBANK.svg
+    url: https://www.chengdebank.com/
+    wordmark: CDBANK_wordmark.svg
+  - title: 云南红塔银行
+    file: YNHTBANK.svg
+    url: https://www.ynhtbank.com/
+    wordmark: YNHTBANK_wordmark.svg
+  - title: 广西北部湾银行
+    file: BGB.svg
+    url: https://www.bankofbbg.com/
+    wordmark: BGB_wordmark.svg
+  - title: 日照银行
+    file: RZB.svg
+    url: https://www.bankofrizhao.com.cn/
+    wordmark: RZB_wordmark.svg
+  - title: 温州银行
+    file: WZBANK.svg
+    url: http://www.wzcb.com.cn/
+    wordmark: WZBANK_wordmark.svg
+  - title: 铁岭银行
+    file: BOTL.svg
+    url: https://www.bankoftieling.com/
+    wordmark: BOTL_wordmark.svg
+  - title: 晋城银行
+    file: JINCHB.svg
+    url: https://www.shxibank.com/
+    wordmark: JINCHB_wordmark.svg
+  - title: 石嘴山银行
+    file: SZSBK.svg
+    url: http://www.szsccb.com/
+    wordmark: SZSBK_wordmark.svg
+  - title: 遂宁银行
+    file: SNBANK.svg
+    url: https://www.snccb.com/
+    wordmark: SNBANK_wordmark.svg
+  - title: 湖北银行
+    file: HBC.svg
+    url: http://www.hubeibank.cn/
+    wordmark: HBC_wordmark.svg
+  - title: 青岛银行
+    file: QDCCB.svg
+    url: https://www.qdccb.com/
+    wordmark: QDCCB_wordmark.svg
+  - title: 宁波东海银行
+    file: NDHB.svg
+    url: http://www.ndhb.cn/
+    wordmark: NDHB_wordmark.svg
+  - title: 丹东银行
+    file: BODD.svg
+    url: http://dandongbank.com/
+    wordmark: BODD_wordmark.svg
+  - title: 秦皇岛银行
+    file: QHDBANK.svg
+    url: https://www.qhdbank.cn/
+    wordmark: QHDBANK_wordmark.svg
+  - title: 乌鲁木齐市商业银行
+    file: UCCB.svg
+    url: http://www.uccb.com.cn/
+    wordmark: UCCB_wordmark.svg
+  - title: 达州银行
+    file: DCCB.svg
+    url: https://dzccb.com.cn/
+    wordmark: DCCB_wordmark.svg
+  - title: 平顶山银行
+    file: BOP.svg
+    url: http://www.pdsb.cn/
+    wordmark: BOP_wordmark.svg
+  - title: 厦门国际银行
+    file: XMINTB.svg
+    url: https://www.xib.com.cn/
+    wordmark: XMINTB_wordmark.svg
+  - title: 南京银行
+    file: NJCB.svg
+    url: https://www.njcb.com.cn/
+    wordmark: NJCB_wordmark.svg
+  - title: 盛京银行
+    file: SJBANK.svg
+    url: https://www.shengjingbank.com.cn/
+    wordmark: SJBANK_wordmark.svg
+  - title: 保定银行
+    file: BOBD.svg
+    url: http://www.bd-bank.com.cn/
+    wordmark: BOBD_wordmark.svg
+  - title: 曲靖市商业银行
+    file: QJCCCB.svg
+    url: https://www.qjccb.com/
+    wordmark: QJCCCB_wordmark.svg
+  - title: 珠海华润银行
+    file: RBOZ.svg
+    url: https://www.crbank.com.cn/
+    wordmark: RBOZ_wordmark.svg
+  - title: 齐商银行
+    file: QSB.svg
+    url: https://www.qsbank.cc/
+    wordmark: QSB_wordmark.svg
+  - title: 台州银行
+    file: TZBANK.svg
+    url: https://www.tzbank.com/
+    wordmark: TZBANK_wordmark.svg
+  - title: 盘锦银行
+    file: BOPJ.svg
+    url: http://www.bankofpj.com/
+    wordmark: BOPJ_wordmark.svg
+  - title: 大同银行
+    file: DTB.svg
+    url: http://www.dtccb.com/
+    wordmark: DTB_wordmark.svg
+  - title: 宁夏银行
+    file: NXBANK.svg
+    url: http://www.bankofnx.com.cn/
+    wordmark: NXBANK_wordmark.svg
+  - title: 四川天府银行
+    file: SCTFB.svg
+    url: https://www.tf.cn/tfyh/index.html
+    wordmark: SCTFB_wordmark.svg
+  - title: 汉口银行
+    file: HKB.svg
+    url: http://www.hkbchina.com/
+    wordmark: HKB_wordmark.svg
+  - title: 莱商银行
+    file: LSBANK.svg
+    url: https://www.lsbankchina.com/
+    wordmark: LSBANK_wordmark.svg
+  - title: 宁波通商银行
+    file: NBCMB.svg
+    url: https://www.ncbank.cn/
+    wordmark: NBCMB_wordmark.svg
+  - title: 朝阳银行
+    file: BOCY.svg
+    url: https://www.cycb.com/
+    wordmark: BOCY_wordmark.svg
+  - title: 廊坊银行
+    file: BOLF.svg
+    url: https://www.lccb.com.cn/
+    wordmark: BOLF_wordmark.svg
+  - title: 新疆银行
+    file: XJB.svg
+    url: https://www.xjbank.com/
+    wordmark: XJB_wordmark.svg
+  - title: 成都银行
+    file: CDCB.svg
+    url: https://www.bocd.com.cn/
+    wordmark: CDCB_wordmark.svg
+  - title: 郑州银行
+    file: ZZBANK.svg
+    url: http://www.zzbank.cn/
+    wordmark: ZZBANK_wordmark.svg
+  - title: 厦门银行
+    file: XMBANK.svg
+    url: http://www.xmccb.com/
+    wordmark: XMBANK_wordmark.svg
+  - title: 江苏银行
+    file: JSBANK.svg
+    url: http://www.jsbchina.cn/
+    wordmark: JSBANK_wordmark.svg
+  - title: 乌海银行
+    file: WHBANK.svg
+    url: https://www.wuhaicb.com/
+    wordmark: WHBANK_wordmark.svg
+  - title: 河北银行
+    file: BHB.svg
+    url: https://hebbank.com/
+    wordmark: BHB_wordmark.svg
+  - title: 兰州银行
+    file: LZBANK.svg
+    url: https://www.lzbank.com/
+    wordmark: LZBANK_wordmark.svg
+  - title: 重庆三峡银行
+    file: CCQTGB.svg
+    url: https://www.ccqtgb.com/
+    wordmark: CCQTGB_wordmark.svg
+  - title: 烟台银行
+    file: YTB.svg
+    url: https://www.yantaibank.net/
+    wordmark: YTB_wordmark.svg
+  - title: 徽商银行
+    file: HSBANK.svg
+    url: http://www.hsbank.com.cn/
+    wordmark: HSBANK_wordmark.svg
+  - title: 哈尔滨银行
+    file: HRBCB.svg
+    url: https://www.hrbb.com.cn/
+    wordmark: HRBCB_wordmark.svg
+  - title: 富滇银行
+    file: FDBANK.svg
+    url: http://www.fudian-bank.com/
+    wordmark: FDBANK_wordmark.svg
+  - title: 广东南粤银行
+    file: NYBANK.svg
+    url: https://www.gdnybank.com/
+    wordmark: NYBANK_wordmark.svg
+  - title: 临商银行
+    file: LSBC.svg
+    url: http://www.lsbchina.com/
+    wordmark: LSBC_wordmark.svg
+  - title: 绍兴银行
+    file: SXCB.svg
+    url: http://www.sxccb.com/
+    wordmark: SXCB_wordmark.svg
+  - title: 辽阳银行
+    file: BOLY.svg
+    url: https://www.liaoshen-bank.com/
+    wordmark: BOLY_wordmark.svg
+  - title: 晋商银行
+    file: JSB.svg
+    url: https://www.jshbank.com/
+    wordmark: JSB_wordmark.svg
+  - title: 新疆汇和银行
+    file: XJHB.svg
+    url: http://www.bohuihe.com/
+    wordmark: XJHB_wordmark.svg
+  - title: 绵阳市商业银行
+    file: MYCCB.svg
+    url: https://www.mycc-bank.com/
+    wordmark: MYCCB_wordmark.svg
+  - title: 长沙银行
+    file: BSCB.svg
+    url: http://cscb.cn/
+    wordmark: BSCB_wordmark.svg
+  - title: 齐鲁银行
+    file: QLBANK.svg
+    url: https://www.qlbchina.com/
+    wordmark: QLBANK_wordmark.svg
+  - title: 宁波银行
+    file: NBCB.svg
+    url: https://www.nbcb.com.cn/
+    wordmark: NBCB_wordmark.svg
+  - title: 本溪市商业银行
+    file: BCCB.svg
+    url: http://www.bankofbx.com/
+    wordmark: BCCB_wordmark.svg
+  - title: 衡水银行
+    file: BOHS.svg
+    url: http://www.hengshuibank.com/
+    wordmark: BOHS_wordmark.svg
+  - title: 贵州银行
+    file: BOGZ.svg
+    url: https://www.bgzchina.com/
+    wordmark: BOGZ_wordmark.svg
+  - title: 四川银行
+    file: SCB.svg
+    url: https://www.scbank.cn/
+    wordmark: SCB_wordmark.svg
+  - title: 中原银行
+    file: ZYBANK.svg
+    url: https://www.zybank.com.cn/
+    wordmark: ZYBANK_wordmark.svg
+  - title: 泉州银行
+    file: BOQZ.svg
+    url: https://www.qzccbank.com/
+    wordmark: BOQZ_wordmark.svg
+  - title: 上海银行
+    file: BOSC.svg
+    url: https://ibank.bankofshanghai.com/
+    wordmark: BOSC_wordmark.svg
+  - title: 鄂尔多斯银行
+    file: ORDOSB.svg
+    url: https://www.ordosbank.com/
+    wordmark: ORDOSB_wordmark.svg
+  - title: 天津银行
+    file: BOTJ.svg
+    url: https://www.bankoftianjin.com/
+    wordmark: BOTJ_wordmark.svg
+  - title: 甘肃银行
+    file: BOGS.svg
+    url: https://www.gsbankchina.com/
+    wordmark: BOGS_wordmark.svg
+  - title: 海南银行
+    file: HNB.svg
+    url: https://www.hnbankchina.com.cn/
+    wordmark: HNB_wordmark.svg
+  - title: 潍坊银行
+    file: WFCCB.svg
+    url: https://www.bankwf.com/
+    wordmark: WFCCB_wordmark.svg
+  - title: 泰隆银行
+    file: TLCB.svg
+    url: https://www.zjtlcb.com/
+    wordmark: TLCB_wordmark.svg
+  - title: 吉林银行
+    file: BOJL.svg
+    url: https://www.jlbank.com.cn/
+    wordmark: BOJL_wordmark.svg
+  - title: 长治银行
+    file: CZB.svg
+    url: https://www.czccb.com/
+    wordmark: CZB_wordmark.svg
+  - title: 自贡银行
+    file: ZGBANK.svg
+    url: https://www.zgbank.com.cn/
+    wordmark: ZGBANK_wordmark.svg
+  - title: 广东华兴银行
+    file: GHB.svg
+    url: https://www.ghbank.com.cn/
+    wordmark: GHB_wordmark.svg
+  - title: 济宁银行
+    file: JNBANK.svg
+    url: https://www.jn-bank.com/
+    wordmark: JNBANK_wordmark.svg
+  - title: 金华银行
+    file: JHCCB.svg
+    url: https://www.jhccb.com.cn/
+    wordmark: JHCCB_wordmark.svg
+  - title: 葫芦岛银行
+    file: BOHLD.svg
+    url: https://www.bankofhld.com/
+    wordmark: BOHLD_wordmark.svg
+  - title: 张家口银行
+    file: ZJKCCB.svg
+    url: https://www.zjkccb.com/
+    wordmark: ZJKCCB_wordmark.svg
+  - title: 库尔勒市商业银行
+    file: KCCCB.svg
+    url: http://www.ccfccb.cn/
+    wordmark: KCCCB_wordmark.svg
+  - title: 泸州银行
+    file: LZB.svg
+    url: https://www.lzccb.cn/
+    wordmark: LZB_wordmark.svg
+  - title: 华融湘江银行
+    file: HRXJB.svg
+    url: https://www.hunan-bank.com/
+    wordmark: HRXJB_wordmark.svg
+  - title: 上饶银行
+    file: SRBANK.svg
+    url: https://www.srbank.cn/
+    wordmark: SRBANK_wordmark.svg
+  - title: 杭州银行
+    file: HZCB.svg
+    url: https://www.hzbank.com.cn/
+    wordmark: HZCB_wordmark.svg
+  - title: 鞍山银行
+    file: BOAS.svg
+    url: http://www.bankofas.com/
+    wordmark: BOAS_wordmark.svg
+  - title: 邯郸银行
+    file: HDBANK.svg
+    url: https://www.hdcb.cn/
+    wordmark: HDBANK_wordmark.svg
+  - title: 贵阳银行
+    file: GYCCB.svg
+    url: https://www.bankgy.cn/
+    wordmark: GYCCB_wordmark.svg
+  - title: 重庆银行
+    file: CQBANK.svg
+    url: https://trip.cqcbank.com/
+    wordmark: CQBANK_wordmark.svg
+  - title: 枣庄银行
+    file: ZZB.svg
+    url: https://www.zaozhuangbank.com/
+    wordmark: ZZB_wordmark.svg
+  - title: 福建海峡银行
+    file: FJHXBC.svg
+    url: https://www.fjhxbank.com/
+    wordmark: FJHXBC_wordmark.svg
+  - title: 龙江银行
+    file: LJBANK.svg
+    url: https://www.lj-bank.com/
+    wordmark: LJBANK_wordmark.svg
+  - title: 内蒙古银行
+    file: H3CB.svg
+    url: https://www.myrbank.com/
+    wordmark: H3CB_wordmark.svg
+  - title: 北京银行
+    file: BOB.svg
+    url: https://www.bankofbeijing.com.cn/
+    wordmark: BOB_wordmark.svg
+  - title: 恒丰银行
+    file: EGBANK.svg
+    url: https://hfcommercialbank.com/cn/homepage
+    wordmark: EGBANK_wordmark.svg
+  - title: 浙商银行
+    file: CZBANK.svg
+    url: http://www.czbank.com/
+    wordmark: CZBANK_wordmark.svg
+  - title: 广发银行
+    file: GDB.svg
+    url: https://www.cgbchina.com.cn/
+    wordmark: GDB_wordmark.svg
+  - title: 浦发银行
+    file: SPDB.svg
+    url: https://www.spdb.com.cn/
+    wordmark: SPDB_wordmark.svg
+  - title: 中信银行
+    file: CITIC.svg
+    url: https://www.citicbank.com/
+    wordmark: CITIC_wordmark.svg
+  - title: 中国民生银行
+    file: CMBC.svg
+    url: http://www.cmbc.com.cn/
+    wordmark: CMBC_wordmark.svg
+  - title: 渤海银行
+    file: BOHAIB.svg
+    url: https://www.cbhb.com.cn/
+    wordmark: BOHAIB_wordmark.svg
+  - title: 兴业银行
+    file: CIB.svg
+    url: https://www.cib.com.cn/
+    wordmark: CIB_wordmark.svg
+  - title: 平安银行
+    file: SPABANK.svg
+    url: https://bank.pingan.com/
+    wordmark: SPABANK_wordmark.svg
+  - title: 华夏银行
+    file: HXB.svg
+    url: https://www.hxb.com.cn/
+    wordmark: HXB_wordmark.svg
+  - title: 招商银行
+    file: CMB.svg
+    url: https://www.cmbchina.com/
+    wordmark: CMB_wordmark.svg
+  - title: 中国光大银行
+    file: CEB.svg
+    url: https://www.cebbank.com/
+    wordmark: CEB_wordmark.svg
+  - title: 中国邮政储蓄银行
+    file: PSBC.svg
+    url: https://www.psbc.com/
+    wordmark: PSBC_wordmark.svg
+  - title: 中国工商银行
+    file: ICBC.svg
+    url: https://www.icbc.com.cn/
+    wordmark: ICBC_wordmark.svg
+  - title: 中国农业银行
+    file: ABC.svg
+    url: https://www.abchina.com/
+    wordmark: ABC_wordmark.svg
+  - title: 中国建设银行
+    file: CCB.svg
+    url: http://www.ccb.com/
+    wordmark: CCB_wordmark.svg
+  - title: 中国银行
+    file: BOC.svg
+    url: https://www.boc.cn/
+    wordmark: BOC_wordmark.svg
+  - title: 交通银行
+    file: COMM.svg
+    url: https://www.bankcomm.com/
+    wordmark: COMM_wordmark.svg
+  - title: 中国进出口银行
+    file: EIBOF.svg
+    url: http://www.eximbank.gov.cn/
+    wordmark: EIBOF_wordmark.svg
+  - title: 国家开发银行
+    file: CDB.svg
+    url: https://www.cdb.com.cn/
+    wordmark: CDB_wordmark.svg
+  - title: 中国人民银行
+    file: PBOC.svg
+    url: http://www.pbc.gov.cn/
+    wordmark: PBOC_wordmark.svg
+  - title: 中国农业发展银行
+    file: ADBC.svg
+    url: https://www.adbc.com.cn/
+  - title: 网商银行
+    file: Mybank.svg
+    url: https://www.mybank.cn/
+    wordmark: Mybank_wordmark.svg
+  - title: 芝麻信用
+    file: zhimaxinyong.svg
+    url: https://www.xin.xin/
+    wordmark: zhimaxinyong_wordmark.svg
+  - title: 余额宝
+    file: yuebao.svg
+    url: https://help.alipay.com/lab/help_detail.htm?help_id=257914
+    wordmark: yuebao_wordmark.svg
+  - title: 借呗
+    file: jiebei.svg
+    url: https://render.alipay.com/p/f/fd-jhsyufl9/index.html
+    wordmark: jiebei_wordmark.svg
+  - title: 洛阳银行
+    file: BLY.svg
+    wordmark: BLY_wordmark.svg

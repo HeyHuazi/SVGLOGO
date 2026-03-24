@@ -1,0 +1,458 @@
+order: 10
+items:
+  - title: OpenAI
+    file: OpenAI.svg
+    url: https://openai.com/
+    wordmark: OpenAI_wordmark.svg
+  - title: Claude
+    file: Claude.svg
+    url: https://claude.ai/
+    wordmark: Claude_wordmark.svg
+  - title: Anthropic
+    file: Anthropic.svg
+    url: https://anthropic.com/
+    wordmark: Anthropic_wordmark.svg
+  - title: Gemini
+    file: Gemini.svg
+    url: https://deepmind.google/technologies/gemini
+    wordmark: Gemini_wordmark.svg
+  - title: Ollama
+    file: Ollama.svg
+    url: https://ollama.ai/
+    wordmark: Ollama_wordmark.svg
+  - title: Meta
+    file: Meta.svg
+    url: https://llama.meta.com/
+    wordmark: Meta_wordmark.svg
+  - title: Midjourney
+    file: Midjourney.svg
+    url: https://midjourney.com/
+    wordmark: Midjourney_wordmark.svg
+  - title: Mistral
+    file: Mistral.svg
+    url: https://mistral.ai/
+    wordmark: Mistral_wordmark.svg
+  - title: Stability
+    file: Stability.svg
+    url: https://deepmind.google/technologies/gemini
+    wordmark: Stability_wordmark.svg
+  - title: HuggingFace
+    file: HuggingFace.svg
+    url: https://huggingface.co/
+    wordmark: HuggingFace_wordmark.svg
+  - title: DALL·E
+    file: DALL·E.svg
+    url: https://openai.com/dall-e-3
+    wordmark: DALL·E_wordmark.svg
+  - title: OpenRouter
+    file: OpenRouter.svg
+    url: https://openrouter.ai/
+    wordmark: OpenRouter_wordmark.svg
+  - title: Cohere
+    file: Cohere.svg
+    url: https://cohere.com/
+    wordmark: Cohere_wordmark.svg
+  - title: Replicate
+    file: Replicate.svg
+    url: https://replicate.com/
+    wordmark: Replicate_wordmark.svg
+  - title: 智谱
+    file: Zhipu.svg
+    url: https://zhipuai.cn/
+    wordmark: Zhipu_wordmark.svg
+  - title: Runway
+    file: Runway.svg
+    url: https://runwayml.com/
+    wordmark: Runway_wordmark.svg
+  - title: Perplexity
+    file: Perplexity.svg
+    url: https://perplexity.ai/
+    wordmark: Perplexity_wordmark.svg
+  - title: Gemma
+    file: Gemma.svg
+    url: https://ai.google.dev/gemma
+    wordmark: Gemma_wordmark.svg
+  - title: ChatGLM (智谱)
+    file: ChatGLM.svg
+    url: https://github.com/THUDM/ChatGLM-6B
+    wordmark: ChatGLM_wordmark.svg
+  - title: Flux
+    file: Flux.svg
+    url: https://blackforestlabs.ai/
+    wordmark: Flux_wordmark.svg
+  - title: Grok
+    file: Grok.svg
+    url: https://grok.x.ai/
+    wordmark: Grok_wordmark.svg
+  - title: Suno
+    file: Suno.svg
+    url: https://app.suno.ai/
+    wordmark: Suno_wordmark.svg
+  - title: Groq
+    file: Groq.svg
+    url: https://wow.groq.com/
+    wordmark: Groq_wordmark.svg
+  - title: 通义千问
+    file: Qwen.svg
+    url: https://huggingface.co/Qwen
+    wordmark: Qwen_wordmark.svg
+  - title: together.ai
+    file: TogetherAI.svg
+    url: https://together.ai/
+    wordmark: TogetherAI_wordmark.svg
+  - title: Fireworks
+    file: Fireworks.svg
+    url: https://fireworks.ai/
+    wordmark: Fireworks_wordmark.svg
+  - title: 豆包
+    file: Doubao.svg
+    url: https://team.doubao.com/
+    wordmark: Doubao_wordmark.svg
+  - title: AzureAI
+    file: AzureAI.svg
+    url: https://ai.azure.com/
+    wordmark: AzureAI_wordmark.svg
+  - title: VertexAI
+    file: VertexAI.svg
+    url: https://cloud.google.com/generative-ai-studio
+    wordmark: VertexAI_wordmark.svg
+  - title: BedrockAWS
+    file: BedrockAWS.svg
+    url: https://aws.amazon.com/bedrock
+    wordmark: BedrockAWS_wordmark.svg
+  - title: Luma
+    file: Luma.svg
+    url: https://lumalabs.ai/
+    wordmark: Luma_wordmark.svg
+  - title: 可灵
+    file: Kling.svg
+    url: https://klingai.com/
+    wordmark: Kling_wordmark.svg
+  - title: AlephAlpha
+    file: AlephAlpha.svg
+    url: https://aleph-alpha.com/
+    wordmark: AlephAlpha_wordmark.svg
+  - title: AionLabs
+    file: AionLabs.svg
+    url: https://aionlabs.ai/
+    wordmark: AionLabs_wordmark.svg
+  - title: Google AI Studio
+    file: AIStudio.svg
+    url: https://aistudio.google.com/
+    wordmark: AIStudio_wordmark.svg
+  - title: Deepmind
+    file: Deepmind.svg
+    url: https://deepmind.google/
+    wordmark: Deepmind_wordmark.svg
+  - title: 紫东太初
+    file: AiMass.svg
+    url: https://ai-maas.wair.ac.cn/
+    wordmark: AiMass_wordmark.svg
+  - title: AiHubMix
+    file: AiHubMix.svg
+    url: https://aihubmix.com/
+    wordmark: AiHubMix_wordmark.svg
+  - title: 360智脑
+    file: Ai360.svg
+    url: https://ai.360.com/
+    wordmark: Ai360_wordmark.svg
+  - title: 302AI
+    file: 302AI.svg
+    url: https://302.ai/
+    wordmark: 302AI_wordmark.svg
+  - title: Ai21Labs
+    file: Ai21Labs.svg
+    url: https://huggingface.co/ai21labs
+    wordmark: Ai21Labs_wordmark.svg
+  - title: AG-UI
+    file: AGUI.svg
+    url: https://ag-ui.com/
+    wordmark: AGUI_wordmark.svg
+  - title: AdobeFirefly
+    file: AdobeFirefly.svg
+    url: https://firefly.adobe.com/
+    wordmark: AdobeFirefly_wordmark.svg
+  - title: 百度智能云
+    file: BaiduCloud.svg
+    url: https://cloud.baidu.com/
+    wordmark: BaiduCloud_wordmark.svg
+  - title: 百川
+    file: Baichuan.svg
+    url: hhttps://baichuan-ai.com/
+    wordmark: Baichuan_wordmark.svg
+  - title: 智源研究院
+    file: BAAI.svg
+    url: https://baai.ac.cn/
+    wordmark: BAAI_wordmark.svg
+  - title: Microsoft Azure
+    file: MicrosoftAzure.svg
+    url: https://azure.microsoft.com/
+    wordmark: MicrosoftAzure_wordmark.svg
+  - title: Aya
+    file: Aya.svg
+    url: https://cohere.com/research/aya
+    wordmark: Aya_wordmark.svg
+  - title: Automatic1111
+    file: Automatic1111.svg
+    url: https://github.com/AUTOMATIC1111/stable-diffusion-webui
+    wordmark: Automatic1111_wordmark.svg
+  - title: AssemblyAI
+    file: AssemblyAI.svg
+    url: https://assemblyai.com/
+    wordmark: AssemblyAI_wordmark.svg
+  - title: Anyscale
+    file: Anyscale.svg
+    url: https://anyscale.com/
+    wordmark: Anyscale_wordmark.svg
+  - title: OpenAI
+    file: OpenAI.svg
+    url: https://openai.com/
+    wordmark: OpenAI_wordmark.svg
+  - title: Baseten
+    file: Baseten.svg
+    url: https://baseten.co/
+    wordmark: Baseten_wordmark.svg
+  - title: Microsoft Bing
+    file: Bing.svg
+    url: https://bing.com/
+    wordmark: Bing_wordmark.svg
+  - title: BurnCloud
+    file: BurnCloud.svg
+    url: https://ai.burncloud.com/
+    wordmark: BurnCloud_wordmark.svg
+  - title: CentML
+    file: CentML.svg
+    url: https://centml.ai/
+    wordmark: CentML_wordmark.svg
+  - title: Cerebras
+    file: Cerebras.svg
+    url: https://cerebras.ai/
+    wordmark: Cerebras_wordmark.svg
+  - title: Civitai
+    file: Civitai.svg
+    url: https://civitai.com/
+    wordmark: Civitai_wordmark.svg
+  - title: Cline
+    file: Cline.svg
+    url: https://cline.bot/
+    wordmark: Cline_wordmark.svg
+  - title: Coze
+    file: Coze.svg
+    url: https://coze.com/
+    wordmark: Coze_wordmark.svg
+  - title: Coqui
+    file: Coqui.svg
+    url: https://github.com/coqui-ai/TTS
+    wordmark: Coqui_wordmark.svg
+  - title: CopilotKit
+    file: CopilotKit.svg
+    url: https://copilotkit.ai/
+    wordmark: CopilotKit_wordmark.svg
+  - title: ComfyUI
+    file: ComfyUI.svg
+    url: https://comfy.org/
+    wordmark: ComfyUI_wordmark.svg
+  - title: Google Colab
+    file: Colab.svg
+    url: https://colab.research.google.com/
+    wordmark: Colab_wordmark.svg
+  - title: CogView
+    file: CogView.svg
+    url: https://github.com/THUDM/CogView3
+    wordmark: CogView_wordmark.svg
+  - title: CogVideo
+    file: CogVideo.svg
+    url: https://github.com/THUDM/CogVideo
+    wordmark: CogVideo_wordmark.svg
+  - title: CodeGeeX
+    file: CodeGeeX.svg
+    url: https://codegeex.cn/
+    wordmark: CodeGeeX_wordmark.svg
+  - title: Cloudflare
+    file: Cloudflare.svg
+    url: https://cloudflare.com/
+    wordmark: Cloudflare_wordmark.svg
+  - title: Clipdrop
+    file: Clipdrop.svg
+    url: https://clipdrop.co/
+    wordmark: Clipdrop_wordmark.svg
+  - title: DreamMachine
+    file: DreamMachine.svg
+    url: https://lumalabs.ai/dream-machine
+    wordmark: DreamMachine_wordmark.svg
+  - title: DocSearch
+    file: DocSearch.svg
+    url: https://docsearch.algolia.com/
+    wordmark: DocSearch_wordmark.svg
+  - title: Doc2X
+    file: Doc2X.svg
+    url: https://doc2x.noedgeai.com/
+    wordmark: Doc2X_wordmark.svg
+  - title: Dify
+    file: Dify.svg
+    url: https://dify.ai/
+    wordmark: Dify_wordmark.svg
+  - title: DeepMind
+    file: DeepMind.svg
+    url: https://deepmind.google/
+    wordmark: DeepMind_wordmark.svg
+  - title: DeepInfra
+    file: DeepInfra.svg
+    url: https://deepinfra.com/
+    wordmark: DeepInfra_wordmark.svg
+  - title: DeepAI
+    file: DeepAI.svg
+    url: hhttps://deepai.org
+    wordmark: DeepAI_wordmark.svg
+  - title: DBRX
+    file: DBRX.svg
+    url: https://databricks.com/
+    wordmark: DBRX_wordmark.svg
+  - title: Cursor
+    file: Cursor.svg
+    url: https://cursor.com/
+    wordmark: Cursor_wordmark.svg
+  - title: Crusoe
+    file: Crusoe.svg
+    url: https://crusoe.ai/
+    wordmark: Crusoe_wordmark.svg
+  - title: CrewAI
+    file: CrewAI.svg
+    url: https://crewai.com/
+    wordmark: CrewAI_wordmark.svg
+  - title: ElevenLabs
+    file: ElevenLabs.svg
+    url: https://elevenlabs.io/
+    wordmark: ElevenLabs_wordmark.svg
+  - title: 11x
+    file: 11x.svg
+    url: https://11x.ai/
+    wordmark: 11x_wordmark.svg
+  - title: Exa
+    file: Exa.svg
+    url: https://exa.ai/
+    wordmark: Exa_wordmark.svg
+  - title: Fal
+    file: Fal.svg
+    url: https://fal.ai/
+    wordmark: Fal_wordmark.svg
+  - title: FastGPT
+    file: FastGPT.svg
+    url: https://tryfastgpt.ai/
+    wordmark: FastGPT_wordmark.svg
+  - title: Featherless.ai
+    file: FeatherlessAI.svg
+    url: https://featherless.ai/
+    wordmark: FeatherlessAI_wordmark.svg
+  - title: FishAudio
+    file: FishAudio.svg
+    url: https://github.com/fishaudio
+    wordmark: FishAudio_wordmark.svg
+  - title: Flora
+    file: Flora.svg
+    url: https://florafauna.ai/
+    wordmark: Flora_wordmark.svg
+  - title: Flowith
+    file: Flowith.svg
+    url: https://flowith.io/
+    wordmark: Flowith_wordmark.svg
+  - title: Gradio
+    file: Gradio.svg
+    url: https://gradio.app/
+    wordmark: Gradio_wordmark.svg
+  - title: Goose
+    file: Goose.svg
+    url: https://block.github.io/goose
+    wordmark: Goose_wordmark.svg
+  - title: Glif
+    file: Glif.svg
+    url: https://glif.app/
+    wordmark: Glif_wordmark.svg
+  - title: Glama
+    file: Glama.svg
+    url: https://glama.ai/
+    wordmark: Glama_wordmark.svg
+  - title: Github Copilot
+    file: GithubCopilot.svg
+    url: https://github.com/features/copilot
+    wordmark: GithubCopilot_wordmark.svg
+  - title: GiteeAI
+    file: GiteeAI.svg
+    url: https://ai-assets.gitee.com/
+    wordmark: GiteeAI_wordmark.svg
+  - title: Friendli
+    file: Friendli.svg
+    url: https://friendli.ai/
+    wordmark: Friendli_wordmark.svg
+  - title: Kimi
+    file: Kimi.svg
+    url: https://kimi.moonshot.cn/
+    wordmark: Kimi_wordmark.svg
+  - title: Kera
+    file: Kera.svg
+    url: https://kera.ai/
+    wordmark: Kera_wordmark.svg
+  - title: Jina AI
+    file: JinaAI.svg
+    url: https://jina.ai/
+    wordmark: JinaAI_wordmark.svg
+  - title: 即梦
+    file: Jimeng.svg
+    url: https://jimeng.jianying.com/
+    wordmark: Jimeng_wordmark.svg
+  - title: 书生
+    file: InternLM.svg
+    url: https://internlm.intern-ai.org.cn/
+    wordmark: InternLM_wordmark.svg
+  - title: Inflection
+    file: Inflection.svg
+    url: https://inflection.ai/
+    wordmark: Inflection_wordmark.svg
+  - title: 无问芯穹
+    file: Infinigence.svg
+    url: https://cloud.infini-ai.com/
+    wordmark: Infinigence_wordmark.svg
+  - title: Infermatic
+    file: Infermatic.svg
+    url: https://infermatic.ai/
+    wordmark: Infermatic_wordmark.svg
+  - title: Inference
+    file: Inference.svg
+    url: https://inference.net/
+    wordmark: Inference_wordmark.svg
+  - title: Ideogram
+    file: Ideogram.svg
+    url: https://ideogram.ai/
+    wordmark: Ideogram_wordmark.svg
+  - title: 讯飞开放平台
+    file: IFlyTekCloud.svg
+    url: https://xfyun.cn/
+    wordmark: IFlyTekCloud_wordmark.svg
+  - title: Hyperbolic
+    file: Hyperbolic.svg
+    url: https://hyperbolic.xyz/
+    wordmark: Hyperbolic_wordmark.svg
+  - title: 腾讯混元
+    file: Hunyuan.svg
+    url: https://hunyuan.tencent.com/
+    wordmark: Hunyuan_wordmark.svg
+  - title: Higress
+    file: Higress.svg
+    url: https://higress.cn/
+    wordmark: Higress_wordmark.svg
+  - title: Hedra
+    file: Hedra.svg
+    url: https://hedra.com/
+    wordmark: Hedra_wordmark.svg
+  - title: Haiper
+    file: Haiper.svg
+    url: https://haiper.ai/
+    wordmark: Haiper_wordmark.svg
+  - title: 海螺
+    file: Hailuo.svg
+    url: https://hailuoai.video/
+    wordmark: Hailuo_wordmark.svg
+  - title: Greptile
+    file: Greptile.svg
+    url: https://greptile.com/
+    wordmark: Greptile_wordmark.svg

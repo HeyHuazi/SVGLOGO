@@ -103,18 +103,234 @@ static/
 
 ## 如何新增一个 Logo
 
-### 1) 放置 SVG 文件
+### 🚀 快速流程（推荐）
 
-将 `.svg` 文件放到：
+#### 1) 放置 SVG 文件
 
-- `static/library/`
+将 `.svg` 文件放到对应分类文件夹：
 
-### 2) 更新数据源
+```bash
+static/library/
+  ├── aigc/          # AI产品
+  ├── airline/       # 航空公司
+  ├── company/       # 企业组织
+  ├── cosmetic/      # 美妆品牌
+  ├── goldJewelry/   # 黄金珠宝
+  ├── other/         # 其他
+  ├── pay/           # 金融支付
+  ├── school/        # 大学校徽
+  ├── social/        # 社交媒体
+  ├── tools/         # 工具产品
+  └── weather/       # 气象预警
+```
 
-在 `src/data/svgs.ts` 中新增条目（示例）：
+**命名约定：**
+- 主 Logo：`brand.svg`（如 `xiaomi.svg`）
+- Wordmark：`brand_wordmark.svg`（如 `xiaomi_wordmark.svg`）
 
-#### 仅单个 Logo
+#### 2) 运行扫描命令
 
+```bash
+pnpm scan:svg
+```
+
+脚本会自动：
+- ✅ 扫描新增的 SVG 文件
+- ✅ 智能提取标题（基于文件名或映射表）
+- ✅ 自动识别 wordmark（后缀 `_wordmark.svg`）
+- ✅ 更新 `_meta.yaml` 文件
+
+**输出示例：**
+```bash
+🔍 扫描目录: static/library/
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📂 company/
+  ✅ 新增: 1 个文件
+     → new-brand.svg
+  📝 已更新: _meta.yaml
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+📊 统计:
+  新增: 1 个
+  缺失: 0 个
+
+⚠️  提示: 请检查 _meta.yaml 并补充必要信息（如 URL）
+```
+
+#### 3) 补充必要信息（可选）
+
+编辑对应的 `_meta.yaml` 文件，补充 URL 等信息：
+
+```yaml
+# static/library/company/_meta.yaml
+items:
+  # ... 其他条目 ...
+  - title: 新品牌
+    file: new-brand.svg
+    url: https://example.com/  # ← 修正 URL（原为 TODO）
+```
+
+#### 4) 启动开发服务器
+
+```bash
+pnpm dev
+```
+
+脚本会自动生成 `src/data/svgs.ts`，你的新 Logo 已添加成功！
+
+---
+
+### 📝 YAML 元数据格式
+
+每个分类文件夹下都有 `_meta.yaml` 文件，格式如下：
+
+#### 简单格式（只有必需字段）
+
+```yaml
+items:
+  - title: 小米
+    file: xiaomi.svg
+    url: https://www.mi.com/
+```
+
+#### 包含 Wordmark
+
+```yaml
+items:
+  - title: 字节跳动
+    file: bytedance.svg
+    wordmark: bytedance_wordmark.svg
+    url: https://www.bytedance.com/
+```
+
+#### 暗色/亮色双版本
+
+```yaml
+items:
+  - title: 某品牌
+    file: 
+      dark: brand_dark.svg
+      light: brand_light.svg
+    wordmark:
+      dark: brand_wordmark_dark.svg
+      light: brand_wordmark_light.svg
+    url: https://example.com/
+```
+
+**字段说明：**
+
+| 字段 | 必填 | 类型 | 说明 |
+|------|------|------|------|
+| `title` | ✅ | string | 显示名称 |
+| `file` | ✅ | string \| object | SVG 文件路径（相对路径） |
+| `url` | ✅ | string | 官网 URL（新条目自动填充 `"TODO"`） |
+| `wordmark` | ❌ | string \| object | Wordmark 文件路径 |
+
+**注意：** 
+- 分类由文件夹名自动决定（不需要在 YAML 中指定）
+- 一个图标只属于一个分类
+
+---
+
+### 🛠️ 常用命令
+
+| 命令 | 用途 | 何时使用 |
+|------|------|----------|
+| `pnpm scan:svg` | 扫描新增 SVG，更新 YAML | 添加新文件后 |
+| `pnpm generate:svg` | 生成 svgs.ts | 自动执行（无需手动运行） |
+| `pnpm dev` | 启动开发服务器 | 自动生成 svgs.ts |
+| `pnpm build` | 构建生产版本 | 自动扫描+生成 |
+
+---
+
+### 💡 文件组织规则
+
+**分类体系（12 个分类）：**
+
+| 分类名称 | 文件夹 | 说明 |
+|---------|-------|------|
+| AI产品 | aigc/ | AI 相关产品和服务 |
+| 航空公司 | airline/ | 航空公司 Logo |
+| **汽车品牌** | **automotive/** | **汽车品牌 Logo** |
+| 企业组织 | company/ | 企业和组织 |
+| 美妆品牌 | cosmetic/ | 化妆品品牌 |
+| 黄金珠宝 | goldJewelry/ | 黄金珠宝品牌 |
+| 其他 | other/ | 其他类别 |
+| 金融支付 | pay/ | 银行、支付工具 |
+| 大学校徽 | school/ | 大学校徽 |
+| 社交媒体 | social/ | 社交媒体平台 |
+| 工具产品 | tools/ | 工具和产品 |
+| 气象预警 | weather/ | 气象预警图标 |
+
+**规则：**
+- 按主要业务领域放文件夹
+- 文件夹名决定分类名（自动映射）
+- 不支持多分类（一个图标只属于一个分类）
+
+---
+
+### 📂 文件结构
+
+```
+SVGLOGO/
+├── scripts/
+│   ├── scan-svgs.ts          # 扫描新增 SVG，更新 _meta.yaml
+│   ├── generate-svgs.ts      # 读取 YAML，生成 svgs.ts
+│   ├── migrate-svgs.ts       # 迁移脚本（仅首次使用）
+│   └── title-mappings.json   # 文件名 → 中文标题映射表
+│
+├── static/library/
+│   ├── aigc/
+│   │   ├── _meta.yaml        # AI产品元数据
+│   │   ├── ChatGPT.svg
+│   │   └── Claude.svg
+│   ├── company/
+│   │   ├── _meta.yaml        # 企业组织元数据
+│   │   ├── xiaomi.svg
+│   │   └── bytedance.svg
+│   └── ... (其他分类)
+│
+└── src/data/
+    └── svgs.ts               # 自动生成，请勿手动编辑
+```
+
+---
+
+### 🔧 高级功能
+
+#### 自定义标题映射
+
+如果文件名无法自动识别为正确的中文名称，可以编辑 `scripts/title-mappings.json`：
+
+```json
+{
+  "xiaomi": "小米",
+  "bytedance": "字节跳动",
+  "newbrand": "新品牌"
+}
+```
+
+#### 批量添加
+
+```bash
+# 一次性添加多个文件
+cp ~/Downloads/*.svg static/library/company/
+
+# 运行一次扫描
+pnpm scan:svg
+```
+
+---
+
+### ❌ 旧流程（已废弃）
+
+<details>
+<summary>点击查看旧的手动编辑 svgs.ts 流程</summary>
+
+**不再推荐**：手动编辑 `src/data/svgs.ts`
+
+旧示例：
 ```ts
 {
   title: '示例',
@@ -124,37 +340,8 @@ static/
 }
 ```
 
-#### Logo + Wordmark
-
-```ts
-{
-  title: '示例',
-  category: '工具产品',
-  route: '/library/example.svg',
-  wordmark: '/library/example_wordmark.svg',
-  url: 'https://example.com'
-}
-```
-
-#### 含浅色/深色版本
-
-```ts
-{
-  title: '示例',
-  category: ['工具产品', '设计资源'],
-  route: {
-    light: '/library/example_light.svg',
-    dark: '/library/example_dark.svg'
-  },
-  wordmark: {
-    light: '/library/example_wordmark_light.svg',
-    dark: '/library/example_wordmark_dark.svg'
-  },
-  url: 'https://example.com'
-}
-```
-
-> 分类类型可参考 `src/types/categories.ts`。
+现在请使用上述自动化流程。
+</details>
 
 ---
 

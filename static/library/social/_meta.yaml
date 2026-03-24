@@ -1,0 +1,98 @@
+order: 5
+items:
+  - title: 微信
+    file: weiXin.svg
+    url: https://weixin.qq.com/
+  - title: QQ
+    file: QQ.svg
+    url: https://im.qq.com/
+  - title: 快手
+    file: kuaiShou.svg
+    url: https://www.kuaishou.com/
+    wordmark: kuaiShou_wordmark.svg
+  - title: 公众号
+    file: gongZhongHao.svg
+    url: https://mp.weixin.qq.com/?token=&lang=zh_CN
+  - title: 抖音
+    file: douYin.svg
+    url: https://douyin.com/
+  - title: TikTok
+    file: Tiktok.svg
+    url: https://www.TikTok.cn/
+  - title: 小宇宙
+    file: xiaoYuZhou.svg
+    url: https://xiaoyuzhoufm.com/
+  - title: 脉脉
+    file: maiMai.svg
+    url: https://maimai.cn/
+  - title: 播客
+    file: applePodcast.svg
+    url: https://podcasts.apple.com/cn/browse
+  - title: 小报童
+    file: xiaoBot.svg
+    url: https://xiaobot.net/p/DesignStroll
+    wordmark: xiaobot_wordmark.svg
+  - title: 斗鱼
+    file: douYu.svg
+    url: https://douyu.com/
+  - title: 小红书
+    file: xiaoHongShu.svg
+    url: https://xiaohongshu.com/
+    wordmark: xiaoHongShu_wordmark.svg
+  - title: Dribbble
+    file: dribbble.svg
+    url: https://dribbble.com/
+  - title: 懂球帝
+    file: dongqiudi.svg
+    url: https://dongqiudi.com/
+  - title: Keep
+    file: keep.svg
+    url: https://keep.com/
+  - title: 竹白
+    file: zhuBai.svg
+    url: https://zhubai.com/
+  - title: 视频号
+    file: shiPingHao.svg
+    url: https://channels.weixin.qq.com/
+  - title: Lofter
+    file: lofter.svg
+    url: https://lofter.com/
+  - title: 虎扑
+    file: huPu.svg
+    url: https://hupu.com/
+  - title: 今日头条
+    file: jinRiTouTiao.svg
+    url: https://toutiao.com/
+  - title: 蜻蜓 FM
+    file: qingTingFM.svg
+    url: https://qingting.fm/
+  - title: 虎牙
+    file: huYa.svg
+    url: https://huya.com/
+  - title: 哔哩哔哩
+    file: bilibili.svg
+    url: https://bilibili.com/
+  - title: 豆瓣
+    file: douBan.svg
+    url: https://douban.com/
+  - title: 喜马拉雅
+    file: xiMaLaYa.svg
+    url: https://ximalaya.com/
+  - title: 钉钉
+    file: dingDing.svg
+    url: https://dingtalk.com/
+  - title: 知识星球
+    file: zhiShiXingQiu.svg
+    url: https://zsxq.com/
+  - title: 微博
+    file: weiBo.svg
+    url: https://weibo.com/
+  - title: 飞书
+    file: feiShu.svg
+    url: https://feishu.cn/
+  - title: 西瓜视频
+    file: xiGuaShiPing.svg
+    url: https://ixigua.com/
+  - title: 企业微信
+    file: qiyeweixin.svg
+    url: https://work.weixin.qq.com/

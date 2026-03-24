@@ -14,9 +14,10 @@
   ],
   "scripts": {
     "dev": "vite dev",
+    "predev": "pnpm generate:svg",
     "host": "vite dev --host",
     "build": "pnpm run prebuild && vite build",
-    "prebuild": "cd ./check-size && pnpm install && pnpm run start",
+    "prebuild": "pnpm scan:svg && pnpm generate:svg && cd ./check-size && pnpm install && pnpm run start",
     "onlybuild": "vite build",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -29,7 +30,10 @@
     "format": "prettier --plugin-search-dir . --write .",
     "dev:figma": "concurrently -n plugin,svelte 'npm run build:plugin -- --watch --define:SITE_URL=\\\"http://localhost:5173?figma=1\\\"' 'npm run dev'",
     "build:plugin": "esbuild src/figma/code.ts --bundle --target=es6 --loader:.svg=text --outfile=src/figma/dist/code.js",
-    "build:figma": "concurrently -n plugin,svelte 'npm run build:plugin -- --define:SITE_URL=\\\"$npm_package_config_siteURL\\\"' 'npm run build'"
+    "build:figma": "concurrently -n plugin,svelte 'npm run build:plugin -- --define:SITE_URL=\\\"$npm_package_config_siteURL\\\"' 'npm run build'",
+    "scan:svg": "tsx scripts/scan-svgs.ts",
+    "generate:svg": "tsx scripts/generate-svgs.ts",
+    "migrate:svg": "tsx scripts/migrate-svgs.ts"
   },
   "dependencies": {
     "@figma/plugin-typings": "1.92.0",
@@ -74,10 +78,12 @@
     "sveltekit-search-params": "2.1.2",
     "tailwindcss": "3.4.3",
     "tslib": "2.6.2",
+    "tsx": "^4.21.0",
     "typescript": "5.4.5",
     "vite": "5.2.10",
     "vitest": "1.5.2",
-    "wrangler": "^4.56.0"
+    "wrangler": "^4.56.0",
+    "yaml": "^2.8.3"
   },
   "config": {
     "siteURL": "https://svgl.app?figma=1"

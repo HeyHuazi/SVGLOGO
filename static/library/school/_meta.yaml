@@ -1,0 +1,466 @@
+order: 3
+items:
+  - title: 安徽大学
+    file: AnHuiDaXue.svg
+    url: https://www.ahu.edu.cn
+    wordmark: AnHuiDaXue_wordmark.svg
+  - title: 北京体育大学
+    file: BSU.svg
+    url: https://www.bsu.edu.cn
+    wordmark: BSU_wordmark.svg
+  - title: 北京航空航天大学
+    file: BUAA.svg
+    url: https://www.buaa.edu.cn
+    wordmark: BUAA_wordmark.svg
+  - title: 北京中医药大学
+    file: BUCM.svg
+    url: https://www.bucm.edu.cn
+    wordmark: BUCM_wordmark.svg
+  - title: 北京化工大学
+    file: BUCT.svg
+    url: https://www.buct.edu.cn
+    wordmark: BUCT_wordmark.svg
+  - title: 北京邮电大学
+    file: BUPT.svg
+    url: https://www.bupt.edu.cn
+    wordmark: BUPT_wordmark.svg
+  - title: 北京工业大学
+    file: BeiJingGongYeDaXue.svg
+    url: https://www.bjut.edu.cn
+    wordmark: BeiJingGongYeDaXue_wordmark.svg
+  - title: 北京交通大学
+    file: BeiJingJiaoTongDaXue.svg
+    url: https://www.bjtu.edu.cn
+    wordmark: BeiJingJiaoTongDaXue_wordmark.svg
+  - title: 北京理工大学
+    file: BeiJingLiGongDaXue.svg
+    url: https://www.bit.edu.cn
+    wordmark: BeiJingLiGongDaXue_wordmark.svg
+  - title: 北京林业大学
+    file: BeiJingLinYeDaXue.svg
+    url: https://www.bjfu.edu.cn
+    wordmark: BeiJingLinYeDaXue_wordmark.svg
+  - title: 北京师范大学
+    file: BeiJingShiFanDaXue.svg
+    url: https://www.bnu.edu.cn
+    wordmark: BeiJingShiFanDaXue_wordmark.svg
+  - title: 北京外国语大学
+    file: BeiJingWaiGuoYuDaXue.svg
+    url: https://www.bfsu.edu.cn
+    wordmark: BeiJingWaiGuoYuDaXue_wordmark.svg
+  - title: 中国美术学院
+    file: CAA.svg
+    url: http://www.caa.edu.cn
+    wordmark: CAA_wordmark.svg
+  - title: 中央美术学院
+    file: CAFA_wordmark.svg
+    url: http://www.cafa.edu.cn
+  - title: 中国农业大学
+    file: CAU.svg
+    url: http://www.cau.edu.cn
+    wordmark: CAU_wordmark.svg
+  - title: 华中师范大学
+    file: CCNU.svg
+    url: http://www.ccnu.edu.cn
+  - title: 中央音乐学院
+    file: CCOM.svg
+    url: http://www.ccom.edu.cn
+    wordmark: CCOM_wordmark.svg
+  - title: 成都理工大学
+    file: CDUT.svg
+    url: http://www.cdut.edu.cn
+    wordmark: CDUT_wordmark.svg
+  - title: 外交学院
+    file: CFAU.svg
+    url: http://www.cfau.edu.cn
+  - title: 中国地质大学长城学院
+    file: CHU.svg
+    url: http://www.chu.edu.cn
+    wordmark: CHU_wordmark.svg
+  - title: 首都师范大学
+    file: CNU.svg
+    url: https://www.cnu.edu.cn
+    wordmark: CNU_wordmark.svg
+  - title: 重庆大学
+    file: CQU.svg
+    url: http://www.cqu.edu.cn
+  - title: 中南大学
+    file: CSU.svg
+    url: http://www.csu.edu.cn
+    wordmark: CSU_wordmark.svg
+  - title: 中国传媒大学
+    file: CUC.svg
+    url: http://www.cuc.edu.cn
+    wordmark: CUC_wordmark.svg
+  - title: 中央财经大学
+    file: CUFE.svg
+    url: http://www.cufe.edu.cn
+    wordmark: CUFE_wordmark.svg
+  - title: 中国地质大学（武汉）
+    file: CUG.svg
+    url: http://www.cugb.edu.cn
+  - title: 中国石油大学（北京）
+    file: CUP.svg
+    url: http://www.cup.edu.cn
+    wordmark: CUP_wordmark.svg
+  - title: 大连理工大学
+    file: DUT.svg
+    url: http://www.dlut.edu.cn
+    wordmark: DUT_wordmark.svg
+  - title: 华东师范大学
+    file: ECNU.svg
+    url: http://www.ecnu.edu.cn
+    wordmark: ECNU_wordmark.svg
+  - title: 复旦大学
+    file: FDU.svg
+    url: http://www.fudan.edu.cn
+    wordmark: FDU_wordmark.svg
+  - title: 福建师范大学
+    file: FJNU.svg
+    url: http://www.fjnu.edu.cn
+  - title: 福建工程学院
+    file: FJUT.svg
+    url: http://www.fjut.edu.cn
+    wordmark: FJUT_wordmark.svg
+  - title: 福州大学
+    file: FZU.svg
+    url: http://www.fzu.edu.cn
+    wordmark: FZU_wordmark.svg
+  - title: 广西大学
+    file: GXU.svg
+    url: http://www.gxu.edu.cn
+    wordmark: GXU_wordmark.svg
+  - title: 贵州师范大学
+    file: GZNU.svg
+    url: http://www.gznu.edu.cn
+    wordmark: GZNU_wordmark.svg
+  - title: 贵州大学
+    file: GZU.svg
+    url: http://www.gzu.edu.cn
+    wordmark: GZU_wordmark.svg
+  - title: 广州中医药大学
+    file: GZUCM.svg
+    url: http://www.gzucm.edu.cn
+    wordmark: GZUCM_wordmark.svg
+  - title: 河南工业大学
+    file: HAUT_wordmark.svg
+    url: http://www.haut.edu.cn
+  - title: 河南工程学院
+    file: HeNanGongChengXueYuan.svg
+    url: http://www.haue.edu.cn/
+    wordmark: HeNanGongChengXueYuan_wordmark.svg
+  - title: 湖北中医药大学
+    file: HBUCM.svg
+    url: http://www.hbtcm.edu.cn
+    wordmark: HBUCM_wordmark.svg
+  - title: 合肥工业大学
+    file: HFUT.svg
+    url: http://www.hfut.edu.cn
+    wordmark: HFUT_wordmark.svg
+  - title: 合肥学院
+    file: HFUU.svg
+    url: http://www.hfuu.edu.cn
+    wordmark: HFUU_wordmark.svg
+  - title: 哈尔滨工业大学
+    file: HIT.svg
+    url: http://www.hit.edu.cn
+    wordmark: HIT_wordmark.svg
+  - title: 湖南师范大学
+    file: HNNU.svg
+    url: http://www.hunnu.edu.cn
+    wordmark: HNNU_wordmark.svg
+  - title: 湖南大学
+    file: HNU.svg
+    url: http://www.hnu.edu.cn
+    wordmark: HNU_wordmark.svg
+  - title: 湖北大学
+    file: HUBU.svg
+    url: http://www.hubu.edu.cn
+    wordmark: HUBU_wordmark.svg
+  - title: 华中科技大学
+    file: HUST.svg
+    url: http://www.hust.edu.cn
+    wordmark: HUST_wordmark.svg
+  - title: 华中农业大学
+    file: HZAU.svg
+    url: http://www.hzau.edu.cn
+    wordmark: HZAU_wordmark.svg
+  - title: 吉林大学
+    file: JLU.svg
+    url: http://www.jlu.edu.cn
+    wordmark: JLU_wordmark.svg
+  - title: 暨南大学
+    file: JNU.svg
+    url: http://www.jnu.edu.cn
+    wordmark: JNU_wordmark.svg
+  - title: 江西师范大学
+    file: JXNU.svg
+    url: http://www.jxnu.edu.cn
+    wordmark: JXNU_wordmark.svg
+  - title: 济南大学
+    file: JiNanDaXue.svg
+    url: http://www.ujn.edu.cn
+    wordmark: JiNanDaXue_wordmark.svg
+  - title: 临沂科技大学
+    file: LIT.svg
+    url: http://www.lit.edu.cn
+    wordmark: LIT_wordmark.svg
+  - title: 兰州大学
+    file: LZU.svg
+    url: http://www.lzu.edu.cn
+    wordmark: LZU_wordmark.svg
+  - title: 中央民族大学
+    file: MUC.svg
+    url: http://www.muc.edu.cn
+    wordmark: MUC_wordmark.svg
+  - title: 宁波大学
+    file: NBU.svg
+    url: http://www.nbu.edu.cn
+    wordmark: NBU_wordmark.svg
+  - title: 东北大学
+    file: NEU.svg
+    url: http://www.neu.edu.cn
+    wordmark: NEU_wordmark.svg
+  - title: 南京林业大学
+    file: NJFU.svg
+    url: http://www.njfu.edu.cn
+  - title: 南京师范大学
+    file: NJNU.svg
+    url: http://www.njnu.edu.cn
+    wordmark: NJNU_wordmark.svg
+  - title: 南京大学
+    file: NJU.svg
+    url: http://www.nju.edu.cn
+    wordmark: NJU_wordmark.svg
+  - title: 南京中医药大学
+    file: NJUCM.svg
+    url: http://www.njucm.edu.cn
+    wordmark: NJUCM_wordmark.svg
+  - title: 南开大学
+    file: NKU.svg
+    url: http://www.nankai.edu.cn
+    wordmark: NKU_wordmark.svg
+  - title: 国防科技大学
+    file: NUDT.svg
+    url: http://www.nudt.edu.cn
+    wordmark: NUDT_wordmark.svg
+  - title: 南京信息工程大学
+    file: NUIST.svg
+    url: http://www.nuist.edu.cn
+    wordmark: NUIST_wordmark.svg
+  - title: 西北农林科技大学
+    file: NWAFU.svg
+    url: http://www.nwafu.edu.cn
+    wordmark: NWAFU_wordmark.svg
+  - title: 西北工业大学
+    file: NWPU.svg
+    url: http://www.nwpu.edu.cn
+    wordmark: NWPU_wordmark.svg
+  - title: 西北大学
+    file: NWU.svg
+    url: http://www.nwu.edu.cn
+    wordmark: NWU_wordmark.svg
+  - title: 宁夏大学
+    file: NXU.svg
+    url: http://www.nxu.edu.cn
+  - title: 中国海洋大学
+    file: OUC.svg
+    url: http://www.ouc.edu.cn
+    wordmark: OUC_wordmark.svg
+  - title: 北京大学
+    file: PKU.svg
+    url: https://www.pku.edu.cn
+    wordmark: PKU_wordmark.svg
+  - title: 青海大学
+    file: QHU.svg
+    url: http://www.qhu.edu.cn
+    wordmark: QHU_wordmark.svg
+  - title: 青岛大学
+    file: QUT.svg
+    url: http://www.qdu.edu.cn
+    wordmark: QUT_wordmark.svg
+  - title: 中国人民大学
+    file: RUC.svg
+    url: http://www.ruc.edu.cn
+    wordmark: RUC_wordmark.svg
+  - title: 中南民族大学
+    file: SCMZU.svg
+    url: http://www.scuec.edu.cn
+  - title: 华南师范大学
+    file: SCNU.svg
+    url: http://www.scnu.edu.cn
+    wordmark: SCNU_wordmark.svg
+  - title: 四川大学
+    file: SCU.svg
+    url: http://www.scu.edu.cn
+    wordmark: SCU_wordmark.svg
+  - title: 华南理工大学
+    file: SCUT.svg
+    url: http://www.scut.edu.cn
+    wordmark: SCUT_wordmark.svg
+  - title: 山东大学
+    file: SDU.svg
+    url: http://www.sdu.edu.cn
+    wordmark: SDU_wordmark.svg
+  - title: 东南大学
+    file: SEU.svg
+    url: http://www.seu.edu.cn
+    wordmark: SEU_wordmark.svg
+  - title: 上海海事大学
+    file: SHMTU.svg
+    url: http://www.shmtu.edu.cn
+    wordmark: SHMTU_wordmark.svg
+  - title: 四川农业大学
+    file: SICAU.svg
+    url: http://www.sicau.edu.cn
+    wordmark: SICAU_wordmark.svg
+  - title: 上海交通大学
+    file: SJTU.svg
+    url: http://www.sjtu.edu.cn
+    wordmark: SJTU_wordmark.svg
+  - title: 陕西师范大学
+    file: SNNU.svg
+    url: http://www.snnu.edu.cn
+    wordmark: SNNU_wordmark.svg
+  - title: 西南交通大学
+    file: SWJTU.svg
+    url: http://www.swjtu.edu.cn
+    wordmark: SWJTU_wordmark.svg
+  - title: 西南财经大学
+    file: SWUFE.svg
+    url: http://www.swufe.edu.cn
+    wordmark: SWUFE_wordmark.svg
+  - title: 西南民族大学
+    file: SWUN.svg
+    url: http://www.swun.edu.cn
+    wordmark: SWUN_wordmark.svg
+  - title: 山西大学
+    file: SXU.svg
+    url: http://www.sxu.edu.cn
+  - title: 山西财经大学
+    file: SXUFE.svg
+    url: http://www.sxufe.edu.cn
+  - title: 中山大学
+    file: SYSU.svg
+    url: http://www.sysu.edu.cn
+    wordmark: SYSU_wordmark.svg
+  - title: 深圳大学
+    file: SZU.svg
+    url: http://www.szu.edu.cn
+    wordmark: SZU_wordmark.svg
+  - title: 清华大学
+    file: THU.svg
+    url: http://www.tsinghua.edu.cn
+    wordmark: THU_wordmark.svg
+  - title: 天津大学
+    file: TJU.svg
+    url: http://www.tju.edu.cn
+    wordmark: TJU_wordmark.svg
+  - title: 同济大学
+    file: TongJiDaXue.svg
+    url: http://www.tongji.edu.cn
+    wordmark: TongJiDaXue_wordmark.svg
+  - title: 中国科学院大学
+    file: UCAS.svg
+    url: http://www.ucas.ac.cn
+    wordmark: UCAS_wordmark.svg
+  - title: 电子科技大学
+    file: UESTC.svg
+    url: http://www.uestc.edu.cn
+    wordmark: UESTC_wordmark.svg
+  - title: 对外经济贸易大学
+    file: UIBE.svg
+    url: http://www.uibe.edu.cn
+  - title: 济南大学
+    file: UJN.svg
+    url: http://www.ujn.edu.cn
+    wordmark: UJN_wordmark.svg
+  - title: 宁波诺丁汉大学
+    file: UNNC.svg
+    url: http://www.nottingham.edu.cn
+    wordmark: UNNC_wordmark.svg
+  - title: 中国石油大学（华东）
+    file: UPC.svg
+    url: http://www.cup.edu.cn
+    wordmark: UPC_wordmark.svg
+  - title: 上海理工大学
+    file: USST.svg
+    url: https://www.usst.edu.cn/
+    wordmark: USST_wordmark.svg
+  - title: 北京科技大学
+    file: USTB.svg
+    url: http://www.ustb.edu.cn
+    wordmark: USTB_wordmark.svg
+  - title: 中国科学技术大学
+    file: USTC.svg
+    url: http://www.ustc.edu.cn
+    wordmark: USTC_wordmark.svg
+  - title: 西藏大学
+    file: UTIBET.svg
+    url: http://www.utibet.edu.cn
+    wordmark: UTIBET_wordmark.svg
+  - title: 武汉大学
+    file: WHU.svg
+    url: http://www.whu.edu.cn
+    wordmark: WHU_wordmark.svg
+  - title: 武汉科技大学
+    file: WUST.svg
+    url: http://www.wust.edu.cn
+    wordmark: WUST_wordmark.svg
+  - title: 武汉理工大学
+    file: WUT.svg
+    url: http://www.whut.edu.cn
+    wordmark: WUT_wordmark.svg
+  - title: 西安电子科技大学
+    file: XDU.svg
+    url: http://www.xidian.edu.cn
+    wordmark: XDU_wordmark.svg
+  - title: 西安交通大学
+    file: XJTU.svg
+    url: http://www.xjtu.edu.cn
+    wordmark: XJTU_wordmark.svg
+  - title: 新疆大学
+    file: XJU.svg
+    url: http://www.xju.edu.cn
+    wordmark: XJU_wordmark.svg
+  - title: 厦门大学
+    file: XMU.svg
+    url: http://www.xmu.edu.cn
+    wordmark: XMU_wordmark.svg
+  - title: 云南大学
+    file: YNU.svg
+    url: http://www.ynu.edu.cn
+    wordmark: YNU_wordmark.svg
+  - title: 浙江大学
+    file: ZJU.svg
+    url: http://www.zju.edu.cn
+    wordmark: ZJU_wordmark.svg
+  - title: 浙江工业大学
+    file: ZJUT.svg
+    url: http://www.zjut.edu.cn
+    wordmark: ZJUT_wordmark.svg
+  - title: 郑州大学
+    file: ZZU.svg
+    url: http://www.zzu.edu.cn
+    wordmark: ZZU_wordmark.svg
+  - title: 中央戏剧学院
+    file: ZhongYangXiJuXueYuan_wordmark.svg
+    url: http://www.zhongxi.cn
+  - title: 北华大学
+    file: Beihua_University.svg
+    url: https://www.beihua.edu.cn/
+  - title: 安徽新华学院
+    file: anhuiXinhuaUniversity.svg
+    url: https://www.axhu.edu.cn/
+    wordmark: anhuiXinhuaUniversity_wordmark.svg
+  - title: 上海科技大学
+    file: shanghaikejidaxue.svg
+    url: https://www.shanghaitech.edu.cn/
+    wordmark: shanghaikejidaxue_wordmark.svg
+  - title: 深圳技术大学
+    file: SZTU.svg
+    url: https://www.sztu.edu.cn/
+  - title: 深圳理工大学
+    file: zhenzhenligong.svg
+    url: https://www.suat-sz.edu.cn/
+    wordmark: zhenzhenligong_wordmark.svg

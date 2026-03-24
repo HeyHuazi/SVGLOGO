@@ -1,0 +1,439 @@
+order: 2
+items:
+  - title: 霾_橙
+    file: haze_orange.svg
+  - title: 霾_红
+    file: haze_red.svg
+  - title: 霾_蓝
+    file: haze_blue.svg
+  - title: 霾_黄
+    file: haze_yellow.svg
+  - title: 严寒_橙
+    file: severeCold_orange.svg
+  - title: 严寒_红
+    file: severeCold_red.svg
+  - title: 严寒_蓝
+    file: severeCold_blue.svg
+  - title: 严寒_黄
+    file: severeCold_yellow.svg
+  - title: 低温_橙
+    file: coldSpell_orange.svg
+    url: 低温_橙
+  - title: 低温_红
+    file: coldSpell_red.svg
+  - title: 低温_蓝
+    file: coldSpell_blue.svg
+  - title: 低温_黄
+    file: coldSpell_yellow.svg
+  - title: 其他_橙
+    file: other_orange.svg
+  - title: 其他_红
+    file: other_red.svg
+  - title: 其他_蓝
+    file: other_blue.svg
+  - title: 其他_黄
+    file: other_yellow.svg
+  - title: 内涝_橙
+    file: waterLogging_orange.svg
+  - title: 内涝_红
+    file: waterLogging_red.svg
+  - title: 内涝_蓝
+    file: waterLogging_blue.svg
+  - title: 内涝_黄
+    file: waterLogging_yellow.svg
+  - title: 冰冻_橙
+    file: frozen_orange.svg
+  - title: 冰冻_红
+    file: frozen_red.svg
+  - title: 冰冻_蓝
+    file: frozen_blue.svg
+  - title: 冰冻_黄
+    file: frozen_yellow.svg
+  - title: 冰雹_橙
+    file: thunderStorm_orange.svg
+  - title: 冰雹_红
+    file: thunderStorm_red.svg
+  - title: 冰雹_蓝
+    file: thunderStorm_blue.svg
+  - title: 冰雹_黄
+    file: thunderStorm_yellow.svg
+  - title: 台风_橙
+    file: typhoon_orange.svg
+  - title: 台风_红
+    file: typhoon_red.svg
+  - title: 台风_蓝
+    file: typhoon_blue.svg
+  - title: 台风_黄
+    file: typhoon_yellow.svg
+  - title: 大雪_橙
+    file: heavySnow_orange.svg
+  - title: 大雪_红
+    file: heavySnow_red.svg
+  - title: 大雪_蓝
+    file: heavySnow_blue.svg
+  - title: 大雪_黄
+    file: heavySnow_yellow.svg
+  - title: 大雾_橙
+    file: heavyFog_orange.svg
+  - title: 大雾_红
+    file: heavyFog_red.svg
+  - title: 大雾_蓝
+    file: heavyFog_blue.svg
+  - title: 大雾_黄
+    file: heavyFog_yellow.svg
+  - title: 大风_橙
+    file: gale_orange.svg
+  - title: 大风_红
+    file: gale_red.svg
+  - title: 大风_蓝
+    file: gale_blue.svg
+  - title: 大风_黄
+    file: gale_yellow.svg
+  - title: 寒冷_橙
+    file: cold_orange.svg
+  - title: 寒冷_红
+    file: cold_red.svg
+  - title: 寒冷_蓝
+    file: cold_blue.svg
+  - title: 寒冷_黄
+    file: cold_yellow.svg
+  - title: 寒潮_橙
+    file: coldWave_orange.svg
+  - title: 寒潮_红
+    file: coldWave_red.svg
+  - title: 寒潮_蓝
+    file: coldWave_blue.svg
+  - title: 寒潮_黄
+    file: coldWave_yellow.svg
+  - title: 干旱_橙
+    file: drought_orange.svg
+  - title: 干旱_红
+    file: drought_red.svg
+  - title: 干旱_蓝
+    file: drought_blue.svg
+  - title: 干旱_黄
+    file: drought_yellow.svg
+  - title: 暴雨_橙
+    file: rainStrom_orange.svg
+  - title: 暴雨_红
+    file: rainStrom_red.svg
+  - title: 暴雨_蓝
+    file: rainStrom_blue.svg
+  - title: 暴雨_黄
+    file: rainStrom_yellow.svg
+  - title: 暴雪_橙
+    file: snowStrom_orange.svg
+  - title: 暴雪_红
+    file: snowStrom_red.svg
+  - title: 暴雪_蓝
+    file: snowStrom_blue.svg
+  - title: 暴雪_黄
+    file: snowStrom_yellow.svg
+  - title: 沙尘_橙
+    file: dust_orange.svg
+  - title: 沙尘_红
+    file: dust_red.svg
+  - title: 沙尘_蓝
+    file: dust_blue.svg
+  - title: 沙尘_黄
+    file: dust_yellow.svg
+  - title: 海浪_橙
+    file: seaWave_orange.svg
+  - title: 海浪_红
+    file: seaWave_red.svg
+  - title: 海浪_蓝
+    file: seaWave_blue.svg
+  - title: 海浪_黄
+    file: seaWave_yellow.svg
+  - title: 灰霾_橙
+    file: haze_orange.svg
+  - title: 灰霾_红
+    file: haze_red.svg
+  - title: 灰霾_蓝
+    file: haze_blue.svg
+  - title: 灰霾_黄
+    file: haze_yellow.svg
+  - title: 臭氧_橙
+    file: ozone_orange.svg
+  - title: 臭氧_红
+    file: ozone_red.svg
+  - title: 臭氧_蓝
+    file: ozone_blue.svg
+  - title: 臭氧_黄
+    file: ozone_yellow.svg
+  - title: 降温_橙
+    file: cooling_orange.svg
+  - title: 降温_红
+    file: cooling_red.svg
+  - title: 降温_蓝
+    file: cooling_blue.svg
+  - title: 降温_黄
+    file: cooling_yellow.svg
+  - title: 雪灾_橙
+    file: snowStorm_orange.svg
+  - title: 雪灾_红
+    file: snowStorm_red.svg
+  - title: 雪灾_蓝
+    file: snowStorm_blue.svg
+  - title: 雪灾_黄
+    file: snowStorm_yellow.svg
+  - title: 雷暴_橙
+    file: thunderStorm_orange.svg
+  - title: 雷暴_红
+    file: thunderStorm_red.svg
+  - title: 雷暴_蓝
+    file: thunderStorm_blue.svg
+  - title: 雷暴_黄
+    file: thunderStorm_yellow.svg
+  - title: 雷电_橙
+    file: lightning_orange.svg
+  - title: 雷电_红
+    file: lightning_red.svg
+  - title: 雷电_蓝
+    file: lightning_blue.svg
+  - title: 雷电_黄
+    file: lightning_yellow.svg
+  - title: 霜冻_橙
+    file: frost_orange.svg
+  - title: 霜冻_红
+    file: frost_red.svg
+  - title: 霜冻_蓝
+    file: frost_blue.svg
+  - title: 霜冻_黄
+    file: frost_yellow.svg
+  - title: 高温_橙
+    file: heatWave_orange.svg
+  - title: 高温_红
+    file: heatWave_red.svg
+  - title: 高温_蓝
+    file: heatWave_blue.svg
+  - title: 高温_黄
+    file: heatWave_yellow.svg
+  - title: 干热风_橙
+    file: dhWind_orange.svg
+  - title: 干热风_红
+    file: dhWind_red.svg
+  - title: 干热风_蓝
+    file: dhWind_blue.svg
+  - title: 干热风_黄
+    file: dhWind_yellow.svg
+  - title: 强对流_橙
+    file: strongConvection_orange.svg
+  - title: 强对流_红
+    file: strongConvection_red.svg
+  - title: 强对流_蓝
+    file: strongConvection_blue.svg
+  - title: 强对流_黄
+    file: strongConvection_yellow.svg
+  - title: 强降温_橙
+    file: strongCooling_orange.svg
+  - title: 强降温_红
+    file: strongCooling_red.svg
+  - title: 强降温_蓝
+    file: strongCooling_blue.svg
+  - title: 强降温_黄
+    file: strongCooling_yellow.svg
+  - title: 强降雨_橙
+    file: heavyRainfall_orange.svg
+  - title: 强降雨_红
+    file: heavyRainfall_red.svg
+  - title: 强降雨_蓝
+    file: heavyRainfall_blue.svg
+  - title: 强降雨_黄
+    file: heavyRainfall_yellow.svg
+  - title: 沙尘暴_橙
+    file: sandStrom_orange.svg
+  - title: 沙尘暴_红
+    file: sandStrom_red.svg
+  - title: 沙尘暴_蓝
+    file: sandStrom_blue.svg
+  - title: 沙尘暴_黄
+    file: sandStrom_yellow.svg
+  - title: 浓浮尘_橙
+    file: denseDust_orange.svg
+  - title: 浓浮尘_红
+    file: denseDust_red.svg
+  - title: 浓浮尘_蓝
+    file: denseDust_blue.svg
+  - title: 浓浮尘_黄
+    file: denseDust_yellow.svg
+  - title: 风暴潮_橙
+    file: strormSurge_orange.svg
+  - title: 风暴潮_红
+    file: strormSurge_red.svg
+  - title: 风暴潮_蓝
+    file: strormSurge_blue.svg
+  - title: 风暴潮_黄
+    file: strormSurge_yellow.svg
+  - title: 龙卷风_橙
+    file: tornado_orange.svg
+  - title: 龙卷风_红
+    file: tornado_red.svg
+  - title: 龙卷风_蓝
+    file: tornado_blue.svg
+  - title: 龙卷风_黄
+    file: tornado_yellow.svg
+  - title: 地质灾害_橙
+    file: geologicalHazad_orange.svg
+  - title: 地质灾害_红
+    file: geologicalHazad_red.svg
+  - title: 地质灾害_蓝
+    file: geologicalHazad_blue.svg
+  - title: 地质灾害_黄
+    file: geologicalHazad_yellow.svg
+  - title: 山洪灾害_橙
+    file: mountainTorrents_orange.svg
+  - title: 山洪灾害_红
+    file: mountainTorrents_red.svg
+  - title: 山洪灾害_蓝
+    file: mountainTorrents_blue.svg
+  - title: 山洪灾害_黄
+    file: mountainTorrents_yellow.svg
+  - title: 持续低温_橙
+    file: coldSpell_orange.svg
+  - title: 持续低温_红
+    file: coldSpell_red.svg
+  - title: 持续低温_蓝
+    file: coldSpell_blue.svg
+  - title: 持续低温_黄
+    file: coldSpell_yellow.svg
+  - title: 森林火险_橙
+    file: wildFire_orange.svg
+  - title: 低温冻害_橙
+    file: coldInjury_orange.svg
+  - title: 低温冻害_红
+    file: coldInjury_red.svg
+  - title: 低温冻害_蓝
+    file: coldInjury_blue.svg
+  - title: 低温冻害_黄
+    file: coldInjury_yellow.svg
+  - title: 山洪灾害_橙
+    file: mountainTorrents_orange.svg
+  - title: 山洪灾害_红
+    file: mountainTorrents_red.svg
+  - title: 山洪灾害_蓝
+    file: mountainTorrents_blue.svg
+  - title: 山洪灾害_黄
+    file: mountainTorrents_yellow.svg
+  - title: 持续低温_橙
+    file: coldSpell_orange.svg
+  - title: 持续低温_红
+    file: coldSpell_red.svg
+  - title: 持续低温_蓝
+    file: coldSpell_blue.svg
+  - title: 持续低温_黄
+    file: coldSpell_yellow.svg
+  - title: 森林火险_橙
+    file: wildFire_orange.svg
+  - title: 森林火险_橙
+    file: wildFire_orange.svg
+  - title: 森林火险_红
+    file: wildFire_red.svg
+  - title: 森林火险_蓝
+    file: wildFire_blue.svg
+  - title: 森林火险_黄
+    file: wildFire_yellow.svg
+  - title: 海上台风_橙
+    file: seaTyphoon_orange.svg
+  - title: 海上台风_红
+    file: seaTyphoon_red.svg
+  - title: 海上台风_蓝
+    file: seaTyphoon_blue.svg
+  - title: 海上台风_黄
+    file: seaTyphoon_yellow.svg
+  - title: 海上大雾_橙
+    file: seaFog_orange.svg
+  - title: 海上大雾_红
+    file: seaFog_red.svg
+  - title: 海上大雾_蓝
+    file: seaFog_blue.svg
+  - title: 海上大雾_黄
+    file: seaFog_yellow.svg
+  - title: 海上大风_橙
+    file: seaGale_orange.svg
+  - title: 海上大风_红
+    file: seaGale_red.svg
+  - title: 海上大风_蓝
+    file: seaGale_blue.svg
+  - title: 海上大风_黄
+    file: seaGale_yellow.svg
+  - title: 海上雷电_橙
+    file: seaLightning_orange.svg
+  - title: 海上雷电_红
+    file: seaLightning_red.svg
+  - title: 海上雷电_蓝
+    file: seaLightning_blue.svg
+  - title: 海上雷电_黄
+    file: seaLightning_yellow.svg
+  - title: 电线积冰_橙
+    file: wireIcing_orange.svg
+  - title: 电线积冰_红
+    file: wireIcing_red.svg
+  - title: 电线积冰_蓝
+    file: wireIcing_blue.svg
+  - title: 电线积冰_黄
+    file: wireIcing_yellow.svg
+  - title: 道路冰雪_橙
+    file: roadIceSnow_orange.svg
+  - title: 道路冰雪_红
+    file: roadIceSnow_red.svg
+  - title: 道路冰雪_蓝
+    file: roadIceSnow_blue.svg
+  - title: 道路冰雪_黄
+    file: roadIceSnow_yellow.svg
+  - title: 道路结冰_橙
+    file: roadIcing_orange.svg
+  - title: 道路结冰_红
+    file: roadIcing_red.svg
+  - title: 道路结冰_蓝
+    file: roadIcing_blue.svg
+  - title: 道路结冰_黄
+    file: roadIcing_yellow.svg
+  - title: 雷暴大风_橙
+    file: thunderGust_orange.svg
+  - title: 雷暴大风_红
+    file: thunderGust_red.svg
+  - title: 雷暴大风_蓝
+    file: thunderGust_blue.svg
+  - title: 雷暴大风_黄
+    file: thunderGust_yellow.svg
+  - title: 雷雨大风_橙
+    file: lightningGale_orange.svg
+  - title: 雷雨大风_红
+    file: lightningGale_red.svg
+  - title: 雷雨大风_蓝
+    file: lightningGale_blue.svg
+  - title: 雷雨大风_黄
+    file: lightningGale_yellow.svg
+  - title: 空气重污染_橙
+    file: heavyPollution_orange.svg
+  - title: 空气重污染_红
+    file: heavyPollution_red.svg
+  - title: 空气重污染_蓝
+    file: heavyPollution_blue.svg
+  - title: 空气重污染_黄
+    file: heavyPollution_yellow.svg
+  - title: 低温雨雪冰冻_橙
+    file: coldRainSnow_orange.svg
+  - title: 低温雨雪冰冻_红
+    file: coldRainSnow_red.svg
+  - title: 低温雨雪冰冻_蓝
+    file: coldRainSnow_blue.svg
+  - title: 低温雨雪冰冻_黄
+    file: coldRainSnow_yellow.svg
+  - title: 森林草原火险_橙
+    file: garsslandFireRisk_orange.svg
+  - title: 森林草原火险_红
+    file: garsslandFireRisk_red.svg
+  - title: 森林草原火险_蓝
+    file: garsslandFireRisk_blue.svg
+  - title: 森林草原火险_黄
+    file: garsslandFireRisk_yellow.svg
+  - title: 海上雷雨大风_橙
+    file: sealightningGale_orange.svg
+  - title: 海上雷雨大风_红
+    file: sealightningGale_red.svg
+  - title: 海上雷雨大风_蓝
+    file: sealightningGale_blue.svg
+  - title: 海上雷雨大风_黄
+    file: sealightningGale_yellow.svg
