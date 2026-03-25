@@ -1,15 +1,16 @@
 <script>
     import { cn } from '@/utils/cn';
+    import { changelogData } from '@/data/changelog';
     export let data;
   </script>
-  
+
   <svelte:head>
     <title>{data.meta.title}-SVGLOGO</title>
     <meta property="og:type" content="article" />
     <meta property="og:title" content={data.meta.title} />
     <meta property="og:description" content={data.meta.description} />
   </svelte:head>
-  
+
   <section
     class="bg-white dark:bg-neutral-900 bg-[url('/images/hero-pattern_light.svg')] dark:bg-[url('/images/hero-pattern_dark.svg')]"
   >
@@ -20,23 +21,13 @@
         >
           关于本站
         </h1>
-        <!-- <span class="relative inline-block overflow-hidden rounded-full p-[1px] shadow-sm">
-          <span
-            class="absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#f4f4f5_0%,#f4f4f5_50%,#737373_100%)] dark:bg-[conic-gradient(from_90deg_at_50%_50%,#121212_0%,#121212_50%,#737373_100%)]"
-          />
-          <div
-            class="inline-flex h-full w-full cursor-default items-center justify-center rounded-full bg-neutral-100 dark:bg-neutral-900 px-3 py-1 text-xs font-medium dark:text-white backdrop-blur-3xl border border-neutral-100 dark:border-neutral-800 font-mono"
-          >
-            By@Huazi
-          </div>
-        </span> -->
       </div>
       <p class="text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-200">
         SVGLOGO 将专注于收录国内矢量 LOGO
       </p>
     </div>
   </section>
-  
+
   <article
     class={cn(
       'prose dark:prose-invert',
@@ -47,3 +38,36 @@
   >
     <svelte:component this={data.content} />
   </article>
+
+  <!-- 更新日志模块 -->
+  <section class="max-w-3xl mx-auto px-4 pb-16">
+    <h2 class="text-2xl font-bold text-neutral-900 dark:text-white mb-8" id="更新日志">
+      更新日志
+    </h2>
+
+    <div class="space-y-8">
+      {#each changelogData as entry}
+        <div>
+          <h3 class="text-lg font-semibold text-neutral-900 dark:text-white mb-3">
+            {entry.date}
+          </h3>
+          <div class="pl-4">
+            <h4 class="text-base font-medium text-neutral-800 dark:text-neutral-200 mb-2">
+              {#if entry.type === 'add'}✨ 增加图标
+              {:else if entry.type === 'fix'}🐞 修复
+              {:else if entry.type === 'announce'}📢 公告
+              {:else}➖ 删除{/if}
+            </h4>
+            <p class="text-neutral-700 dark:text-neutral-300 leading-relaxed">
+              {entry.description}
+              {#if entry.contributor}
+                <strong class="text-neutral-800 dark:text-neutral-200 ml-1">
+                  {entry.contributor}
+                </strong>
+              {/if}
+            </p>
+          </div>
+        </div>
+      {/each}
+    </div>
+  </section>

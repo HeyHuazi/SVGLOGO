@@ -7,6 +7,12 @@ export interface ChangelogEntry {
 
 // 更新日志数据
 export const changelogData: ChangelogEntry[] = [
+    {
+    date: '2026.03.25',
+    type: 'add',
+    description: '终于抽空把去年8月份这位网页提交的 LOGO 更新了一波，现在表单中还有96个待处理，等我抽空继续更新',
+    contributor: '@Jc1502'
+  },
   {
     date: '2025.10.28',
     type: 'add',

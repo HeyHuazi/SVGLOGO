@@ -129,3 +129,18 @@ items:
   - title: Svglogo
     file: SVGLOGO.svg
     url: TODO
+  - title: AlphaFlow
+    file: AlphaFlow.svg
+    url: https://www.alphaflowbpm.com/
+  - title: 契约锁
+    file: QiyueLock.svg
+    url: https://www.qiyuesuo.com
+  - title: SAP
+    file: SAP.svg
+    url: https://www.sap.com
+  - title: 希音
+    file: Shein.svg
+    url: https://www.shein.com
+  - title: 用友
+    file: Yonyou.svg
+    url: https://www.yonyou.com

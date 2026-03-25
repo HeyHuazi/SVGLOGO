@@ -634,3 +634,6 @@ items:
   - title: 洛阳银行
     file: BLY.svg
     wordmark: BLY_wordmark.svg
+  - title: 易方达
+    file: Efund.svg
+    url: https://www.efunds.com.cn
