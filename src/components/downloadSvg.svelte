@@ -146,7 +146,7 @@
       }
 
       const category = getCategoryText();
-      const itemType = isWordmark ? 'Wordmark 标志' : '图标';
+      const itemType = isWordmark ? '组合标志' : '标识';
       toast.success(`正在下载 ${format === 'svg' ? 'SVG 矢量格式' : 'PNG 图片格式'}...`, {
         description: `${svgInfo.title} - ${itemType} - ${category}`
       });
@@ -193,7 +193,7 @@
       const category = getCategoryText();
       toast.success(`正在下载 ${format === 'svg' ? 'SVG 矢量格式' : 'PNG 图片格式'}的浅色与深色版本...`, {
         description: isWordmark
-          ? `${svgInfo.title} - Wordmark 标志 - ${category}`
+          ? `${svgInfo.title} - 组合标志 - ${category}`
           : `${svgInfo.title} - ${category}`
       });
     } catch {
@@ -357,7 +357,7 @@
           <img src={svgInfo.wordmark} alt={svgInfo.title} class="h-auto my-4" />
 
           <button
-            title="下载 Wordmark SVG 矢量格式"
+            title="下载组合 SVG 矢量格式"
             class={buttonStyles}
             on:click={() =>
               typeof svgInfo.wordmark === 'string' &&
@@ -369,11 +369,11 @@
               })}
           >
             <DownloadIcon class="mr-2" size={iconSize} />
-            <p>下载 Wordmark SVG 矢量格式</p>
+            <p>下载组合 SVG 矢量格式</p>
           </button>
 
           <button
-            title="下载 Wordmark PNG 图片格式"
+            title="下载组合 PNG 图片格式"
             class={buttonStyles}
             on:click={() =>
               typeof svgInfo.wordmark === 'string' &&
@@ -385,7 +385,7 @@
               })}
           >
             <DownloadIcon class="mr-2" size={iconSize} />
-            <p>下载 Wordmark PNG 图片格式</p>
+            <p>下载组合 PNG 图片格式</p>
           </button>
         </div>
       {/if}
@@ -399,7 +399,7 @@
           />
 
           <button
-            title="下载 Wordmark 浅色与深色版本为 SVG"
+            title="下载组合浅色与深色版本为 SVG"
             class={buttonStyles}
             on:click={() =>
               typeof svgInfo.wordmark !== 'string' &&
@@ -411,11 +411,11 @@
               })}
           >
             <DownloadIcon class="mr-2" size={iconSize} />
-            Wordmark 浅色与深色版本（SVG）
+            组合浅色与深色版本（SVG）
           </button>
 
           <button
-            title="下载 Wordmark 浅色与深色版本为 PNG"
+            title="下载组合浅色与深色版本为 PNG"
             class={buttonStyles}
             on:click={() =>
               typeof svgInfo.wordmark !== 'string' &&
@@ -427,11 +427,11 @@
               })}
           >
             <DownloadIcon class="mr-2" size={iconSize} />
-            Wordmark 浅色与深色版本（PNG）
+            组合浅色与深色版本（PNG）
           </button>
 
           <button
-            title="下载 Wordmark 浅色版本为 SVG"
+            title="下载组合浅色版本为 SVG"
             class={buttonStyles}
             on:click={() =>
               typeof svgInfo.wordmark !== 'string' &&
@@ -443,11 +443,11 @@
               })}
           >
             <DownloadIcon class="mr-2" size={iconSize} />
-            Wordmark 浅色版本（SVG）
+            组合浅色版本（SVG）
           </button>
 
           <button
-            title="下载 Wordmark 浅色版本为 PNG"
+            title="下载组合浅色版本为 PNG"
             class={buttonStyles}
             on:click={() =>
               typeof svgInfo.wordmark !== 'string' &&
@@ -459,11 +459,11 @@
               })}
           >
             <DownloadIcon class="mr-2" size={iconSize} />
-            Wordmark 浅色版本（PNG）
+            组合浅色版本（PNG）
           </button>
 
           <button
-            title="下载 Wordmark 深色版本为 SVG"
+            title="下载组合深色版本为 SVG"
             class={buttonStyles}
             on:click={() =>
               typeof svgInfo.wordmark !== 'string' &&
@@ -475,11 +475,11 @@
               })}
           >
             <DownloadIcon class="mr-2" size={iconSize} />
-            Wordmark 深色版本（SVG）
+            组合深色版本（SVG）
           </button>
 
           <button
-            title="下载 Wordmark 深色版本为 PNG"
+            title="下载组合深色版本为 PNG"
             class={buttonStyles}
             on:click={() =>
               typeof svgInfo.wordmark !== 'string' &&
@@ -491,7 +491,7 @@
               })}
           >
             <DownloadIcon class="mr-2" size={iconSize} />
-            Wordmark 深色版本（PNG）
+            组合深色版本（PNG）
           </button>
         </div>
       {/if}

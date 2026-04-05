@@ -70,7 +70,7 @@
       : svgInfo.category;
 
     if (isWordmarkSvg) {
-      toast.success('已复制 Wordmark SVG 到剪贴板', {
+      toast.success('已复制组合 SVG 到剪贴板', {
         description: `${svgInfo.title} - ${category}`
       });
       return;
@@ -138,7 +138,7 @@
   <Popover.Content class="flex flex-col space-y-2" sideOffset={0.3}>
     <button
       class={cn(buttonStyles, 'rounded-md w-full')}
-      title={isWordmarkSvg ? '复制 Wordmark SVG 到剪贴板' : '复制 SVG 到剪贴板'}
+      title={isWordmarkSvg ? '复制组合 SVG 到剪贴板' : '复制 SVG 到剪贴板'}
       on:click={() => copyToClipboard()}
     >
       <ClipboardIcon size={16} strokeWidth={2} />

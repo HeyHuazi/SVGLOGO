@@ -158,7 +158,7 @@
   
     {#if svgInfo.wordmark !== undefined}
       <button
-        title={wordmarkSvg ? '显示 Logo SVG' : '显示 Wordmark SVG'}
+        title={wordmarkSvg ? '显示标识 SVG' : '显示组合 SVG'}
         on:click={() => {
           wordmarkSvg = !wordmarkSvg;
         }}

@@ -25,3 +25,6 @@ build/
 *.swp
 *.swo
 *~
+
+# Alma
+.alma-snapshots/
