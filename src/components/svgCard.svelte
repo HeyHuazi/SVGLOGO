@@ -1,24 +1,20 @@
 <script lang="ts">
   import type { iSVG } from '@/types/svg';
-
-  // Utils:
   import { cn } from '@/utils/cn';
   import { getSvgContent } from '@/utils/getSvgContent';
-
-  // Icons:
   import { LinkIcon, ChevronsRight, Baseline, Sparkles } from 'lucide-svelte';
-
-  // Components & styles:
   import DownloadSvg from './downloadSvg.svelte';
   import CopySvg from './copySvg.svelte';
-  import { badgeStyles } from '@/ui/styles';
 
   // Figma
   import { onMount } from 'svelte';
   import { insertSVG as figmaInsertSVG } from '@/figma/insert-svg';
 
-  // Props:
   export let svgInfo: iSVG;
+  export let index = 0;
+
+  // 网格列数（xl:grid-cols-5）
+  const COLUMNS = 5;
 
   let isInFigma = false;
   onMount(() => {
@@ -26,7 +22,7 @@
     isInFigma = searchParams.get('figma') === '1';
   });
 
-  // Wordmark SVG:
+  // Wordmark toggle
   let wordmarkSvg = false;
 
   const insertSVG = async (url?: string) => {
@@ -38,131 +34,116 @@
   let iconStroke = 1.8;
   let iconSize = 16;
 
-  // Global Images Styles:
-  const globalImageStyles = 'mb-4 mt-2 h-10 select-none';
+  // 计算动画延迟：基于行号（从上到下依次出现）
+  $: row = Math.floor(index / COLUMNS);
+  $: animationDelay = Math.min(row * 50, 500); // 每行延迟 50ms，最多 500ms
 </script>
 
 <div
-  class="flex flex-col items-center justify-center rounded-md p-4 border border-neutral-200 dark:border-neutral-800 hover:bg-neutral-100/80 dark:hover:bg-neutral-800/20 transition-colors duration-100 group"
+  class="animate-fade-in-up flex flex-col items-center w-full h-[180.5px] bg-white dark:bg-[#2A2C2D] rounded-[15px] overflow-hidden border-[0.5px] border-[#1C1F211A] dark:border-[#FFFFFF26] shadow-[0px_0.5px_0px_#0A0A0B12,0px_9px_5px_-2px_#0A0A0B03,0px_5px_4px_-1px_#0A0A0B05,0px_2px_3px_-1px_#0A0A0B0A] dark:shadow-[0px_0.5px_0px_#0A0A0B2D,0px_9px_5px_-2px_#0A0A0B06,0px_5px_4px_-1px_#0A0A0B0D,0px_2px_3px_-1px_#0A0A0B1A] hover:shadow-[0px_0.5px_0px_#0A0A0B12,0px_4px_6px_-1px_#0A0A0B0A,0px_9px_5px_-2px_#0A0A0B05,0px_2px_3px_-1px_#0A0A0B07] dark:hover:shadow-[0px_0.5px_0px_#0A0A0B2D,0px_4px_6px_-1px_#0A0A0B1A,0px_9px_5px_-2px_#0A0A0B0D,0px_2px_3px_-1px_#0A0A0B12] transition-shadow duration-200"
+  style:animation-delay="{animationDelay}ms"
 >
-  <!-- Image -->
-  {#if wordmarkSvg == true}
-    <img
-      class={cn('hidden dark:block', globalImageStyles)}
-      src={typeof svgInfo.wordmark !== 'string'
-        ? svgInfo.wordmark?.dark || ''
-        : svgInfo.wordmark || ''}
-      alt={svgInfo.title}
-      title={svgInfo.title}
-      loading="lazy"
-    />
-    <img
-      class={cn('block dark:hidden', globalImageStyles)}
-      src={typeof svgInfo.wordmark !== 'string'
-        ? svgInfo.wordmark?.light || ''
-        : svgInfo.wordmark || ''}
-      alt={svgInfo.title}
-      title={svgInfo.title}
-      loading="lazy"
-    />
-  {:else}
-    <img
-      class={cn('hidden dark:block', globalImageStyles)}
-      src={typeof svgInfo.route !== 'string' ? svgInfo.route.dark : svgInfo.route}
-      alt={svgInfo.title}
-      title={svgInfo.title}
-      loading="lazy"
-    />
-    <img
-      class={cn('block dark:hidden', globalImageStyles)}
-      src={typeof svgInfo.route !== 'string' ? svgInfo.route.light : svgInfo.route}
-      alt={svgInfo.title}
-      title={svgInfo.title}
-      loading="lazy"
-    />
-  {/if}
-  <!-- Title -->
-  <div class="mb-3 flex flex-col space-y-1 items-center justify-center">
-    <p class="truncate text-[15px] font-medium text-balance text-center select-all">
-      {svgInfo.title}
-    </p>
-    <div class="flex items-center space-x-1 justify-center">
-      {#if Array.isArray(svgInfo.category)}
-        {#each [...svgInfo.category].sort() as c, index}
-          <a href={`/directory/${c.toLowerCase()}`} class={badgeStyles}>{c} </a>
-        {/each}
-      {:else}
-        <a href={`/directory/${svgInfo.category.toLowerCase()}`} class={badgeStyles}>
-          {svgInfo.category}
-        </a>
-      {/if}
+  <!-- Logo Area -->
+  <div class="flex items-center justify-center w-full flex-1 bg-[radial-gradient(ellipse_54.24%_130.95%_at_50%_50.3%,#FFFFFF,#F5F5F5)] dark:bg-[radial-gradient(circle_farthest-corner_at_50%_50%,#2A2C2D,#252728)] py-5 px-5 min-h-[86px]">
+    {#if wordmarkSvg}
+      <img
+        class="hidden dark:block max-w-[148px] max-h-[36px] object-contain select-none"
+        src={typeof svgInfo.wordmark !== 'string' ? (svgInfo.wordmark?.dark || '') : (svgInfo.wordmark || '')}
+        alt={svgInfo.title}
+        title={svgInfo.title}
+        loading="lazy"
+      />
+      <img
+        class="block dark:hidden max-w-[148px] max-h-[36px] object-contain select-none"
+        src={typeof svgInfo.wordmark !== 'string' ? (svgInfo.wordmark?.light || '') : (svgInfo.wordmark || '')}
+        alt={svgInfo.title}
+        title={svgInfo.title}
+        loading="lazy"
+      />
+    {:else}
+      <img
+        class="hidden dark:block max-w-[148px] max-h-[36px] object-contain select-none"
+        src={typeof svgInfo.route !== 'string' ? svgInfo.route.dark : svgInfo.route}
+        alt={svgInfo.title}
+        title={svgInfo.title}
+        loading="lazy"
+      />
+      <img
+        class="block dark:hidden max-w-[148px] max-h-[36px] object-contain select-none"
+        src={typeof svgInfo.route !== 'string' ? svgInfo.route.light : svgInfo.route}
+        alt={svgInfo.title}
+        title={svgInfo.title}
+        loading="lazy"
+      />
+    {/if}
+  </div>
+
+  <!-- Title Area -->
+  <div class="flex flex-col items-center gap-0.5 w-full pt-2 pb-1.5 px-3">
+    <div class="w-full overflow-hidden">
+      <p class="text-[13px] font-medium text-[#171717] dark:text-white text-center truncate leading-[150%]">
+        {svgInfo.title}
+      </p>
+    </div>
+    <div class="flex items-center gap-1 justify-center">
+      <span class="text-[10px] text-[#A3A3A3] dark:text-[#A3A3A3] leading-[150%]">
+        {#if svgInfo.wordmark !== undefined}
+          支持标识/组合切换
+        {:else}
+          SVG 矢量格式
+        {/if}
+      </span>
     </div>
   </div>
-  <!-- Actions -->
-  <div class="flex items-center space-x-1">
+
+  <!-- Action Buttons -->
+  <div class="flex items-center gap-1 justify-center w-full py-1.5 px-2">
     {#if isInFigma}
       <button
         title="插入到 Figma"
         on:click={() => {
           const svgHasTheme = typeof svgInfo.route !== 'string';
-
           if (!svgHasTheme) {
-            insertSVG(
-              typeof svgInfo.route === 'string'
-                ? svgInfo.route
-                : "出现异常，无法复制 SVG。"
-            );
+            insertSVG(typeof svgInfo.route === 'string' ? svgInfo.route : '');
             return;
           }
-
           const dark = document.documentElement.classList.contains('dark');
-
-          insertSVG(
-            typeof svgInfo.route !== 'string'
-              ? dark
-                ? svgInfo.route.dark
-                : svgInfo.route.light
-              : svgInfo.route
-          );
+          insertSVG(typeof svgInfo.route !== 'string' ? (dark ? svgInfo.route.dark : svgInfo.route.light) : svgInfo.route);
         }}
-        class="flex items-center space-x-2 rounded-md p-2 duration-100 hover:bg-neutral-200 dark:hover:bg-neutral-700/40"
+        class="flex items-center justify-center rounded-md p-2 text-[#737373] dark:text-[#737373] duration-100 hover:bg-neutral-200 dark:hover:bg-neutral-700/40"
       >
         <ChevronsRight size={iconSize} strokeWidth={iconStroke} />
       </button>
     {/if}
 
     {#if wordmarkSvg}
-      <CopySvg {iconSize} {iconStroke} {svgInfo} isInFigma={false} isWordmarkSvg={true} />
+      <CopySvg {iconSize} {iconStroke} {svgInfo} isWordmarkSvg={true} />
     {:else}
-      <CopySvg {iconSize} {iconStroke} {svgInfo} isInFigma={false} isWordmarkSvg={false} />
+      <CopySvg {iconSize} {iconStroke} {svgInfo} isWordmarkSvg={false} />
     {/if}
 
     <DownloadSvg
       {svgInfo}
-      isDarkTheme={() => {
-        const dark = document.documentElement.classList.contains('dark');
-        return dark;
-      }}
+      isDarkTheme={() => document.documentElement.classList.contains('dark')}
     />
-    {#if svgInfo.category !== "气象预警"}
-    <a
-      href={svgInfo.url}
-      title="官网"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="flex items-center space-x-2 rounded-md p-2 duration-100 hover:bg-neutral-200 dark:hover:bg-neutral-700/40"
-    >
-      <LinkIcon size={iconSize} strokeWidth={iconStroke} />
-    </a>
-  {/if}
-  
+
+    {#if svgInfo.url && svgInfo.category !== '气象预警'}
+      <a
+        href={svgInfo.url}
+        title="官网"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center justify-center rounded-md p-2 text-[#737373] dark:text-[#737373] duration-100 hover:bg-neutral-200 dark:hover:bg-neutral-700/40"
+      >
+        <LinkIcon size={iconSize} strokeWidth={iconStroke} />
+      </a>
+    {/if}
+
     {#if svgInfo.wordmark !== undefined}
       <button
-        title={wordmarkSvg ? '显示标识 SVG' : '显示组合 SVG'}
-        on:click={() => {
-          wordmarkSvg = !wordmarkSvg;
-        }}
-        class="flex items-center space-x-2 rounded-md p-2 duration-100 hover:bg-neutral-200 dark:hover:bg-neutral-700/40"
+        title={wordmarkSvg ? '显示标识' : '显示组合'}
+        on:click={() => (wordmarkSvg = !wordmarkSvg)}
+        class="flex items-center justify-center rounded-md p-2 text-[#737373] dark:text-[#737373] duration-100 hover:bg-neutral-200 dark:hover:bg-neutral-700/40"
       >
         {#if wordmarkSvg}
           <Sparkles size={iconSize} strokeWidth={iconStroke} />

@@ -26,7 +26,7 @@
   let iconStroke = 1.8;
   let iconSize = 16;
   let mainDownloadStyles =
-    'flex items-center space-x-2 rounded-md p-2 duration-100 hover:bg-neutral-200 dark:hover:bg-neutral-700/40';
+    'flex items-center space-x-2 rounded-md p-2 text-[#737373] dark:text-[#737373] duration-100 hover:bg-neutral-200 dark:hover:bg-neutral-700/40';
   let cardDownloadStyles =
     'flex w-full h-full flex-col p-4 rounded-md shadow-sm dark:bg-neutral-800/20 bg-neutral-200/10 border border-neutral-200 dark:border-neutral-800 space-y-2';
 

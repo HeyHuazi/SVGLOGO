@@ -15,8 +15,9 @@ description: 专注收录国内矢量 LOGO
 你可以在[svgl](https://svgl.app/) 找到国外热门矢量 LOGO，本站也基于此开源项目开发。
 
 ## 支持我
-👋 嗨！我是 **Huazi** 你可以通过**微信**、**支付宝**支持我持续更新
-![打赏码](https://huazispace.s3.bitiful.net/SVGLOGO/reward.png "打赏码")
+👋 嗨！我是 **Huazi** 如果这个项目对你有帮助，欢迎通过[爱发电](https://afdian.com/a/heyhuazi)支持我持续更新！
+
+<iframe src="https://ifdian.net/leaflet?slug=heyhuazi" width="640" scrolling="no" height="200" frameborder="0" style="max-width: 100%; margin: 1rem 0;"></iframe>
 
 ## 版权
 本网站展示的矢量图形均为网络搜集、整理，仅供学习参考，不保证其权威性、准确性。其版权均严格归属于各自对应公司机构。严禁未经授权的复制、修改、传播或商业使用。本网站无法对用户使用LOGO后的具体行为及其法律后果承担责任。

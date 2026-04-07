@@ -1,6 +1,8 @@
 <script>
     import { cn } from '@/utils/cn';
     import { changelogData } from '@/data/changelog';
+    import Navbar from '@/components/navbar.svelte';
+    import Footer from '@/components/footer.svelte';
     export let data;
   </script>
 
@@ -10,6 +12,9 @@
     <meta property="og:title" content={data.meta.title} />
     <meta property="og:description" content={data.meta.description} />
   </svelte:head>
+
+  <!-- Navbar -->
+  <Navbar currentPath="/about" />
 
   <section
     class="bg-white dark:bg-neutral-900 bg-[url('/images/hero-pattern_light.svg')] dark:bg-[url('/images/hero-pattern_dark.svg')]"
@@ -71,3 +76,6 @@
       {/each}
     </div>
   </section>
+
+  <!-- Footer -->
+  <Footer />

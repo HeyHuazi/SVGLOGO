@@ -8,6 +8,7 @@ import { PUBLIC_51LA_ID } from '$env/static/public';
 // Global styles:
 import "../app.css";
 import { cn } from "@/utils/cn";
+import { page } from '$app/stores';
 import { ModeWatcher, mode } from "mode-watcher";
 import { sidebarCategoryCountStyles } from "@/ui/styles";
 import { sidebarItemStyles } from "@/ui/styles";
@@ -33,14 +34,14 @@ const banners = [
   },
   {
     id: 2,
-    imageUrl: "https://designstrollweekly.s3.bitiful.net/2025/09/9062b3659c91942d9f20dd85e19cbe6c.png", 
-    link: "https://www.evoker.design?atp=huazi", 
+    imageUrl: "https://designstrollweekly.s3.bitiful.net/2025/09/9062b3659c91942d9f20dd85e19cbe6c.png",
+    link: "https://www.evoker.design?atp=huazi",
     alt: "Evoker"
   },
   {
     id: 3,
-    imageUrl: "https://huazispace.s3.bitiful.net/2025/07/efb43de563174a798867fbc016e280a8.png", 
-    link: "https://bizihu.com/?ref=www.huazi.space", 
+    imageUrl: "https://huazispace.s3.bitiful.net/2025/07/efb43de563174a798867fbc016e280a8.png",
+    link: "https://bizihu.com/?ref=www.huazi.space",
     alt: "壁纸湖"
   }
 ];
@@ -49,32 +50,26 @@ const banners = [
 let currentBannerIndex = 0;
 let autoplayInterval: ReturnType<typeof setInterval> | null = null;
 
-// 切换到下一个banner
 function nextBanner() {
   currentBannerIndex = (currentBannerIndex + 1) % banners.length;
 }
 
-// 自动轮播
 function startAutoplay() {
   if (prefersReducedMotion || !showAdPopup || banners.length <= 1) {
     return;
   }
-
   stopAutoplay();
   autoplayInterval = setInterval(() => {
     nextBanner();
   }, 5000);
 }
 
-// 停止自动轮播
 function stopAutoplay() {
   if (autoplayInterval) {
     clearInterval(autoplayInterval);
     autoplayInterval = null;
   }
 }
-
-// 移除原有的 onMount 检查广告显示逻辑
 
 // Get categories:
 import { svgs } from "@/data/svgs";
@@ -136,8 +131,8 @@ onMount(async () => {
       return;
     }
     const response = await fetch(`https://v6-widget.51.la/v6/${PUBLIC_51LA_ID}/quote.js`);
-    const data = await response.text();
-    const num = data.match(/(?<=<\/span><span>).*?(?=<\/span><\/p>)/g);
+    const responseText = await response.text();
+    const num = responseText.match(/(?<=<\/span><span>).*?(?=<\/span><\/p>)/g);
     if (num && num[6]) {
       visitorCount = (parseInt(num[6], 10) + 7500).toString();
     }
@@ -148,17 +143,19 @@ onMount(async () => {
   }
 });
 
-// 组件销毁时清除定时器
 onDestroy(() => {
   stopAutoplay();
 });
 
 $: isLandingHome = data.pathname === '/';
+  $: isAboutPage = data.pathname === '/about';
+  $: isErrorPage = !!$page.error;
 </script>
 
 <ModeWatcher />
 
-{#if isLandingHome}
+{#if isLandingHome || isAboutPage || isErrorPage}
+  <!-- Homepage & About: uses its own full layout with navbar, hero, sidebar+cards -->
   <main class="w-full min-h-[100dvh] bg-white dark:bg-neutral-900">
     <Transition pathname={data.pathname}>
       <slot />
@@ -176,6 +173,7 @@ $: isLandingHome = data.pathname === '/';
     />
   </main>
 {:else}
+  <!-- Other pages: use the existing sidebar layout -->
   <Navbar currentPath={data.pathname} />
   <main>
     <aside
@@ -192,17 +190,6 @@ $: isLandingHome = data.pathname === '/';
         <nav
           class="flex flex-1 items-center space-x-1 overflow-y-auto px-6 pb-2 pt-2 md:mb-3 md:flex-col md:space-x-0 md:space-y-1 md:overflow-y-visible md:px-0 md:pt-0"
         >
-          <a
-            href="/explore"
-            class={cn(
-              sidebarItemStyles,
-              data.pathname === '/explore'
-                ? 'bg-neutral-200 font-medium text-dark dark:bg-neutral-700/30 dark:text-white'
-                : ''
-            )}
-            data-sveltekit-preload-data>全部</a
-          >
-          <!-- Order alfabetically: -->
           {#each [...categories].sort() as category}
             <a
               href={`/directory/${category.toLowerCase()}`}
