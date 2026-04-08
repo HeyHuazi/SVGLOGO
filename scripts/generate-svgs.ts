@@ -169,9 +169,61 @@ ${items.join(',\n')}
 `;
 }
 
+// 生成分类索引 TypeScript 代码
+function generateCategoriesTS(svgs: any[]): string {
+  const timestamp = new Date().toLocaleString('zh-CN', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: false
+  });
+
+  // 统计分类计数
+  const counts: Record<string, number> = {};
+  for (const svg of svgs) {
+    const cats = Array.isArray(svg.category) ? svg.category : [svg.category];
+    for (const c of cats) {
+      counts[c] = (counts[c] || 0) + 1;
+    }
+  }
+
+  // 显示名映射
+  const displayNames: Record<string, string> = { 'AI产品': 'AI 产品' };
+
+  // 排序：按 count 降序，"其他" 固定末尾
+  const OTHER_KEY = '其他';
+  const sorted = Object.keys(counts)
+    .filter(c => c !== OTHER_KEY)
+    .sort((a, b) => counts[b] - counts[a]);
+  if (counts[OTHER_KEY]) sorted.push(OTHER_KEY);
+
+  const entries = sorted.map(name => {
+    const displayName = displayNames[name] || name;
+    return `  { name: "${displayName}", slug: "${name}", count: ${counts[name]} }`;
+  });
+
+  return `// 自动生成，请勿手动编辑
+// Generated at: ${timestamp}
+// 由 scripts/generate-svgs.ts 生成
+
+export interface CategoryEntry {
+  name: string;
+  slug: string;
+  count: number;
+}
+
+export const categories: CategoryEntry[] = [
+${entries.join(',\n')}
+];
+`;
+}
+
 // 主函数
 async function main() {
-  console.log('🔨 生成 svgs.ts...');
+  console.log('🔨 生成 svgs.ts & categories.ts...');
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━\n');
   
   const categories = await readdir(LIBRARY_DIR);
@@ -208,8 +260,13 @@ async function main() {
   // 生成 TypeScript 文件
   const code = generateTypeScript(allSvgs);
   await writeFile(OUTPUT_FILE, code, 'utf-8');
-  
   console.log(`\n✅ 已生成: ${OUTPUT_FILE}`);
+
+  // 生成分类索引
+  const CATEGORIES_OUTPUT = join(process.cwd(), 'src/data/categories.ts');
+  const categoriesCode = generateCategoriesTS(allSvgs);
+  await writeFile(CATEGORIES_OUTPUT, categoriesCode, 'utf-8');
+  console.log(`✅ 已生成: ${CATEGORIES_OUTPUT}`);
 }
 
 main().catch(console.error);

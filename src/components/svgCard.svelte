@@ -9,6 +9,7 @@
   // Figma
   import { onMount } from 'svelte';
   import { insertSVG as figmaInsertSVG } from '@/figma/insert-svg';
+  import { mode } from 'mode-watcher';
 
   export let svgInfo: iSVG;
   export let index = 0;
@@ -24,6 +25,29 @@
 
   // Wordmark toggle
   let wordmarkSvg = false;
+
+  // 图片加载状态
+  let imageLoaded = false;
+
+  // 根据当前主题选择正确的图片 src（只渲染 1 张，不是 2 张）
+  $: isDark = $mode === 'dark';
+  $: imgSrc = (() => {
+    if (wordmarkSvg) {
+      const w = svgInfo.wordmark;
+      if (typeof w !== 'string' && w) {
+        return isDark ? (w.dark || '') : (w.light || '');
+      }
+      return w || '';
+    }
+    const r = svgInfo.route;
+    if (typeof r !== 'string') {
+      return isDark ? r.dark : r.light;
+    }
+    return r;
+  })();
+
+  // 图片 src 变化时重置加载状态
+  $: if (imgSrc) { imageLoaded = false; }
 
   const insertSVG = async (url?: string) => {
     const content = (await getSvgContent(url)) as string;
@@ -44,38 +68,20 @@
   style:animation-delay="{animationDelay}ms"
 >
   <!-- Logo Area -->
-  <div class="flex items-center justify-center w-full flex-1 bg-[radial-gradient(ellipse_54.24%_130.95%_at_50%_50.3%,#FFFFFF,#F5F5F5)] dark:bg-[radial-gradient(circle_farthest-corner_at_50%_50%,#2A2C2D,#252728)] py-5 px-5 min-h-[86px]">
-    {#if wordmarkSvg}
-      <img
-        class="hidden dark:block max-w-[148px] max-h-[36px] object-contain select-none"
-        src={typeof svgInfo.wordmark !== 'string' ? (svgInfo.wordmark?.dark || '') : (svgInfo.wordmark || '')}
-        alt={svgInfo.title}
-        title={svgInfo.title}
-        loading="lazy"
-      />
-      <img
-        class="block dark:hidden max-w-[148px] max-h-[36px] object-contain select-none"
-        src={typeof svgInfo.wordmark !== 'string' ? (svgInfo.wordmark?.light || '') : (svgInfo.wordmark || '')}
-        alt={svgInfo.title}
-        title={svgInfo.title}
-        loading="lazy"
-      />
-    {:else}
-      <img
-        class="hidden dark:block max-w-[148px] max-h-[36px] object-contain select-none"
-        src={typeof svgInfo.route !== 'string' ? svgInfo.route.dark : svgInfo.route}
-        alt={svgInfo.title}
-        title={svgInfo.title}
-        loading="lazy"
-      />
-      <img
-        class="block dark:hidden max-w-[148px] max-h-[36px] object-contain select-none"
-        src={typeof svgInfo.route !== 'string' ? svgInfo.route.light : svgInfo.route}
-        alt={svgInfo.title}
-        title={svgInfo.title}
-        loading="lazy"
-      />
+  <div class="flex items-center justify-center w-full flex-1 bg-[radial-gradient(ellipse_54.24%_130.95%_at_50%_50.3%,#FFFFFF,#F5F5F5)] dark:bg-[radial-gradient(circle_farthest-corner_at_50%_50%,#2A2C2D,#252728)] py-5 px-5 min-h-[86px] relative">
+    {#if !imageLoaded}
+      <div class="absolute inset-0 flex items-center justify-center">
+        <div class="w-16 h-5 rounded bg-neutral-100 dark:bg-neutral-700 animate-pulse"></div>
+      </div>
     {/if}
+    <img
+      class="max-w-[148px] max-h-[36px] object-contain select-none transition-opacity duration-200 {imageLoaded ? 'opacity-100' : 'opacity-0'}"
+      src={imgSrc}
+      alt={svgInfo.title}
+      title={svgInfo.title}
+      loading="lazy"
+      on:load={() => (imageLoaded = true)}
+    />
   </div>
 
   <!-- Title Area -->

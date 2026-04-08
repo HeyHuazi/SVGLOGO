@@ -159,6 +159,8 @@
   function handleCategorySelect(e: CustomEvent) {
     selectedCategory = e.detail.category;
     $categoryParam = selectedCategory !== '全部' ? selectedCategory : null;
+    // 立即清空当前列表，避免新旧图片请求争抢连接池
+    filteredSvgs = { list: [], total: 0, isSearching: false };
     visibleCount = INITIAL_VISIBLE_COUNT;
   }
 

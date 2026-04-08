@@ -1,48 +1,11 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte';
   import { cn } from '@/utils/cn';
-  import { svgs } from '@/data/svgs';
+  import { categories } from '@/data/categories';
 
   export let selectedCategory: string = '全部';
 
-  // Dynamically extract all categories from data, sort by count desc, "其他" pinned at bottom
-  const OTHER_KEY = '其他';
-  const displayNames: Record<string, string> = { 'AI产品': 'AI 产品' };
-
-  const uniqueCategories = new Set<string>();
-  const rawCounts: Record<string, number> = {};
-  svgs.forEach((svg) => {
-    const cats = Array.isArray(svg.category) ? svg.category : [svg.category];
-    cats.forEach((c) => {
-      uniqueCategories.add(c);
-      rawCounts[c] = (rawCounts[c] || 0) + 1;
-    });
-  });
-
-  const sortedCategories = [...uniqueCategories]
-    .filter((c) => c !== OTHER_KEY)
-    .sort((a, b) => (rawCounts[b] || 0) - (rawCounts[a] || 0));
-
-  const categoryConfig: { label: string; categories: string[] }[] = [
-    ...sortedCategories.map((cat) => ({
-      label: displayNames[cat] || cat,
-      categories: [cat]
-    })),
-    ...(uniqueCategories.has(OTHER_KEY)
-      ? [{ label: OTHER_KEY, categories: [OTHER_KEY] }]
-      : [])
-  ];
-
-  const totalCount = svgs.length;
-  const categoryCounts: Record<string, number> = {};
-  categoryConfig.forEach(({ label, categories }) => {
-    categoryCounts[label] = categories.reduce((sum, cat) => sum + (rawCounts[cat] || 0), 0);
-  });
-
-  const categoryMap: Record<string, string[]> = {
-    '全部': [],
-    ...Object.fromEntries(categoryConfig.map(({ label, categories }) => [label, categories]))
-  };
+  const totalCount = categories.reduce((sum, c) => sum + c.count, 0);
 
   const dispatch = createEventDispatcher();
 
@@ -72,18 +35,18 @@
     </button>
 
     <!-- Category items -->
-    {#each categoryConfig as { label }}
+    {#each categories as c}
       <button
-        on:click={() => selectCategory(label)}
+        on:click={() => selectCategory(c.name)}
         class={cn(
           'flex w-full items-center justify-between py-[10px] px-2.5 rounded-[10px] text-sm font-medium transition-colors duration-150',
-          selectedCategory === label
+          selectedCategory === c.name
             ? 'bg-[#1C1F21] dark:bg-neutral-700 text-white border border-[#1C1F21]/5 dark:border-neutral-600'
             : 'text-[#8A8D8F] dark:text-neutral-500 hover:text-neutral-600 dark:hover:text-neutral-300'
         )}
       >
-        <span class="truncate" style="font-family: 'InterVariable', system-ui, sans-serif">{label}</span>
-        <span class="font-light flex-shrink-0 ml-1" style="font-family: 'InterVariable', system-ui, sans-serif">{categoryCounts[label]}</span>
+        <span class="truncate" style="font-family: 'InterVariable', system-ui, sans-serif">{c.name}</span>
+        <span class="font-light flex-shrink-0 ml-1" style="font-family: 'InterVariable', system-ui, sans-serif">{c.count}</span>
       </button>
     {/each}
   </nav>

@@ -1,27 +1,14 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
   import { svgs } from '@/data/svgs';
   import gitInfo from '@/config/git-info.json';
 
-  let totalCount = svgs.length;
-  let row1Logos: typeof svgs = [];
-  let row2Logos: typeof svgs = [];
-  let row3Logos: typeof svgs = [];
-  let mounted = false;
+  const totalCount = svgs.length;
 
-  onMount(() => {
-    // Fisher-Yates shuffle
-    const shuffled = [...svgs];
-    for (let i = shuffled.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-    }
-    // Row 1: 6 logos, Row 2: 7 logos (overflows), Row 3: 6 logos
-    row1Logos = shuffled.slice(0, 6);
-    row2Logos = shuffled.slice(6, 13);
-    row3Logos = shuffled.slice(13, 19);
-    mounted = true;
-  });
+  // 固定取最新 20 个图标，无需 shuffle
+  const latestLogos = svgs.slice(-20);
+  const row1Logos = latestLogos.slice(0, 7);
+  const row2Logos = latestLogos.slice(7, 13);
+  const row3Logos = latestLogos.slice(13, 20);
 
   const getImagePath = (route: string | { light: string; dark: string }) => {
     if (typeof route === 'string') return route;
@@ -79,21 +66,20 @@
       <!-- Right: Infinite Carousel Logo Grid -->
       <div class="hidden lg:block flex-shrink-0 w-[585px]">
         <div class="relative overflow-hidden h-[271px] rounded-xl">
-          {#if mounted}
-            <!-- Row 1: scroll right (slow) -->
+          <!-- Row 1: scroll right (slow) -->
             <div class="flex gap-3 absolute animate-carousel-right" style="top: 0; animation-duration: 40s;">
               {#each [...row1Logos, ...row1Logos] as svg}
                 <div class="w-20 h-20 flex-shrink-0 flex items-center justify-center bg-white dark:bg-neutral-800 rounded-xl border border-neutral-100 dark:border-neutral-700 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
-                  <img src={getImagePath(svg.route)} alt={svg.title} class="w-8 h-8 object-contain" loading="lazy" decoding="async" on:error={handleImageError} />
+                  <img src={getImagePath(svg.route)} alt={svg.title} class="w-8 h-8 object-contain" loading="lazy" fetchpriority="low" decoding="async" on:error={handleImageError} />
                 </div>
               {/each}
             </div>
 
-            <!-- Row 2: scroll left (faster, 7 items) -->
+            <!-- Row 2: scroll left (faster, 6 items) -->
             <div class="flex gap-3 absolute animate-carousel-left" style="top: 92px; animation-duration: 30s;">
               {#each [...row2Logos, ...row2Logos] as svg}
                 <div class="w-20 h-20 flex-shrink-0 flex items-center justify-center bg-white dark:bg-neutral-800 rounded-xl border border-neutral-100 dark:border-neutral-700 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
-                  <img src={getImagePath(svg.route)} alt={svg.title} class="w-8 h-8 object-contain" loading="lazy" decoding="async" on:error={handleImageError} />
+                  <img src={getImagePath(svg.route)} alt={svg.title} class="w-8 h-8 object-contain" loading="lazy" fetchpriority="low" decoding="async" on:error={handleImageError} />
                 </div>
               {/each}
             </div>
@@ -102,11 +88,10 @@
             <div class="flex gap-3 absolute animate-carousel-right" style="top: 184px; animation-duration: 35s;">
               {#each [...row3Logos, ...row3Logos] as svg}
                 <div class="w-20 h-20 flex-shrink-0 flex items-center justify-center bg-white dark:bg-neutral-800 rounded-xl border border-neutral-100 dark:border-neutral-700 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
-                  <img src={getImagePath(svg.route)} alt={svg.title} class="w-8 h-8 object-contain" loading="lazy" decoding="async" on:error={handleImageError} />
+                  <img src={getImagePath(svg.route)} alt={svg.title} class="w-8 h-8 object-contain" loading="lazy" fetchpriority="low" decoding="async" on:error={handleImageError} />
                 </div>
               {/each}
             </div>
-          {/if}
 
           <!-- Left gradient fade -->
           <div class="absolute left-0 top-0 w-[30px] h-full bg-gradient-to-r from-[#FAFAFA] dark:from-neutral-900 to-transparent z-10 pointer-events-none"></div>

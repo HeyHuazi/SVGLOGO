@@ -71,21 +71,10 @@ function stopAutoplay() {
   }
 }
 
-// Get categories:
-import { svgs } from "@/data/svgs";
-const categories = svgs
-  .flatMap((svg) =>
-    Array.isArray(svg.category) ? svg.category : [svg.category],
-  )
-  .filter((category, index, array) => array.indexOf(category) === index);
-
-// Get category counts:
-let categoryCounts: Record<string, number> = {};
-categories.forEach((category) => {
-  categoryCounts[category] = svgs.filter((svg) =>
-    svg.category.includes(category),
-  ).length;
-});
+// Get categories from precomputed index:
+import { categories as categoryIndex } from "@/data/categories";
+const categories = categoryIndex.map(c => c.name);
+const categoryCounts = Object.fromEntries(categoryIndex.map(c => [c.name, c.count]));
 
 // Toaster:
 import { Toaster } from "svelte-sonner";
