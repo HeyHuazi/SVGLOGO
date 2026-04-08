@@ -1,15 +1,1 @@
-<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M67.2314 108C69.7426 105.507 72.5266 104.12 74.8174 102.706L89.8907 93.2576C96.4657 89.1812 96.9671 86.5114 96.9748 82.7286C96.9652 75.3507 86.0605 71.0831 67.2467 67.4269L67.2314 108Z" fill="url(#paint0_linear_63_11488)"/>
-<path d="M30.9999 51.1294C30.9999 57.4609 34.5613 60.033 39.4418 61.7478L88.5103 76.8508C91.5441 77.7741 96.9521 79.6208 96.9521 82.7865L96.9521 50.9975C96.9521 47.1723 96.4245 42.4238 90.3569 40.3792L39.4418 24.3528C36.0123 23.2976 32.9125 21.6488 30.9999 20L30.9999 51.1294Z" fill="url(#paint1_linear_63_11488)"/>
-<defs>
-<linearGradient id="paint0_linear_63_11488" x1="68.0758" y1="69.394" x2="86.6001" y2="102.442" gradientUnits="userSpaceOnUse">
-<stop stop-color="#E60012"/>
-<stop offset="0.49" stop-color="#AF4280"/>
-<stop offset="1" stop-color="#1D2088"/>
-</linearGradient>
-<linearGradient id="paint1_linear_63_11488" x1="96.9521" y1="51.3936" x2="30.9999" y2="51.3936" gradientUnits="userSpaceOnUse">
-<stop stop-color="#FFE200"/>
-<stop offset="1" stop-color="#E60012"/>
-</linearGradient>
-</defs>
-</svg>
+<svg width="128" height="128" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M67.231 108c2.512-2.493 5.296-3.88 7.586-5.294l15.074-9.448c6.575-4.077 7.076-6.747 7.084-10.53-.01-7.377-10.914-11.645-29.728-15.301z" fill="url(#paint0_linear_63_11488)"/><path d="M31 51.13c0 6.33 3.561 8.903 8.442 10.618L88.51 76.85c3.034.923 8.442 2.77 8.442 5.936v-31.79c0-3.825-.528-8.573-6.595-10.618L39.442 24.353C36.012 23.298 32.912 21.649 31 20z" fill="url(#paint1_linear_63_11488)"/><defs><linearGradient id="paint0_linear_63_11488" x1="68.076" y1="69.394" x2="86.6" y2="102.442" gradientUnits="userSpaceOnUse"><stop stop-color="#e60012"/><stop offset=".49" stop-color="#af4280"/><stop offset="1" stop-color="#1d2088"/></linearGradient><linearGradient id="paint1_linear_63_11488" x1="96.952" y1="51.394" x2="31" y2="51.394" gradientUnits="userSpaceOnUse"><stop stop-color="#ffe200"/><stop offset="1" stop-color="#e60012"/></linearGradient></defs></svg>
