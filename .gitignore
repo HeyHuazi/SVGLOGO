@@ -28,3 +28,6 @@ build/
 
 # Alma
 .alma-snapshots/
+
+# 生成的配置文件
+src/config/git-info.json

@@ -14,10 +14,10 @@
   ],
   "scripts": {
     "dev": "vite dev",
-    "predev": "pnpm generate:svg",
+    "predev": "pnpm generate:svg && pnpm get:git-info",
     "host": "vite dev --host",
     "build": "pnpm run prebuild && vite build",
-    "prebuild": "pnpm scan:svg && pnpm generate:svg && cd ./check-size && pnpm install && pnpm run start",
+    "prebuild": "pnpm scan:svg && pnpm generate:svg && pnpm get:git-info && cd ./check-size && pnpm install && pnpm run start",
     "onlybuild": "vite build",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -33,7 +33,8 @@
     "build:figma": "concurrently -n plugin,svelte 'npm run build:plugin -- --define:SITE_URL=\\\"$npm_package_config_siteURL\\\"' 'npm run build'",
     "scan:svg": "tsx scripts/scan-svgs.ts",
     "generate:svg": "tsx scripts/generate-svgs.ts",
-    "migrate:svg": "tsx scripts/migrate-svgs.ts"
+    "migrate:svg": "tsx scripts/migrate-svgs.ts",
+    "get:git-info": "tsx scripts/get-git-info.ts"
   },
   "dependencies": {
     "@figma/plugin-typings": "1.92.0",

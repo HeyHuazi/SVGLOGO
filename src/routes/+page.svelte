@@ -10,6 +10,7 @@
   import HomeSearch from '@/components/homeSearch.svelte';
   import HomeSidebar from '@/components/homeSidebar.svelte';
   import SvgCard from '@/components/svgCard.svelte';
+  import AdCard from '@/components/adCard.svelte';
   import Footer from '@/components/footer.svelte';
   import EmptyState from '@/components/emptyState.svelte';
 
@@ -56,8 +57,44 @@
   const LOAD_BATCH_SIZE = 60;
   let visibleCount = INITIAL_VISIBLE_COUNT;
 
+  // 广告配置
+  const AD_INTERVAL = 15; // 每15个logo插入一个广告
+  const AD_START_POSITION = 5; // 从第5个位置开始插入广告
+  const GRID_COLUMNS = 5; // 网格最大列数（xl:grid-cols-5）
+
+  // 计算广告位置
+  function getAdPositions(total: number): number[] {
+    const positions: number[] = [];
+    for (let i = AD_START_POSITION; i < total; i += AD_INTERVAL) {
+      // 在 i-2 到 i+2 范围内随机选择位置
+      const randomOffset = Math.floor(Math.random() * 5) - 2;
+      const position = i + randomOffset;
+      if (position < total && !positions.includes(position)) {
+        positions.push(position);
+      }
+    }
+    return positions.sort((a, b) => a - b);
+  }
+
+  // 混合 logo 和广告
+  function renderMixedContent(svgs: iSVG[], adPositions: number[]) {
+    const result: Array<{ type: 'svg' | 'ad'; data?: iSVG; index?: number }> = [];
+    let adIndex = 0;
+
+    svgs.forEach((svg, i) => {
+      if (adPositions.includes(i)) {
+        result.push({ type: 'ad', index: adIndex++ });
+      }
+      result.push({ type: 'svg', data: svg, index: i });
+    });
+
+    return result;
+  }
+
   // Reactive: filtered results
   let filteredSvgs: { list: iSVG[]; total: number; isSearching: boolean } = { list: [], total: 0, isSearching: false };
+  $: adPositions = getAdPositions(filteredSvgs.total);
+  $: mixedContent = renderMixedContent(filteredSvgs.list, adPositions);
 
   // 搜索时自动滚动到页面顶部
   $: if (searchTerm.trim()) {
@@ -69,7 +106,15 @@
 
   const getVisibleSvgs = (list: iSVG[], isSearching: boolean) => {
     if (isSearching) return list;
-    return list.slice(0, Math.min(visibleCount, list.length));
+    const base = Math.min(visibleCount, list.length);
+    // 计算当前范围内有多少广告
+    const adCount = getAdPositions(base).length;
+    const totalItems = base + adCount;
+    // 向上取整到 GRID_COLUMNS 的倍数，多取一些 logo 补齐最后一行
+    const remainder = totalItems % GRID_COLUMNS;
+    const needed = remainder === 0 ? 0 : GRID_COLUMNS - remainder;
+    const adjusted = Math.min(base + needed, list.length);
+    return list.slice(0, adjusted);
   };
 
   $: {
@@ -244,8 +289,12 @@
 
         <!-- Grid -->
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-          {#each filteredSvgs.list as svg, i (svg.id ?? i)}
-            <SvgCard svgInfo={svg} index={i} />
+          {#each mixedContent as item, i}
+            {#if item.type === 'svg' && item.data}
+              <SvgCard svgInfo={item.data} index={item.index || 0} />
+            {:else if item.type === 'ad'}
+              <AdCard index={item.index || 0} />
+            {/if}
           {/each}
         </div>
 

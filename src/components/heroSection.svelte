@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { svgs } from '@/data/svgs';
+  import gitInfo from '@/config/git-info.json';
 
   let totalCount = svgs.length;
   let row1Logos: typeof svgs = [];
@@ -27,7 +28,7 @@
     return route.light || '/library/default.svg';
   };
 
-  const lastUpdated = new Date().toISOString().split('T')[0];
+  const lastUpdated = gitInfo.lastCommitDate;
 
   const handleImageError = (event: Event) => {
     const img = event.currentTarget as HTMLImageElement;
