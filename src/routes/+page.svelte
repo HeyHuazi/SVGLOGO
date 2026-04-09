@@ -157,11 +157,15 @@
   }
 
   function handleCategorySelect(e: CustomEvent) {
-    selectedCategory = e.detail.category;
-    $categoryParam = selectedCategory !== '全部' ? selectedCategory : null;
-    // 立即清空当前列表，避免新旧图片请求争抢连接池
-    filteredSvgs = { list: [], total: 0, isSearching: false };
-    visibleCount = INITIAL_VISIBLE_COUNT;
+    const newCategory = e.detail.category;
+    // 只有当分类真正改变时才清空列表并重新加载
+    if (newCategory !== selectedCategory) {
+      selectedCategory = newCategory;
+      $categoryParam = selectedCategory !== '全部' ? selectedCategory : null;
+      // 立即清空当前列表，避免新旧图片请求争抢连接池
+      filteredSvgs = { list: [], total: 0, isSearching: false };
+      visibleCount = INITIAL_VISIBLE_COUNT;
+    }
   }
 
   // 排序切换（点击切换）
