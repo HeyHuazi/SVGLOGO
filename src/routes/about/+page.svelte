@@ -3,7 +3,30 @@
     import { changelogData } from '@/data/changelog';
     import Navbar from '@/components/navbar.svelte';
     import Footer from '@/components/footer.svelte';
+    import { afterNavigate } from '$app/navigation';
+    import { tick } from 'svelte';
+    import { browser } from '$app/environment';
     export let data;
+
+    const scrollToHash = () => {
+      const hash = decodeURIComponent(window.location.hash.slice(1));
+      if (hash) {
+        const el = document.getElementById(hash);
+        if (el) {
+          const navbarHeight = window.innerWidth >= 768 ? 80 : 64;
+          const y = el.getBoundingClientRect().top + window.scrollY - navbarHeight - 16;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      }
+    };
+
+    afterNavigate(async () => {
+      if (!browser) return;
+      await tick();
+      scrollToHash();
+      // Fallback for full page load where native hash scroll may interfere
+      setTimeout(scrollToHash, 300);
+    });
   </script>
 
   <svelte:head>

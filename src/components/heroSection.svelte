@@ -58,7 +58,12 @@
           <div class="w-px self-stretch bg-neutral-200 dark:bg-neutral-700"></div>
           <div>
             <div class="text-neutral-500 dark:text-neutral-400 text-xs uppercase tracking-wide">上次更新时间:</div>
-            <div class="text-black dark:text-white text-base mt-3">{lastUpdated}</div>
+            <a href="/about#更新日志" on:click|preventDefault={() => { window.location.href = '/about#更新日志'; }} class="group/date inline-flex items-center gap-1.5 text-black dark:text-white text-base mt-3 hover:text-[#06B30C] dark:hover:text-green-500 transition-colors duration-150">
+              <span>{lastUpdated}</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" class="transition-transform duration-150 group-hover/date:translate-x-0.5">
+                <polyline points="6.5 2.75 12.75 9 6.5 15.25" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></polyline>
+              </svg>
+            </a>
           </div>
         </div>
       </div>
