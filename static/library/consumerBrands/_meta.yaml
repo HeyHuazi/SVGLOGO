@@ -1,0 +1,14 @@
+order: 12
+items:
+  - title: 三福
+    file: sanfu.svg
+    url: https://www.sanfu.com/
+    wordmark: sanfu_wordmark.svg
+  - title: 比格比萨
+    file: Bigpizza.svg
+    url: https://www.bigpizza.bj.cn/
+    wordmark: Bigpizza_wordmark.svg
+  - title: 万达影视
+    file: wandaCinema.svg
+    url: https://www.wandacinemas.com/
+    wordmark: wandaCinema_wordmark.svg

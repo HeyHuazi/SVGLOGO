@@ -21,6 +21,7 @@ const FOLDER_TO_CATEGORY: Record<string, string> = {
   'social': '社交媒体',
   'tools': '工具产品',
   'university': '大学校徽',
+  'consumerBrands': '消费品牌',
   'weather': '气象预警'
 };
 

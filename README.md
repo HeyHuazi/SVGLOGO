@@ -4,7 +4,7 @@
   </a>
 
   <h1>SVGLOGO</h1>
-  <p>专注收录国内矢量 Logo 的开源站点</p>
+  <p>专注收录国内矢量 Logo 的开源站点 <span style="margin-left: 10px; padding: 2px 8px; background-color: #e1f5fe; border-radius: 12px; font-size: 12px; color: #0277bd;">v4.2.0</span></p>
 
   <p>
     <a href="https://svglogo.top/" target="_blank" rel="noopener noreferrer">在线访问</a>
@@ -12,6 +12,8 @@
     <a href="https://tally.so/r/3qOv78" target="_blank" rel="noopener noreferrer">提交图标</a>
     <span> · </span>
     <a href="https://huazi.space/" target="_blank" rel="noopener noreferrer">作者主页</a>
+    <span> · </span>
+    <a href="https://afdian.com/a/heyhuazi" target="_blank" rel="noopener noreferrer">赞助支持</a>
   </p>
 </div>
 
@@ -19,7 +21,7 @@
 
 ## 项目简介
 
-SVGLOGO 是一个面向中文用户的矢量 Logo 素材站，聚焦国内常用品牌与组织标识，支持在线浏览、检索、复制与下载（SVG/PNG）。
+SVGLOGO 是一个面向中文用户的矢量标志素材站，聚焦国内常用品牌与组织标识，支持在线浏览、检索、复制与下载（SVG/PNG）。
 
 你可以在这里找到例如：
 - 国内社媒与互联网产品 Logo
@@ -38,22 +40,27 @@ SVGLOGO 是一个面向中文用户的矢量 Logo 素材站，聚焦国内常用
 - 📋 一键复制 SVG / PNG 到剪贴板
 - ⬇️ 下载 SVG / PNG（含多版本打包）
 - 🧩 支持 Wordmark（字标）展示与下载
-- 📝 博客内容页（设计与资源相关）
+- 📊 自动获取 Git 提交信息
+- 🚀 支持 Vercel 和 Cloudflare 部署
 
 ---
 
 ## 技术栈
 
-- [SvelteKit](https://kit.svelte.dev/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [mdsvex](https://mdsvex.com/)
-- [Shiki](https://github.com/shikijs/shiki)
-- [bits-ui](https://www.bits-ui.com)
-- [svelte-sonner](https://github.com/wobsoriano/svelte-sonner)
-- [JSZip](https://stuk.github.io/jszip/)
-- [downloadjs](https://www.npmjs.com/package/downloadjs)
-- [Vitest](https://vitest.dev/)
+- [SvelteKit](https://kit.svelte.dev/) - 全栈框架
+- [TypeScript](https://www.typescriptlang.org/) - 类型安全
+- [Tailwind CSS](https://tailwindcss.com/) - 实用优先的 CSS 框架
+- [mdsvex](https://mdsvex.com/) - Markdown in Svelte
+- [Shiki](https://github.com/shikijs/shiki) - 语法高亮
+- [bits-ui](https://www.bits-ui.com) - 无头 UI 组件
+- [svelte-sonner](https://github.com/wobsoriano/svelte-sonner) - Toast 通知
+- [JSZip](https://stuk.github.io/jszip/) - ZIP 文件处理
+- [downloadjs](https://www.npmjs.com/package/downloadjs) - 文件下载
+- [Vitest](https://vitest.dev/) - 单元测试
+- [lucide-svelte](https://lucide.dev/) - 图标库
+- [clsx](https://github.com/lukeed/clsx) - 类名工具
+- [tailwind-merge](https://github.com/dcastil/tailwind-merge) - Tailwind 类名合并
+- [mode-watcher](https://github.com/huntabyte/mode-watcher) - 暗色模式监听
 
 ---
 
@@ -85,6 +92,14 @@ pnpm onlybuild
 pnpm preview
 ```
 
+### 5) 获取 Git 提交信息
+
+```bash
+pnpm get:git-info
+```
+
+此脚本会自动获取最新的 Git 提交时间并写入配置文件，用于显示项目最后更新时间。
+
 ---
 
 ## 项目结构（核心）
@@ -92,11 +107,20 @@ pnpm preview
 ```text
 src/
   components/        # UI 组件（搜索、卡片、下载、复制等）
-  data/              # Logo 数据源
-  routes/            # 路由页面（首页、explore、blog、api...）
+  config/            # 配置文件（git-info.json 等）
+  data/              # Logo 数据源（自动生成）
+  routes/            # 路由页面（首页、explore、api...）
   types/             # TS 类型定义
+  lib/               # 工具函数和共享逻辑
 static/
-  library/           # SVG 资源文件
+  library/           # SVG 资源文件（按分类组织）
+  images/            # 图片资源
+scripts/
+  scan-svgs.ts       # 扫描新增 SVG
+  generate-svgs.ts   # 生成数据文件
+  get-git-info.ts    # 获取 Git 提交信息
+  migrate-svgs.ts    # 迁移脚本
+  title-mappings.json # 文件名映射表
 ```
 
 ---
@@ -113,6 +137,7 @@ static/
 static/library/
   ├── aigc/          # AI产品
   ├── airline/       # 航空公司
+  ├── automotive/    # 汽车品牌
   ├── company/       # 企业组织
   ├── cosmetic/      # 美妆品牌
   ├── goldJewelry/   # 黄金珠宝
@@ -239,8 +264,11 @@ items:
 |------|------|----------|
 | `pnpm scan:svg` | 扫描新增 SVG，更新 YAML | 添加新文件后 |
 | `pnpm generate:svg` | 生成 svgs.ts | 自动执行（无需手动运行） |
+| `pnpm get:git-info` | 获取 Git 提交信息 | 构建时自动执行 |
 | `pnpm dev` | 启动开发服务器 | 自动生成 svgs.ts |
 | `pnpm build` | 构建生产版本 | 自动扫描+生成 |
+| `pnpm check` | 类型检查 | 开发时检查 |
+| `pnpm test` | 运行测试 | 确保代码质量 |
 
 ---
 
@@ -252,7 +280,7 @@ items:
 |---------|-------|------|
 | AI产品 | aigc/ | AI 相关产品和服务 |
 | 航空公司 | airline/ | 航空公司 Logo |
-| **汽车品牌** | **automotive/** | **汽车品牌 Logo** |
+| 汽车品牌 | automotive/ | 汽车品牌 Logo |
 | 企业组织 | company/ | 企业和组织 |
 | 美妆品牌 | cosmetic/ | 化妆品品牌 |
 | 黄金珠宝 | goldJewelry/ | 黄金珠宝品牌 |
@@ -278,6 +306,7 @@ SVGLOGO/
 │   ├── scan-svgs.ts          # 扫描新增 SVG，更新 _meta.yaml
 │   ├── generate-svgs.ts      # 读取 YAML，生成 svgs.ts
 │   ├── migrate-svgs.ts       # 迁移脚本（仅首次使用）
+│   ├── get-git-info.ts       # 获取 Git 提交信息
 │   └── title-mappings.json   # 文件名 → 中文标题映射表
 │
 ├── static/library/
@@ -345,20 +374,44 @@ pnpm scan:svg
 
 ---
 
+## 部署
+
+### Vercel 部署
+
+项目已配置 Vercel 部署，支持自动部署。
+
+**配置文件：** `vercel.json`
+
+**特性：**
+- 静态资源缓存优化
+- SVG 文件正确 Content-Type
+- 自动重定向规则
+
+### Cloudflare 部署
+
+项目也支持 Cloudflare Workers/Pages 部署。
+
+**依赖：** `@sveltejs/adapter-cloudflare`
+
+**配置：** `.wrangler/` 目录
+
+---
+
 ## 环境变量（可选）
 
 如果需要本地调试 API 统计/限流相关能力，可配置 `.env`：
 
 ```bash
+# API 限流
 SVGL_API_REQUESTS=1
 UPSTASH_REDIS_URL=""
 UPSTASH_REDIS_TOKEN=""
-```
 
-并可根据需要配置：
-
-```bash
+# 统计分析
 PUBLIC_51LA_ID=""
+
+# 其他配置
+PUBLIC_SITE_URL="https://svglogo.top"
 ```
 
 ---
@@ -371,11 +424,21 @@ PUBLIC_51LA_ID=""
 2. 提交 Issue 反馈体验问题
 3. 提交 PR 优化功能或文档
 
-提交前请确保：
+### 提交前检查清单
 
-- 你拥有该 Logo 的使用权限，或其许可允许收录与展示
-- 文件命名、分类、链接信息准确
-- SVG 资源可正常渲染
+- [ ] 你拥有该 Logo 的使用权限，或其许可允许收录与展示
+- [ ] 文件命名、分类、链接信息准确
+- [ ] SVG 资源可正常渲染
+- [ ] 已运行 `pnpm scan:svg` 更新元数据
+- [ ] 已测试本地开发环境正常运行
+
+### 开发流程
+
+1. Fork 项目
+2. 创建功能分支
+3. 提交更改
+4. 推送到分支
+5. 创建 Pull Request
 
 ---
 
@@ -399,3 +462,14 @@ PUBLIC_51LA_ID=""
 ## License
 
 [MIT](./LICENSE)
+
+---
+
+## 更新日志
+
+### v4.2.0 (2026-04-08)
+- ✨ 新增 Git 提交信息自动获取功能
+- 🚀 支持 Cloudflare 部署
+- 📊 更新技术栈依赖
+- 📝 完善文档和贡献指南
+- 🔧 优化构建流程

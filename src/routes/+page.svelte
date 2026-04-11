@@ -28,8 +28,10 @@
   const uniqueCategories = new Set<string>();
   const rawCounts: Record<string, number> = {};
   allSvgs.forEach((svg) => {
+    if (!svg) return;
     const cats = Array.isArray(svg.category) ? svg.category : [svg.category];
     cats.forEach((c) => {
+      if (!c) return;
       uniqueCategories.add(c);
       rawCounts[c] = (rawCounts[c] || 0) + 1;
     });
@@ -82,6 +84,7 @@
     let adIndex = 0;
 
     svgs.forEach((svg, i) => {
+      if (!svg?.title) return; // 跳过无效数据
       if (adPositions.includes(i)) {
         result.push({ type: 'ad', index: adIndex++ });
       }
@@ -102,7 +105,7 @@
   }
 
   const sortByLatest = (list: iSVG[]) =>
-    [...list].sort((a, b) => (b.id ?? 0) - (a.id ?? 0));
+    [...list].filter(Boolean).sort((a, b) => (b?.id ?? 0) - (a?.id ?? 0));
 
   const getVisibleSvgs = (list: iSVG[], isSearching: boolean) => {
     if (isSearching) return list;
@@ -127,13 +130,13 @@
 
     if (isCategoryFilter) {
       result = result.filter((svg) => {
-        const svgCats = Array.isArray(svg.category) ? svg.category : [svg.category];
-        return svgCats.some((c) => cats.includes(c));
+        const svgCats = Array.isArray(svg?.category) ? svg.category : [svg?.category];
+        return svgCats?.some((c) => cats.includes(c));
       });
     }
 
     if (isSearching) {
-      result = result.filter((svg) => svg.title.toLowerCase().includes(query));
+      result = result.filter((svg) => svg?.title?.toLowerCase().includes(query));
     }
 
     // Sort
@@ -296,7 +299,7 @@
         <!-- Grid -->
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
           {#each mixedContent as item, i}
-            {#if item.type === 'svg' && item.data}
+            {#if item?.type === 'svg' && item?.data?.title}
               <SvgCard svgInfo={item.data} index={item.index || 0} />
             {:else if item.type === 'ad'}
               <AdCard index={item.index || 0} />

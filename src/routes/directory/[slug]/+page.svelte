@@ -43,7 +43,7 @@
     const searchedSvgs =
       query.length === 0
         ? svgsByCategory
-        : svgsByCategory.filter((svg) => svg.title.toLowerCase().includes(query));
+        : svgsByCategory.filter((svg) => svg?.title?.toLowerCase().includes(query));
 
     filteredSvgs = sortAlphabetically(searchedSvgs);
     totalMatchedCount = filteredSvgs.length;
