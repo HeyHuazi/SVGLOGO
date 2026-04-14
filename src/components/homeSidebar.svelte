@@ -38,6 +38,8 @@
     const navRect = navElement.getBoundingClientRect();
     const btnRect = activeButton.getBoundingClientRect();
 
+    // absolute 元素的 top:0 是相对于 containing block (nav) 的 border-box 顶部
+    // 和 offsetTop 的参考点一致，所以可以直接用差值
     indicatorY = btnRect.top - navRect.top + navElement.scrollTop;
     indicatorHeight = btnRect.height;
     indicatorVisible = true;
@@ -77,7 +79,7 @@
     {#if indicatorVisible}
       <div
         class="absolute left-0 right-0 bg-[#1C1F21] rounded-[10px] shadow-[#FFFFFF33_0px_0.5px_0px_inset,#0A0A0B12_0px_0.5px_0px,#0A0A0B03_0px_5px_4px_-2px,#0A0A0B05_0px_3px_3px_-1px,#0A0A0B0A_0px_1px_2px_-1px] pointer-events-none z-0"
-        style="transform: translateY({indicatorY}px); height: {indicatorHeight}px; transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), height 0.2s ease;"
+        style="top: {indicatorY}px; height: {indicatorHeight}px; transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1), height 0.2s ease;"
       />
     {/if}
 
