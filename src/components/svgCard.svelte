@@ -61,70 +61,17 @@
   // 计算动画延迟：基于行号（从上到下依次出现）
   $: row = Math.floor(index / COLUMNS);
   $: animationDelay = Math.min(row * 50, 500); // 每行延迟 50ms，最多 500ms
-
-  // 双击彩蛋
-  let showFunFact = false;
-  let funFactTimer: ReturnType<typeof setTimeout>;
-
-  // 品牌年份数据
-  const brandYears: Record<string, string> = {
-    '微信': '2011',
-    '抖音': '2016',
-    '百度': '2000',
-    '支付宝': '2004',
-    '淘宝': '2003',
-    '小米': '2010',
-    '华为': '1987',
-    '美团': '2010',
-    '京东': '1998',
-    'B站': '2009',
-    '哔哩哔哩': '2009',
-    '腾讯': '1998',
-    '网易': '1997',
-    '拼多多': '2015',
-    '快手': '2011',
-    '滴滴': '2012',
-    '字节跳动': '2012',
-    '小红书': '2013',
-    '知乎': '2011',
-    'QQ': '1999',
-  };
-
-  function getFunFact(title: string): string {
-    const year = brandYears[title];
-    if (year) {
-      return `${title} 创立于 ${year} 年`;
-    }
-    return `${title} - 感谢使用 ❤️`;
-  }
-
-  function handleDoubleClick() {
-    showFunFact = true;
-    if (funFactTimer) clearTimeout(funFactTimer);
-    funFactTimer = setTimeout(() => showFunFact = false, 2500);
-  }
 </script>
 
 <div
   class="animate-fade-in-up flex flex-col items-center w-full h-[180.5px] bg-white dark:bg-[#2A2C2D] rounded-[15px] overflow-hidden border-[0.5px] border-[#1C1F211A] dark:border-[#FFFFFF26] shadow-[0px_0.5px_0px_#0A0A0B12,0px_9px_5px_-2px_#0A0A0B03,0px_5px_4px_-1px_#0A0A0B05,0px_2px_3px_-1px_#0A0A0B0A] dark:shadow-[0px_0.5px_0px_#0A0A0B2D,0px_9px_5px_-2px_#0A0A0B06,0px_5px_4px_-1px_#0A0A0B0D,0px_2px_3px_-1px_#0A0A0B1A] hover:shadow-[0px_0.5px_0px_#0A0A0B12,0px_4px_6px_-1px_#0A0A0B0A,0px_9px_5px_-2px_#0A0A0B05,0px_2px_3px_-1px_#0A0A0B07] dark:hover:shadow-[0px_0.5px_0px_#0A0A0B2D,0px_4px_6px_-1px_#0A0A0B1A,0px_9px_5px_-2px_#0A0A0B0D,0px_2px_3px_-1px_#0A0A0B12] hover:scale-[1.02] hover:-translate-y-0.5 transition-all duration-200 ease-out"
   style:animation-delay="{animationDelay}ms"
-  on:dblclick={handleDoubleClick}
   role="button"
   tabindex="0"
-  aria-label="{svgInfo.title} - 双击查看信息"
+  aria-label={svgInfo.title}
 >
   <!-- Logo Area -->
   <div class="flex items-center justify-center w-full flex-1 bg-[radial-gradient(ellipse_54.24%_130.95%_at_50%_50.3%,#FFFFFF,#F5F5F5)] dark:bg-[radial-gradient(circle_farthest-corner_at_50%_50%,#2A2C2D,#252728)] py-5 px-5 min-h-[86px] relative shadow-[inset_0_0_0_1px_rgba(0,0,0,0.06)] dark:shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">
-    {#if showFunFact}
-      <div
-        class="absolute inset-0 flex items-center justify-center bg-black/60 dark:bg-black/70 z-20"
-        transition:fade={{ duration: 150 }}
-      >
-        <p class="text-white text-sm font-medium px-2 text-center">
-          {getFunFact(svgInfo.title)}
-        </p>
-      </div>
-    {/if}
     {#if !imageLoaded}
       <div class="absolute inset-0 flex items-center justify-center">
         <div class="w-16 h-5 rounded bg-neutral-100 dark:bg-neutral-700 animate-pulse"></div>
