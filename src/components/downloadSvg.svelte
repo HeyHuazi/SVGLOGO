@@ -205,7 +205,7 @@
 </script>
 
 <Dialog>
-  <DialogTrigger title="下载 SVG 或 PNG" class={mainDownloadStyles}>
+  <DialogTrigger title="下载 SVG 或 PNG" aria-label="下载 SVG 或 PNG" class={mainDownloadStyles}>
     <DownloadIcon size={iconSize} strokeWidth={iconStroke} />
   </DialogTrigger>
   <DialogContent class="max-w-[760px]">

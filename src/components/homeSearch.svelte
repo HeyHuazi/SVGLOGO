@@ -9,6 +9,10 @@
 
   let inputElement: HTMLInputElement;
 
+  // 随机示例搜索词
+  const exampleSearches = ['微信', '抖音', '百度', '支付宝', '淘宝', '小米', '华为', '美团', '京东', 'B站', 'QQ', '微博', '网易云音乐', '飞书', '钉钉'];
+  let placeholderText = `在 ${totalCount} 个标志中搜索`;
+
   const handleInput = () => {
     dispatch('search', { value: searchTerm });
   };
@@ -25,6 +29,9 @@
     window.addEventListener('keydown', handleKeydown);
     return () => window.removeEventListener('keydown', handleKeydown);
   });
+
+  // 当 totalCount 变化时更新 placeholder
+  $: placeholderText = `试试搜索: ${exampleSearches[Math.floor(Math.random() * exampleSearches.length)]}`;
 </script>
 
 <div class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-auto transition-opacity duration-150 ease-out" style:opacity>
@@ -41,7 +48,7 @@
     <!-- Input -->
     <input
       type="text"
-      placeholder={`在 ${totalCount} 个标志中搜索`}
+      placeholder={placeholderText}
       bind:value={searchTerm}
       on:input={handleInput}
       bind:this={inputElement}

@@ -2,6 +2,7 @@
   import { page } from '$app/stores';
   import { goto } from '$app/navigation';
   import { onMount, onDestroy } from 'svelte';
+  import { fade } from 'svelte/transition';
 
   import Navbar from '@/components/navbar.svelte';
   import Footer from '@/components/footer.svelte';
@@ -12,6 +13,13 @@
   // 倒计时（仅 404）
   let countdown = 6;
   let timer: ReturnType<typeof setInterval>;
+
+  // 拖拽状态
+  let isDragging = false;
+  let startX = 0;
+  let startY = 0;
+  let currentX = 0;
+  let currentY = 0;
 
   $: status = $page.status;
   $: errorMessage = $page.error?.message || '';
@@ -35,6 +43,39 @@
       description: errorMessage || '请求未能成功完成，请稍后重试'
     };
   })();
+
+  // 鼠标拖拽
+  function handleMouseDown(e: MouseEvent) {
+    isDragging = true;
+    startX = e.clientX - currentX;
+    startY = e.clientY - currentY;
+  }
+
+  function handleMouseMove(e: MouseEvent) {
+    if (!isDragging) return;
+    e.preventDefault();
+    currentX = e.clientX - startX;
+    currentY = e.clientY - startY;
+  }
+
+  function handleMouseUp() {
+    isDragging = false;
+  }
+
+  // 触摸拖拽
+  function handleTouchStart(e: TouchEvent) {
+    isDragging = true;
+    const touch = e.touches[0];
+    startX = touch.clientX - currentX;
+    startY = touch.clientY - currentY;
+  }
+
+  function handleTouchMove(e: TouchEvent) {
+    if (!isDragging) return;
+    const touch = e.touches[0];
+    currentX = touch.clientX - startX;
+    currentY = touch.clientY - startY;
+  }
 
   onMount(() => {
     if (status === 404) {
@@ -64,12 +105,29 @@
 <div class="w-full bg-[#FAFAFA] dark:bg-neutral-900 flex-1">
   <div class="max-w-[1280px] mx-auto px-7">
     <div class="flex flex-col items-center justify-center py-24 md:py-32">
-      <!-- 404 插画 -->
-      <img
-        src="/images/404.svg"
-        alt="页面异常"
-        class="w-[168px] h-auto flex-shrink-0 mb-4"
-      />
+      <!-- 404 插画 - 可拖拽 -->
+      <div
+        class="relative cursor-grab active:cursor-grabbing select-none mb-4 touch-none"
+        on:mousedown={handleMouseDown}
+        on:mousemove={handleMouseMove}
+        on:mouseup={handleMouseUp}
+        on:mouseleave={handleMouseUp}
+        on:touchstart={handleTouchStart}
+        on:touchmove={handleTouchMove}
+        on:touchend={handleMouseUp}
+        style="transform: translate({currentX}px, {currentY}px); transition: transform {isDragging ? '0s' : '0.2s'};"
+        role="button"
+        tabindex="0"
+        aria-label="可拖拽的 404 图标"
+      >
+        <img
+          src="/images/404.svg"
+          alt="页面异常"
+          class="w-[168px] h-auto flex-shrink-0 {isDragging ? 'scale-110' : 'scale-100'} transition-transform duration-200"
+          draggable="false"
+        />
+        <p class="text-xs text-neutral-400 mt-2 text-center">试试拖拽我 👆</p>
+      </div>
 
       <!-- 标题 -->
       <p class="text-[20px] font-medium text-black dark:text-white leading-7 mb-1">

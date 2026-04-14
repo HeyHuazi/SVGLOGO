@@ -15,6 +15,15 @@ import { sidebarItemStyles } from "@/ui/styles";
 import { onMount, onDestroy } from 'svelte';
 import { X } from "lucide-svelte";
 
+// 动态更新 theme-color
+$: if (typeof document !== 'undefined') {
+  const themeColor = $mode === 'dark' ? '#171717' : '#FAFAFA';
+  let meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) {
+    meta.setAttribute('content', themeColor);
+  }
+}
+
 // 广告弹窗状态
 let showAdPopup = true;
 let prefersReducedMotion = false;

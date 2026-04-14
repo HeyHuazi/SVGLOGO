@@ -3,7 +3,8 @@
   import { svgsData } from '@/data';
   import type { iSVG } from '@/types/svg';
   import { queryParam } from 'sveltekit-search-params';
-  import { ArrowUpDownIcon, ArrowDownUpIcon } from 'lucide-svelte';
+  import { ArrowUpDownIcon, ArrowDownUpIcon, Loader, ArrowUp } from 'lucide-svelte';
+  import { fade } from 'svelte/transition';
 
   import Navbar from '@/components/navbar.svelte';
   import HeroSection from '@/components/heroSection.svelte';
@@ -168,6 +169,13 @@
       // 立即清空当前列表，避免新旧图片请求争抢连接池
       filteredSvgs = { list: [], total: 0, isSearching: false };
       visibleCount = INITIAL_VISIBLE_COUNT;
+      // 滚动到结果区域
+      setTimeout(() => {
+        const resultsElement = document.getElementById('results-header');
+        if (resultsElement) {
+          resultsElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 50);
     }
   }
 
@@ -179,12 +187,63 @@
   }
 
   function loadMore() {
-    visibleCount = Math.min(visibleCount + LOAD_BATCH_SIZE, filteredSvgs.total);
+    if (isLoadingMore) return;
+    isLoadingMore = true;
+    // 模拟加载延迟以展示 loading 状态
+    setTimeout(() => {
+      visibleCount = Math.min(visibleCount + LOAD_BATCH_SIZE, filteredSvgs.total);
+      isLoadingMore = false;
+    }, 300);
+  }
+
+  function handleScroll() {
+    showScrollTop = window.scrollY > 500;
+  }
+
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   // Footer observer for search bar opacity
   let footerElement: HTMLElement;
   let footerOpacity = 1;
+
+  // 加载更多状态
+  let isLoadingMore = false;
+
+  // 回到顶部按钮显示状态
+  let showScrollTop = false;
+
+  // 无限滚动自动加载
+  let loadMoreSentinel: HTMLElement;
+  let autoLoadObserver: IntersectionObserver | null = null;
+
+  // 设置自动加载观察器
+  function setupAutoLoad() {
+    if (!loadMoreSentinel) return;
+    
+    // 清理旧观察器
+    if (autoLoadObserver) {
+      autoLoadObserver.disconnect();
+    }
+    
+    autoLoadObserver = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (entry.isIntersecting && !isLoadingMore && !filteredSvgs.isSearching && filteredSvgs.total > filteredSvgs.list.length) {
+          loadMore();
+        }
+      },
+      { rootMargin: '300px' } // 提前 300px 开始加载
+    );
+    
+    autoLoadObserver.observe(loadMoreSentinel);
+  }
+
+  // 当过滤结果变化时重新设置观察器
+  $: if (filteredSvgs.list.length > 0 && loadMoreSentinel) {
+    setupAutoLoad();
+  }
 
   onMount(async () => {
     // 从 URL 参数一次性恢复状态（避免响应式循环）
@@ -207,6 +266,12 @@
       const newSort: 'default' | 'recent' = sort === 'default' ? 'default' : 'recent';
       if (sortBy !== newSort) { sortBy = newSort; visibleCount = INITIAL_VISIBLE_COUNT; }
     });
+
+    // 监听滚动显示回到顶部按钮
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    // 初始化自动加载
+    setupAutoLoad();
 
     // 等待组件渲染完成，确保 bind:element 已生效
     const { tick } = await import('svelte');
@@ -271,7 +336,7 @@
       <!-- Cards Grid -->
       <div class="flex-1 min-w-0 pb-4">
         <!-- Results header: info + sort (sticky) -->
-        <div class="flex items-center justify-between mb-4 sticky top-16 md:top-20 z-10 bg-[#FAFAFA] dark:bg-neutral-900 py-2 -mx-0">
+        <div id="results-header" class="flex items-center justify-between mb-4 sticky top-16 md:top-20 z-10 bg-[#FAFAFA] dark:bg-neutral-900 py-2 -mx-0">
           <p class="text-sm font-medium text-neutral-800 dark:text-neutral-300">
             {#if searchTerm}
               搜索 "{searchTerm}" 找到 {filteredSvgs.total} 个结果
@@ -312,24 +377,51 @@
           <EmptyState searchTerm={searchTerm} />
         {/if}
 
-        <!-- Load More -->
-        {#if !filteredSvgs.isSearching && filteredSvgs.total > filteredSvgs.list.length}
-          <div class="flex items-center justify-center mt-8">
-            <button
-              on:click={loadMore}
-              class="flex items-center gap-2 h-10 px-5 rounded-full border border-neutral-200 dark:border-neutral-700 text-sm font-medium text-neutral-600 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors"
-            >
-              加载更多
-              <span class="text-neutral-400 dark:text-neutral-500">
-                （还剩 {filteredSvgs.total - filteredSvgs.list.length}）
-              </span>
-            </button>
-          </div>
+        <!-- Load More & Auto-load Sentinel -->
+        {#if !filteredSvgs.isSearching}
+          {#if filteredSvgs.total > filteredSvgs.list.length}
+            <div class="flex items-center justify-center mt-8">
+              <button
+                on:click={loadMore}
+                disabled={isLoadingMore}
+                class="flex items-center gap-2 h-10 px-5 rounded-full border border-neutral-200 dark:border-neutral-700 text-sm font-medium text-neutral-600 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                {#if isLoadingMore}
+                  <Loader size={16} class="animate-spin" />
+                  <span>加载中...</span>
+                {:else}
+                  <span>加载更多</span>
+                  <span class="text-neutral-400 dark:text-neutral-500">
+                    （还剩 {filteredSvgs.total - filteredSvgs.list.length}）
+                  </span>
+                {/if}
+              </button>
+            </div>
+            <!-- 自动加载 sentinel -->
+            <div bind:this={loadMoreSentinel} class="h-1 mt-4" aria-hidden="true" />
+          {:else if filteredSvgs.list.length > 0}
+            <!-- 已加载全部 -->
+            <div class="flex items-center justify-center mt-8 text-sm text-neutral-400 dark:text-neutral-500">
+              已显示全部 {filteredSvgs.total} 个标志
+            </div>
+          {/if}
         {/if}
       </div>
     </div>
   </div>
 </div>
+
+<!-- Scroll to Top Button -->
+{#if showScrollTop}
+  <button
+    on:click={scrollToTop}
+    class="fixed bottom-24 right-6 md:bottom-8 md:right-8 p-3 rounded-full bg-white dark:bg-neutral-800 shadow-lg border border-neutral-200 dark:border-neutral-700 hover:scale-110 hover:shadow-xl transition-all duration-200 z-40"
+    aria-label="回到顶部"
+    transition:fade={{ duration: 200 }}
+  >
+    <ArrowUp size={20} class="text-neutral-600 dark:text-neutral-300" />
+  </button>
+{/if}
 
 <!-- Fixed Bottom Search -->
 <HomeSearch

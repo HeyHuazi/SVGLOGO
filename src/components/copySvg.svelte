@@ -125,7 +125,8 @@
 <Popover.Root open={optionsOpen} onOpenChange={(isOpen) => (optionsOpen = isOpen)}>
   <Popover.Trigger
     title="复制 SVG 或 PNG"
-    class="flex items-center space-x-2 rounded-md p-2 text-[#737373] dark:text-[#737373] duration-100 hover:bg-neutral-200 dark:hover:bg-neutral-700/40"
+    aria-label="复制 SVG 或 PNG"
+    class="flex items-center space-x-2 rounded-md min-w-[36px] min-h-[36px] p-2 text-[#737373] dark:text-[#737373] duration-100 hover:bg-neutral-200 dark:hover:bg-neutral-700/40"
   >
     {#if optionsOpen}
       <X size={iconSize} strokeWidth={iconStroke} />

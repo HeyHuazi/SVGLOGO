@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { createEventDispatcher } from 'svelte';
+  import { createEventDispatcher, onMount, tick } from 'svelte';
   import { cn } from '@/utils/cn';
   import { categories } from '@/data/categories';
 
@@ -9,59 +9,102 @@
 
   const dispatch = createEventDispatcher();
 
+  // 滑动指示器状态
+  let indicatorY = 0;
+  let indicatorHeight = 44; // 默认按钮高度
+  let navElement: HTMLElement;
+  let indicatorVisible = false;
+
+  // 计数动画状态
+  let countAnimating = false;
+  let previousCategory = selectedCategory;
+
+  // 所有分类（包括"全部"）
+  const allCategories = [{ name: '全部', count: totalCount }, ...categories];
+
   const selectCategory = (cat: string) => {
     selectedCategory = cat;
     dispatch('select', { category: cat });
   };
 
-  // Paper设计稿样式：选中状态的按钮样式
-  const selectedStyle = `
-    background-color: #1C1F21;
-    background-image: linear-gradient(in oklab 0deg, oklab(66.5% -0.178 0.136 / 0%) 0%, oklab(100% -.0001 .0001 / 10%) 100%);
-    border-color: #1C1F21;
-    border-radius: 10px;
-    border-style: solid;
-    border-width: 0.5px;
-    box-shadow: #FFFFFF33 0px 0.5px 0px inset, #0A0A0B12 0px 0.5px 0px, #0A0A0B03 0px 5px 4px -2px, #0A0A0B05 0px 3px 3px -1px, #0A0A0B0A 0px 1px 2px -1px;
-    padding-block: 10px;
-    padding-inline: 10px;
-  `;
+  // 更新滑动指示器位置
+  async function updateIndicator() {
+    await tick();
+    if (!navElement) return;
+
+    const activeButton = navElement.querySelector(`[data-category="${selectedCategory}"]`) as HTMLElement;
+    if (!activeButton) return;
+
+    const navRect = navElement.getBoundingClientRect();
+    const btnRect = activeButton.getBoundingClientRect();
+
+    indicatorY = btnRect.top - navRect.top + navElement.scrollTop;
+    indicatorHeight = btnRect.height;
+    indicatorVisible = true;
+  }
+
+  // 计数动画
+  function triggerCountAnimation() {
+    if (selectedCategory !== previousCategory) {
+      countAnimating = true;
+      setTimeout(() => {
+        countAnimating = false;
+        previousCategory = selectedCategory;
+      }, 200);
+    }
+  }
+
+  $: if (selectedCategory) {
+    updateIndicator();
+    triggerCountAnimation();
+  }
+
+  onMount(() => {
+    // 初始更新指示器位置
+    setTimeout(updateIndicator, 100);
+  });
 </script>
 
 <aside
   class="w-[160px] flex-shrink-0 bg-[#FAFAFA] dark:bg-neutral-900 hidden md:block"
   style="position: sticky; top: 5rem; align-self: flex-start;"
 >
-  <nav class="flex flex-col gap-1 pt-[6px] pb-0 max-h-[calc(100vh-80px)] overflow-y-auto">
-    <!-- "全部" item -->
-    <button
-      on:click={() => selectCategory('全部')}
-      class={cn(
-        'flex w-full items-center justify-between text-sm transition-all duration-150',
-        selectedCategory === '全部'
-          ? 'text-white'
-          : 'py-[10px] px-2.5 rounded-[10px] text-[#8A8D8F] dark:text-neutral-500 hover:text-neutral-600 dark:hover:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800'
-      )}
-      style={selectedCategory === '全部' ? selectedStyle : ''}
-    >
-      <span class="font-medium" style="font-family: 'Geist', 'InterVariable', system-ui, sans-serif">全部</span>
-      <span class="font-light" style="font-family: 'Geist', 'InterVariable', system-ui, sans-serif">{totalCount}</span>
-    </button>
+  <nav
+    bind:this={navElement}
+    class="flex flex-col gap-1 pt-[6px] pb-0 max-h-[calc(100vh-80px)] overflow-y-auto relative"
+  >
+    <!-- 滑动指示器 -->
+    {#if indicatorVisible}
+      <div
+        class="absolute left-0 right-0 bg-[#1C1F21] rounded-[10px] shadow-[#FFFFFF33_0px_0.5px_0px_inset,#0A0A0B12_0px_0.5px_0px,#0A0A0B03_0px_5px_4px_-2px,#0A0A0B05_0px_3px_3px_-1px,#0A0A0B0A_0px_1px_2px_-1px] pointer-events-none z-0"
+        style="transform: translateY({indicatorY}px); height: {indicatorHeight}px; transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), height 0.2s ease;"
+      />
+    {/if}
 
     <!-- Category items -->
-    {#each categories as c}
+    {#each allCategories as c}
       <button
+        data-category={c.name}
         on:click={() => selectCategory(c.name)}
         class={cn(
-          'flex w-full items-center justify-between text-sm transition-all duration-150',
+          'flex w-full items-center justify-between text-sm py-[10px] px-2.5 rounded-[10px] transition-colors duration-150 relative z-10',
           selectedCategory === c.name
             ? 'text-white'
-            : 'py-[10px] px-2.5 rounded-[10px] text-[#8A8D8F] dark:text-neutral-500 hover:text-neutral-600 dark:hover:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800'
+            : 'text-[#8A8D8F] dark:text-neutral-500 hover:text-neutral-600 dark:hover:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800'
         )}
-        style={selectedCategory === c.name ? selectedStyle : ''}
       >
-        <span class="truncate font-medium" style="font-family: 'Geist', 'InterVariable', system-ui, sans-serif">{c.name}</span>
-        <span class="font-light flex-shrink-0 ml-1" style="font-family: 'Geist', 'InterVariable', system-ui, sans-serif">{c.count}</span>
+        <span
+          class="truncate font-medium"
+          style="font-family: 'Geist', 'InterVariable', system-ui, sans-serif"
+        >
+          {c.name}
+        </span>
+        <span
+          class="font-light flex-shrink-0 ml-1 transition-transform duration-200 {countAnimating && selectedCategory === c.name ? 'scale-125' : 'scale-100'}"
+          style="font-family: 'Geist', 'InterVariable', system-ui, sans-serif"
+        >
+          {c.count}
+        </span>
       </button>
     {/each}
   </nav>

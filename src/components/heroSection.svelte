@@ -23,7 +23,7 @@
   };
 </script>
 
-<section class="w-full bg-[#FAFAFA] dark:bg-neutral-900">
+<section class="w-full bg-[#FAFAFA] dark:bg-neutral-900 selection:bg-[#06B30C]/20 selection:text-[#06B30C]">
   <div class="max-w-[1280px] mx-auto px-7 pt-12 pb-12">
     <div class="flex flex-col lg:flex-row items-start gap-12 lg:gap-8">
       <!-- Left: Text Content -->

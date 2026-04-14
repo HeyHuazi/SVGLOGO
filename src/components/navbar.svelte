@@ -107,25 +107,49 @@
       <button
         on:click={toggleMode}
         aria-label="切换深色模式"
-        class="flex items-center justify-center w-8 h-8 rounded-[10px] bg-white dark:bg-neutral-800 shadow-[#0A0A0B08_0px_-1px_0px_inset,#0A0A0B12_0px_0.5px_0px,#0A0A0B03_0px_9px_5px_-2px,#0A0A0B05_0px_5px_4px_-1px,#0A0A0B0A_0px_2px_3px_-1px,#0A0A0B1A_0px_0px_0px_0.5px] hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors duration-150"
+        class="flex items-center justify-center w-8 h-8 rounded-[10px] bg-white dark:bg-neutral-800 shadow-[#0A0A0B08_0px_-1px_0px_inset,#0A0A0B12_0px_0.5px_0px,#0A0A0B03_0px_9px_5px_-2px,#0A0A0B05_0px_5px_4px_-1px,#0A0A0B0A_0px_2px_3px_-1px,#0A0A0B1A_0px_0px_0px_0.5px] hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors duration-150 relative overflow-hidden"
       >
-        {#if $mode === 'light'}
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#505355" class="dark:stroke-neutral-400" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="4"></circle>
-            <path d="M12 2v2"></path>
-            <path d="M12 20v2"></path>
-            <path d="m4.93 4.93 1.41 1.41"></path>
-            <path d="m17.66 17.66 1.41 1.41"></path>
-            <path d="M2 12h2"></path>
-            <path d="M20 12h2"></path>
-            <path d="m6.34 17.66-1.41 1.41"></path>
-            <path d="m19.07 4.93-1.41 1.41"></path>
-          </svg>
-        {:else}
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#505355" class="dark:stroke-neutral-400" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
-          </svg>
-        {/if}
+        <div class="relative w-[18px] h-[18px]">
+          {#if $mode === 'light'}
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              width="18" 
+              height="18" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="#505355" 
+              class="dark:stroke-neutral-400 absolute inset-0 transition-all duration-500 ease-out rotate-0 scale-100"
+              stroke-width="1.8" 
+              stroke-linecap="round" 
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2"></path>
+              <path d="M12 20v2"></path>
+              <path d="m4.93 4.93 1.41 1.41"></path>
+              <path d="m17.66 17.66 1.41 1.41"></path>
+              <path d="M2 12h2"></path>
+              <path d="M20 12h2"></path>
+              <path d="m6.34 17.66-1.41 1.41"></path>
+              <path d="m19.07 4.93-1.41 1.41"></path>
+            </svg>
+          {:else}
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              width="18" 
+              height="18" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="#505355" 
+              class="dark:stroke-neutral-400 absolute inset-0 transition-all duration-500 ease-out rotate-0 scale-100"
+              stroke-width="1.8" 
+              stroke-linecap="round" 
+              stroke-linejoin="round"
+            >
+              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+            </svg>
+          {/if}
+        </div>
       </button>
 
       <!-- Hamburger Menu Button (mobile only) -->

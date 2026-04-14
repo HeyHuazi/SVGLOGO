@@ -4,6 +4,8 @@
 
   // 导入友链配置
   import { friendLinks } from '@/config/links';
+  import { onMount } from 'svelte';
+  import { fade, fly } from 'svelte/transition';
 
   // 版权年份
   const currentYear = new Date().getFullYear();
@@ -15,7 +17,40 @@
     { name: '赞助支持', url: 'https://afdian.com/a/heyhuazi', external: true },
     { name: '交换友链', url: 'https://full-avatar-ae8.notion.site/33b8b338846a8042ab06dbd6add9fae6?pvs=105', external: true }
   ];
+
+  // Konami 代码彩蛋
+  const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+  let keyBuffer: string[] = [];
+  let showEasterEgg = false;
+  let easterEggTimer: ReturnType<typeof setTimeout>;
+
+  onMount(() => {
+    const handleKeydown = (e: KeyboardEvent) => {
+      keyBuffer.push(e.key);
+      if (keyBuffer.length > konamiCode.length) {
+        keyBuffer.shift();
+      }
+      if (keyBuffer.join(',') === konamiCode.join(',')) {
+        showEasterEgg = true;
+        keyBuffer = [];
+        if (easterEggTimer) clearTimeout(easterEggTimer);
+        easterEggTimer = setTimeout(() => showEasterEgg = false, 4000);
+      }
+    };
+    window.addEventListener('keydown', handleKeydown);
+    return () => window.removeEventListener('keydown', handleKeydown);
+  });
 </script>
+
+{#if showEasterEgg}
+  <div class="fixed inset-0 flex items-center justify-center z-[100] pointer-events-none" transition:fade={{ duration: 300 }}>
+    <div class="bg-white dark:bg-neutral-800 rounded-2xl p-8 shadow-2xl border border-neutral-200 dark:border-neutral-700 text-center" transition:fly={{ y: 20, duration: 400 }}>
+      <div class="text-6xl mb-4 animate-bounce">🎉</div>
+      <p class="text-xl font-bold text-[#06B30C] mb-2">感谢探索 SVGLOGO！</p>
+      <p class="text-sm text-neutral-500 dark:text-neutral-400">你发现了 Konami 代码彩蛋</p>
+    </div>
+  </div>
+{/if}
 
 <footer bind:this={element} class="relative z-[60] bg-[#F0F0F0] dark:bg-neutral-900 border-t border-[#E5E5E580] dark:border-neutral-800 border-solid border-t-[1px]">
   <div class="max-w-[1280px] mx-auto px-[28px] py-[30px]">
