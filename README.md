@@ -4,7 +4,7 @@
   </a>
 
   <h1>SVGLOGO</h1>
-  <p>专注收录国内矢量 Logo 的开源站点 <span style="margin-left: 10px; padding: 2px 8px; background-color: #e1f5fe; border-radius: 12px; font-size: 12px; color: #0277bd;">v4.2.0</span></p>
+  <p>专注收录国内矢量 Logo 的开源站点 <span style="margin-left: 10px; padding: 2px 8px; background-color: #e1f5fe; border-radius: 12px; font-size: 12px; color: #0277bd;">v4.2.1</span></p>
 
   <p>
     <a href="https://svglogo.top/" target="_blank" rel="noopener noreferrer">在线访问</a>
@@ -42,6 +42,12 @@ SVGLOGO 是一个面向中文用户的矢量标志素材站，聚焦国内常用
 - 🧩 支持 Wordmark（字标）展示与下载
 - 📊 自动获取 Git 提交信息
 - 🚀 支持 Vercel 和 Cloudflare 部署
+- ✨ 精心打磨的界面交互细节
+  - 🎯 分类滑动指示器动画
+  - ♾️ 无限滚动自动加载
+  - 🎨 动态主题色与焦点环
+  - 🎮 Konami 代码彩蛋（↑↑↓↓←→←→BA）
+  - 🖱️ 双击卡片查看品牌创立年份
 
 ---
 
@@ -276,20 +282,21 @@ items:
 
 **分类体系（12 个分类）：**
 
-| 分类名称 | 文件夹 | 说明 |
-|---------|-------|------|
-| AI产品 | aigc/ | AI 相关产品和服务 |
-| 航空公司 | airline/ | 航空公司 Logo |
-| 汽车品牌 | automotive/ | 汽车品牌 Logo |
-| 企业组织 | company/ | 企业和组织 |
-| 美妆品牌 | cosmetic/ | 化妆品品牌 |
-| 黄金珠宝 | goldJewelry/ | 黄金珠宝品牌 |
-| 其他 | other/ | 其他类别 |
-| 金融支付 | pay/ | 银行、支付工具 |
-| 大学校徽 | school/ | 大学校徽 |
-| 社交媒体 | social/ | 社交媒体平台 |
-| 工具产品 | tools/ | 工具和产品 |
-| 气象预警 | weather/ | 气象预警图标 |
+| 分类名称 | 文件夹 | 数量 | 说明 |
+|---------|-------|------|------|
+| AI产品 | aigc/ | 114 | AI 相关产品和服务 |
+| 航空公司 | airline/ | 56 | 航空公司 Logo |
+| 汽车品牌 | automotive/ | 7 | 汽车品牌 Logo |
+| 企业组织 | company/ | 73 | 企业和组织 |
+| 消费品牌 | consumerBrands/ | 3 | 消费品牌 |
+| 美妆品牌 | cosmetic/ | 41 | 化妆品品牌 |
+| 黄金珠宝 | goldJewelry/ | 17 | 黄金珠宝品牌 |
+| 其他 | other/ | 18 | 其他类别 |
+| 金融支付 | pay/ | 161 | 银行、支付工具 |
+| 大学校徽 | school/ | 120 | 大学校徽 |
+| 社交媒体 | social/ | 31 | 社交媒体平台 |
+| 工具产品 | tools/ | 41 | 工具和产品 |
+| 气象预警 | weather/ | 218 | 气象预警图标 |
 
 **规则：**
 - 按主要业务领域放文件夹
@@ -466,6 +473,32 @@ PUBLIC_SITE_URL="https://svglogo.top"
 ---
 
 ## 更新日志
+
+### v4.2.1 (2026-04-15)
+
+- ✨ 界面交互细节优化（Phase 1-5，共 17 项）
+  - 动态 `theme-color` meta 标签随深色模式切换
+  - 焦点环颜色统一为品牌绿色（#06B30C）
+  - `prefers-reduced-motion` 无障碍支持
+  - 卡片悬停缩放与浮起动效
+  - 主题切换按钮旋转动画
+  - 分类侧边栏滑动高亮指示器
+  - 加载更多按钮 loading 状态
+  - 分类计数切换动画
+  - 回到顶部浮动按钮
+  - 分类切换自动平滑滚动
+  - 无限滚动自动加载（IntersectionObserver）
+  - Logo 卡片内阴影边缘
+  - 嵌套圆角一致性
+  - 卡片标题 tooltip
+  - 搜索框随机占位符示例
+  - Hero 区域绿色选中样式
+- 🎮 新增彩蛋功能
+  - Konami 代码彩蛋（↑↑↓↓←→←→BA）
+  - 404 页面可拖拽 SVG 插画
+  - 双击 Logo 卡片显示品牌创立年份
+- 🐛 修复侧边栏分类指示器与按钮的对齐问题
+- 📊 总计收录 **900** 个矢量图标
 
 ### v4.2.0 (2026-04-08)
 - ✨ 新增 Git 提交信息自动获取功能
