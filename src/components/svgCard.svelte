@@ -71,7 +71,7 @@
   aria-label={svgInfo.title}
 >
   <!-- Logo Area -->
-  <div class="flex items-center justify-center w-full flex-1 bg-[radial-gradient(ellipse_54.24%_130.95%_at_50%_50.3%,#FFFFFF,#F5F5F5)] dark:bg-[radial-gradient(circle_farthest-corner_at_50%_50%,#2A2C2D,#252728)] py-5 px-5 min-h-[86px] relative shadow-[inset_0_0_0_1px_rgba(0,0,0,0.06)] dark:shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">
+  <div class="flex items-center justify-center w-full flex-1 bg-[radial-gradient(ellipse_54.24%_130.95%_at_50%_50.3%,#FFFFFF,#F5F5F5)] dark:bg-[radial-gradient(circle_farthest-corner_at_50%_50%,#2A2C2D,#252728)] py-5 px-5 min-h-[86px] relative">
     {#if !imageLoaded}
       <div class="absolute inset-0 flex items-center justify-center">
         <div class="w-16 h-5 rounded bg-neutral-100 dark:bg-neutral-700 animate-pulse"></div>
