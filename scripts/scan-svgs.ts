@@ -45,7 +45,7 @@ function extractTitleFromFilename(filename: string, mappings: Record<string, str
 async function scanCategory(
   categoryDir: string,
   mappings: Record<string, string>
-): Promise<{ newItems: any[], deletedItems: string[] }> {
+): Promise<{ newItems: any[], deletedItems: string[], updatedWordmarks: string[], updatedMeta: any }> {
   const categorySlug = basename(categoryDir);
   const metaFile = join(categoryDir, '_meta.yaml');
   
@@ -62,16 +62,19 @@ async function scanCategory(
     f.endsWith('.svg') && !f.startsWith('.')
   );
   
-  // 已记录的文件
-  const recordedFiles = new Set(
-    existingMeta.items.map((item: any) => {
-      if (typeof item.file === 'string') return item.file;
-      if (typeof item.file === 'object') {
-        return [item.file.dark, item.file.light].filter(Boolean);
-      }
-      return null;
-    }).flat().filter(Boolean)
-  );
+  // 已记录的文件（包含 file 和 wordmark）
+  const recordedFiles = new Set<string>();
+  for (const item of existingMeta.items) {
+    if (typeof item.file === 'string') {
+      recordedFiles.add(item.file);
+    } else if (typeof item.file === 'object') {
+      if (item.file.dark) recordedFiles.add(item.file.dark);
+      if (item.file.light) recordedFiles.add(item.file.light);
+    }
+    if (typeof item.wordmark === 'string') {
+      recordedFiles.add(item.wordmark);
+    }
+  }
   
   // 查找新文件
   const newFiles = svgFiles.filter(f => !recordedFiles.has(f));
@@ -84,9 +87,9 @@ async function scanCategory(
     }
   }
   
-  // 生成新条目
+  // 生成新条目（仅处理非 wordmark 的主文件）
   const newItems = newFiles
-    .filter(f => !f.includes('_wordmark')) // 先添加主文件
+    .filter(f => !f.includes('_wordmark'))
     .map(file => {
       const title = extractTitleFromFilename(file, mappings);
       const baseName = parse(file).name;
@@ -109,32 +112,48 @@ async function scanCategory(
       return item;
     });
   
-  const result = {
-    newItems,
-    deletedItems: deletedFiles
-  };
+  // 补充已有条目缺失的 wordmark
+  const updatedWordmarks: string[] = [];
+  const newWordmarkFiles = newFiles.filter(f => f.includes('_wordmark'));
   
-  return result;
+  for (const wordmarkFile of newWordmarkFiles) {
+    const baseName = parse(wordmarkFile).name.replace(/_wordmark$/i, '');
+    const correspondingMainFile = svgFiles.find(f => 
+      parse(f).name === baseName && !f.includes('_wordmark')
+    );
+    
+    if (!correspondingMainFile) continue;
+    
+    // 在已有 items 中查找对应条目
+    const existingItem = existingMeta.items.find((item: any) => {
+      return typeof item.file === 'string' && item.file === correspondingMainFile;
+    });
+    
+    if (existingItem && !existingItem.wordmark) {
+      existingItem.wordmark = wordmarkFile;
+      updatedWordmarks.push(wordmarkFile);
+    }
+  }
+  
+  return {
+    newItems,
+    deletedItems: deletedFiles,
+    updatedWordmarks,
+    updatedMeta: existingMeta
+  };
 }
 
 // 更新元数据文件
 async function updateMetaFile(
   metaFile: string,
-  newItems: any[]
+  newItems: any[],
+  updatedMeta: any
 ): Promise<void> {
-  // 读取现有元数据
-  let existingMeta: any = { items: [] };
-  
-  if (existsSync(metaFile)) {
-    const content = await readFile(metaFile, 'utf-8');
-    existingMeta = YAML.parse(content) || existingMeta;
-  }
-  
   // 追加新条目
-  existingMeta.items.push(...newItems);
+  updatedMeta.items.push(...newItems);
   
   // 生成 YAML
-  const yamlContent = YAML.stringify(existingMeta, {
+  const yamlContent = YAML.stringify(updatedMeta, {
     lineWidth: 0,
     defaultStringType: 'PLAIN',
     defaultKeyType: 'PLAIN'
@@ -160,15 +179,22 @@ async function main() {
     
     if (!stats.isDirectory()) continue;
     
-    const { newItems, deletedItems } = await scanCategory(categoryDir, mappings);
+    const { newItems, deletedItems, updatedWordmarks, updatedMeta } = await scanCategory(categoryDir, mappings);
     
-    if (newItems.length > 0 || deletedItems.length > 0) {
+    if (newItems.length > 0 || deletedItems.length > 0 || updatedWordmarks.length > 0) {
       console.log(`📂 ${category}/`);
       
       if (newItems.length > 0) {
         console.log(`  ✅ 新增: ${newItems.length} 个文件`);
         newItems.forEach(item => {
           console.log(`     → ${item.file}`);
+        });
+      }
+      
+      if (updatedWordmarks.length > 0) {
+        console.log(`  🔗 补充 wordmark: ${updatedWordmarks.length} 个`);
+        updatedWordmarks.forEach(file => {
+          console.log(`     → ${file}`);
         });
       }
       
@@ -180,9 +206,9 @@ async function main() {
       }
       
       // 更新元数据文件
-      if (newItems.length > 0) {
+      if (newItems.length > 0 || updatedWordmarks.length > 0) {
         const metaFile = join(categoryDir, '_meta.yaml');
-        await updateMetaFile(metaFile, newItems);
+        await updateMetaFile(metaFile, newItems, updatedMeta);
         console.log(`  📝 已更新: _meta.yaml`);
       }
       

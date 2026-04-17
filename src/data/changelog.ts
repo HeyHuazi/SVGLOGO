@@ -8,6 +8,12 @@ export interface ChangelogEntry {
 // 更新日志数据
 export const changelogData: ChangelogEntry[] = [
   {
+    date: '2026.04.17',
+    type: 'add',
+    description: '更新西藏航空 Logo 并新增组合 Logo，新增国泰航空组合 Logo',
+    contributor: '@李叫什么'
+  },
+  {
     date: '2026.04.11',
     type: 'add',
     description: '增加分类“消费品牌”并更新了几个LOGO',

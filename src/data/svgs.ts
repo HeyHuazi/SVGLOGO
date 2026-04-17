@@ -1,5 +1,5 @@
 // 自动生成，请勿手动编辑
-// Generated at: 2026/04/15 19:05:53
+// Generated at: 2026/04/17 15:42:20
 // 由 scripts/generate-svgs.ts 生成
 
 import type { iSVG } from "../types/svg";
@@ -6475,6 +6475,7 @@ export const svgs: iSVG[] = [
     title: "西藏航空",
     category: "航空公司",
     route: "/library/airline/TibetAirlines.svg",
+    wordmark: "/library/airline/TibetAirlines_wordmark.svg",
     url: "https://www.tibetairlines.com.cn/",
   },
   {
@@ -6629,6 +6630,7 @@ export const svgs: iSVG[] = [
     title: "国泰航空",
     category: "航空公司",
     route: "/library/airline/CathayPacific.svg",
+    wordmark: "/library/airline/CathayPacific_wordmark.svg",
     url: "https://www.cathaypacific.com/",
   },
   {

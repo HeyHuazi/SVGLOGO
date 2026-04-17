@@ -87,6 +87,7 @@ items:
   - title: 西藏航空
     file: TibetAirlines.svg
     url: https://www.tibetairlines.com.cn/
+    wordmark: TibetAirlines_wordmark.svg
   - title: 西部航空
     file: WestAir.svg
     url: https://www.westair.cn/
@@ -157,6 +158,7 @@ items:
   - title: 国泰航空
     file: CathayPacific.svg
     url: https://www.cathaypacific.com/
+    wordmark: CathayPacific_wordmark.svg
   - title: 桂林航空
     file: AirGuilin.svg
     url: https://www.airguilin.com/
