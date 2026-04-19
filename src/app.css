@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Border Beam: animated CSS custom properties */
+@property --beam-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: true;
+}
+
+@property --beam-opacity {
+  syntax: "<number>";
+  initial-value: 0;
+  inherits: true;
+}
+
 @layer base {
   :root {
     --sb-track-color: rgb(229 229 229 / 0.5);
