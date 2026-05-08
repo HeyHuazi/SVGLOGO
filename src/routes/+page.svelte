@@ -13,6 +13,7 @@
   import SvgCard from '@/components/svgCard.svelte';
   import AdCard from '@/components/adCard.svelte';
   import Footer from '@/components/footer.svelte';
+  import { pinyinMatch } from '@/utils/pinyin';
   import EmptyState from '@/components/emptyState.svelte';
 
   const allSvgs: iSVG[] = svgsData;
@@ -137,7 +138,7 @@
     }
 
     if (isSearching) {
-      result = result.filter((svg) => svg?.title?.toLowerCase().includes(query));
+      result = result.filter((svg) => pinyinMatch(svg?.title || '', query));
     }
 
     // Sort
@@ -240,9 +241,10 @@
     autoLoadObserver.observe(loadMoreSentinel);
   }
 
-  // 当过滤结果变化时重新设置观察器
-  $: if (filteredSvgs.list.length > 0 && loadMoreSentinel) {
-    setupAutoLoad();
+  // sentinel 元素挂载时立即建立 observer
+  function sentinelBind(node: HTMLElement) {
+    loadMoreSentinel = node;
+    setTimeout(() => setupAutoLoad(), 0);
   }
 
   onMount(async () => {
@@ -269,9 +271,6 @@
 
     // 监听滚动显示回到顶部按钮
     window.addEventListener('scroll', handleScroll, { passive: true });
-
-    // 初始化自动加载
-    setupAutoLoad();
 
     // 等待组件渲染完成，确保 bind:element 已生效
     const { tick } = await import('svelte');
@@ -398,7 +397,7 @@
               </button>
             </div>
             <!-- 自动加载 sentinel -->
-            <div bind:this={loadMoreSentinel} class="h-1 mt-4" aria-hidden="true" />
+            <div use:sentinelBind class="h-1 mt-4" aria-hidden="true" />
           {:else if filteredSvgs.list.length > 0}
             <!-- 已加载全部 -->
             <div class="flex items-center justify-center mt-8 text-sm text-neutral-400 dark:text-neutral-500">

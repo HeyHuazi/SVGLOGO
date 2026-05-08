@@ -1,5 +1,5 @@
 // 自动生成，请勿手动编辑
-// Generated at: 2026/04/19 17:06:53
+// Generated at: 2026/05/08 15:59:07
 // 由 scripts/generate-svgs.ts 生成
 
 export interface CategoryEntry {

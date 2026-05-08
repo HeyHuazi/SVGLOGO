@@ -8,6 +8,7 @@
   const category = data.category || '';
 
   // Components:
+  import { pinyinMatch } from '@/utils/pinyin';
   import Container from '@/components/container.svelte';
   import Grid from '@/components/grid.svelte';
   import Search from '@/components/search.svelte';
@@ -43,7 +44,7 @@
     const searchedSvgs =
       query.length === 0
         ? svgsByCategory
-        : svgsByCategory.filter((svg) => svg?.title?.toLowerCase().includes(query));
+        : svgsByCategory.filter((svg) => pinyinMatch(svg?.title || '', query));
 
     filteredSvgs = sortAlphabetically(searchedSvgs);
     totalMatchedCount = filteredSvgs.length;
