@@ -105,6 +105,7 @@ items:
   - title: 百度
     file: baidu.svg
     url: https://www.baidu.com/
+    wordmark: baidu_wordmark.svg
   - title: 网易云
     file: wangyiyun-music.svg
     url: https://music.163.com/

@@ -8,6 +8,11 @@ export interface ChangelogEntry {
 // 更新日志数据
 export const changelogData: ChangelogEntry[] = [
   {
+    date: '2026.05.11',
+    type: 'add',
+    description: '更新logo 虎牙 @reeRhee、百度@简单黑板报、蔚来&萤火虫@hosea、insta360、极狐@大祎呦、胖东来&盒马@callmelubin',
+  },
+  {
     date: '2026.04.17',
     type: 'add',
     description: '更新西藏航空 Logo 并新增组合 Logo，新增国泰航空组合 Logo',
@@ -16,7 +21,7 @@ export const changelogData: ChangelogEntry[] = [
   {
     date: '2026.04.11',
     type: 'add',
-    description: '增加分类“消费品牌”并更新了几个LOGO',
+    description: '增加分类“消费品牌”并更新了几个LOGO，感谢大哥@赵崟杉Too的打赏赞助',
     contributor: '@春和景明'
   },
   {
