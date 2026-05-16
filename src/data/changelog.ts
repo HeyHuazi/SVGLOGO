@@ -8,6 +8,11 @@ export interface ChangelogEntry {
 // 更新日志数据
 export const changelogData: ChangelogEntry[] = [
   {
+    date: '2026.05.16',
+    type: 'add',
+    description: '更新：千问、腾讯 logo；增加蚂蚁百灵、文心 logo @简单黑板报',
+  },
+  {
     date: '2026.05.11',
     type: 'add',
     description: '更新logo 虎牙 @reeRhee、百度@简单黑板报、蔚来&萤火虫@hosea、insta360、极狐@大祎呦、胖东来&盒马@callmelubin',

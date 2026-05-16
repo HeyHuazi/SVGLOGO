@@ -456,3 +456,10 @@ items:
     file: Greptile.svg
     url: https://greptile.com/
     wordmark: Greptile_wordmark.svg
+  - title: 蚂蚁百灵
+    file: AntLing.svg
+    url: https://www.ant-ling.com/zh/
+    wordmark: AntLing_wordmark.svg
+  - title: 文心
+    file: wenxin.svg
+    url: https://wenxin.baidu.com/
