@@ -13,6 +13,7 @@
 
   export let svgInfo: iSVG;
   export let index = 0;
+  export let showGroup = false;
 
   // 网格列数（xl:grid-cols-5）
   const COLUMNS = 5;
@@ -99,7 +100,9 @@
     </div>
     <div class="flex items-center gap-1 justify-center">
       <span class="text-[10px] text-[#A3A3A3] dark:text-[#A3A3A3] leading-[150%]">
-        {#if svgInfo.wordmark !== undefined}
+        {#if showGroup}
+          {Array.isArray(svgInfo.category) ? svgInfo.category.join(' / ') : svgInfo.category}
+        {:else if svgInfo.wordmark !== undefined}
           支持标识/组合切换
         {:else}
           SVG 矢量格式

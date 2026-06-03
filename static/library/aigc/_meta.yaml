@@ -462,4 +462,12 @@ items:
     wordmark: AntLing_wordmark.svg
   - title: 文心
     file: wenxin.svg
-    url: https://wenxin.baidu.com/
+    url: https://chat.baidu.com/
+  - title: Qoder
+    file: Qoder.svg
+    url: https://qoder.com/
+    wordmark: Qoder_wordmark.svg
+  - title: Qianwenai
+    file: qianwenai.svg
+    url: https://www.qianwenai.com/
+    wordmark: qianwenai_wordmark.svg

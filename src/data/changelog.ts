@@ -8,6 +8,12 @@ export interface ChangelogEntry {
 // 更新日志数据
 export const changelogData: ChangelogEntry[] = [
   {
+    date: '2026.06.03',
+    type: 'add',
+    description: '新增蚂蚁百灵、文心、Qoder、Qianwenai logo，更新 Higress、百度 logo；搜索结果卡片副标题显示所属分组',
+    contributor: '@简单黑板报',
+  },
+  {
     date: '2026.05.16',
     type: 'add',
     description: '更新：千问、腾讯 logo；增加蚂蚁百灵、文心 logo @简单黑板报',

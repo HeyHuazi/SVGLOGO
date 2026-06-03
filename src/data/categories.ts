@@ -1,5 +1,5 @@
 // 自动生成，请勿手动编辑
-// Generated at: 2026/05/11 17:26:18
+// Generated at: 2026/06/03 21:19:52
 // 由 scripts/generate-svgs.ts 生成
 
 export interface CategoryEntry {
@@ -12,7 +12,7 @@ export const categories: CategoryEntry[] = [
   { name: "气象预警", slug: "气象预警", count: 218 },
   { name: "金融支付", slug: "金融支付", count: 161 },
   { name: "大学校徽", slug: "大学校徽", count: 120 },
-  { name: "AI 产品", slug: "AI产品", count: 114 },
+  { name: "AI 产品", slug: "AI产品", count: 118 },
   { name: "企业组织", slug: "企业组织", count: 74 },
   { name: "航空公司", slug: "航空公司", count: 56 },
   { name: "工具产品", slug: "工具产品", count: 41 },
