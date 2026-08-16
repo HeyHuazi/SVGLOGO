@@ -11,7 +11,7 @@ import { error } from '@sveltejs/kit';
 const loopbackHosts = new Set(['localhost', '127.0.0.1', '[::1]']);
 
 export function assertAdminRequest(request: Request, write = false) {
-  if (!dev) throw error(403, 'Admin only available in dev mode');
+  if (!dev) throw error(404, 'Not found');
   const url = new URL(request.url);
   if (!loopbackHosts.has(url.hostname)) throw error(403, 'Admin only available from localhost');
 
