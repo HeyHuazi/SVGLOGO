@@ -9,13 +9,13 @@ import { existsSync } from "node:fs";
 import { readFile, readdir, rename, rm, writeFile } from "node:fs/promises";
 import { basename, join, resolve } from "node:path";
 import * as YAML from "yaml";
-import { categoriesConfig, getCategoryByFolder } from "@/config/categories";
+import { categoriesConfig, getCategoryByFolder } from "../config/categories";
 import {
   mapVariant,
   parseStoredVariant,
   serializeStoredVariant,
   type StoredAssetFile,
-} from "@/types/assets";
+} from "../types/assets";
 
 type MetaItem = {
   title: string;
