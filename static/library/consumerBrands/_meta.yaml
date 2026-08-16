@@ -14,7 +14,11 @@ items:
     wordmark: wandaCinema_wordmark.svg
   - title: 胖东来
     file: dl.svg
-    url: 
+    url: null
   - title: 盒马
     file: hema.svg
     url: https://www.freshippo.com/
+  - title: 艾美特
+    file: aimeite.svg
+    url: https://www.airmate-china.com/
+    addedAt: 2026-08-09

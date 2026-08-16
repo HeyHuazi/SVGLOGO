@@ -97,7 +97,6 @@ items:
   - title: 知乎
     file: zhi.svg
     url: https://zhihu.com/
-    wordmark: zhiHu.svg
   - title: 即刻
     file: jike.svg
     url: https://web.okjike.com/u/5fd3a866-55a2-4680-a19d-fec6d0d41c91
@@ -145,3 +144,8 @@ items:
   - title: 用友
     file: Yonyou.svg
     url: https://www.yonyou.com
+  - title: 爱奇艺
+    file: iqiyi.svg
+    url: https://www.iqiyi.com/
+    submitter: Gabriel Zhu
+    addedAt: 2026-07-10

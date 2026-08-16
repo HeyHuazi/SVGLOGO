@@ -114,11 +114,9 @@ items:
   - title: 深圳航空
     file: ShenzhenAirlines.svg
     url: https://www.shenzhenair.com/
-    wordmark: ShenzhenAirlines_wordmark.svg
   - title: 上海航空公司
     file: ShanghaiAirlines.svg
     url: https://www.ceair.com/
-    wordmark: ShanghaiAirlines_wordmark.svg
   - title: 山东航空公司
     file: ShandongAirlines.svg
     url: https://www.sda.cn/

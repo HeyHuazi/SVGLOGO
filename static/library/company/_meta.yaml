@@ -233,3 +233,11 @@ items:
   - title: Insta360
     file: insta360.svg
     url: https://www.insta360.com/cn/
+  - title: 华友钴业
+    file: Huayoucobalt.svg
+    addedAt: 2026-07-10
+  - title: 中国科学技术协会
+    file: cast.svg
+    wordmark: cast_wordmark.svg
+    url: https://www.cast.org.cn/
+    addedAt: 2026-08-16

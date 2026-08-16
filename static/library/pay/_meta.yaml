@@ -147,7 +147,6 @@ items:
   - title: 焦作中旅银行
     file: CTS.svg
     url: http://www.jzctb.com/
-    wordmark: CTS_wordmark.svg
   - title: 九江银行
     file: JJCCB.svg
     url: http://www.jjccb.com/
@@ -207,7 +206,6 @@ items:
   - title: 宁波东海银行
     file: NDHB.svg
     url: http://www.ndhb.cn/
-    wordmark: NDHB_wordmark.svg
   - title: 丹东银行
     file: BODD.svg
     url: http://dandongbank.com/
@@ -299,7 +297,6 @@ items:
   - title: 新疆银行
     file: XJB.svg
     url: https://www.xjbank.com/
-    wordmark: XJB_wordmark.svg
   - title: 成都银行
     file: CDCB.svg
     url: https://www.bocd.com.cn/
@@ -395,7 +392,6 @@ items:
   - title: 衡水银行
     file: BOHS.svg
     url: http://www.hengshuibank.com/
-    wordmark: BOHS_wordmark.svg
   - title: 贵州银行
     file: BOGZ.svg
     url: https://www.bgzchina.com/
@@ -487,7 +483,6 @@ items:
   - title: 上饶银行
     file: SRBANK.svg
     url: https://www.srbank.cn/
-    wordmark: SRBANK_wordmark.svg
   - title: 杭州银行
     file: HZCB.svg
     url: https://www.hzbank.com.cn/
@@ -523,7 +518,6 @@ items:
   - title: 内蒙古银行
     file: H3CB.svg
     url: https://www.myrbank.com/
-    wordmark: H3CB_wordmark.svg
   - title: 北京银行
     file: BOB.svg
     url: https://www.bankofbeijing.com.cn/
