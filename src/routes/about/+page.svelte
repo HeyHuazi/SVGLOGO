@@ -6,7 +6,7 @@
 -->
 <script>
     import { cn } from '@/utils/cn';
-    import { releaseData, legacyChangelogData } from '@/data/changelog';
+    import { changelogEntries } from '@/data/changelog';
     import Navbar from '@/components/navbar.svelte';
     import Footer from '@/components/footer.svelte';
     import { afterNavigate } from '$app/navigation';
@@ -80,19 +80,7 @@
     </h2>
 
     <div class="space-y-8">
-      {#each releaseData as release}
-        <article class="rounded-xl border border-neutral-200 p-5 dark:border-neutral-800">
-          <h3 class="text-lg font-semibold text-neutral-900 dark:text-white">v{release.version} · {release.date}</h3>
-          <p class="mt-2 text-neutral-700 dark:text-neutral-300">{release.summary}</p>
-          {#if release.changes.added.length}<div class="mt-4"><h4 class="font-medium">新增</h4><ul class="mt-1 list-disc pl-5">{#each release.changes.added as item}<li>{item.title}{#if item.contributor} · {item.contributor}{/if}</li>{/each}</ul></div>{/if}
-          {#if release.changes.updated.length}<div class="mt-4"><h4 class="font-medium">更新</h4><ul class="mt-1 list-disc pl-5">{#each release.changes.updated as item}<li>{item.title}{#if item.contributor} · {item.contributor}{/if}</li>{/each}</ul></div>{/if}
-          {#if release.changes.removed.length}<div class="mt-4"><h4 class="font-medium">删除</h4><ul class="mt-1 list-disc pl-5">{#each release.changes.removed as item}<li>{item.title}{#if item.contributor} · {item.contributor}{/if}</li>{/each}</ul></div>{/if}
-          {#if release.contributors.length}<p class="mt-4 text-sm text-neutral-500">感谢：{release.contributors.join('、')}</p>{/if}
-        </article>
-      {/each}
-
-      {#if legacyChangelogData.length}<h3 class="pt-4 text-xl font-semibold">历史更新</h3>{/if}
-      {#each legacyChangelogData as entry}
+      {#each changelogEntries as entry}
         <div>
           <h3 class="text-lg font-semibold text-neutral-900 dark:text-white mb-3">
             {entry.date}

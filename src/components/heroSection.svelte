@@ -7,7 +7,7 @@
 <script lang="ts">
   import { resolveStoredAsset } from "@/types/assets";
   import { svgs } from "@/data/svgs";
-  import { releaseData, legacyChangelogData } from "@/data/changelog";
+  import { changelogEntries } from "@/data/changelog";
 
   const totalCount = svgs.length;
 
@@ -20,8 +20,7 @@
   const getImagePath = (route: (typeof svgs)[number]["route"]) =>
     resolveStoredAsset(route, "light", "Hero 主 Logo");
 
-  const lastUpdated =
-    releaseData[0]?.date ?? legacyChangelogData[0]?.date ?? "—";
+  const lastUpdated = changelogEntries[0]?.date ?? "—";
 
   const handleImageError = (event: Event) => {
     const img = event.currentTarget as HTMLImageElement;
