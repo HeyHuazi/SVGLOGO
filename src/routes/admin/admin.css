@@ -1,0 +1,195 @@
+/*
+ * [INPUT]: 依赖 Tailwind 基础 reset、全站 dark class 与 GeistMono 字体声明
+ * [OUTPUT]: 对外提供 /admin 页面和局部组件共享的 panel、field、button、badge、资源预览与列表视觉角色
+ * [POS]: routes/admin 的局部视觉系统，统一工作台控件语言而不污染全站共享 UI primitive
+ * [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md
+ */
+
+.admin-panel {
+  overflow: hidden;
+  border: 1px solid rgb(229 229 229);
+  border-radius: 1rem;
+  background: white;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.02);
+}
+
+.admin-label {
+  display: block;
+  color: rgb(82 82 82);
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1rem;
+}
+
+.admin-field {
+  width: 100%;
+  min-height: 2.5rem;
+  margin-top: 0.375rem;
+  padding: 0.5625rem 0.75rem;
+  border: 1px solid rgb(229 229 229);
+  border-radius: 0.625rem;
+  outline: none;
+  background: transparent;
+  color: inherit;
+  font-size: 0.8125rem;
+  line-height: 1.25rem;
+  transition: border-color 150ms, box-shadow 150ms, background-color 150ms;
+}
+
+.admin-field:focus {
+  border-color: #06b30c;
+  box-shadow: 0 0 0 3px rgb(6 179 12 / 0.1);
+}
+
+.admin-field[aria-invalid='true'],
+.admin-field-error {
+  border-color: rgb(252 165 165);
+  background: rgb(254 242 242 / 0.55);
+}
+
+.admin-field[aria-invalid='true']:focus,
+.admin-field-error:focus {
+  border-color: rgb(239 68 68);
+  box-shadow: 0 0 0 3px rgb(239 68 68 / 0.1);
+}
+
+select.admin-field {
+  appearance: none;
+  padding-right: 2.25rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23737373' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 0.75rem;
+}
+
+.admin-primary-button,
+.admin-secondary-button,
+.admin-danger-button,
+.admin-danger-ghost-button {
+  display: inline-flex;
+  min-height: 2.5rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  padding: 0.5625rem 0.875rem;
+  border-radius: 0.625rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.25rem;
+  transition: background-color 150ms, border-color 150ms, color 150ms, opacity 150ms;
+}
+
+.admin-primary-button { background: #06b30c; color: white; }
+.admin-primary-button:hover { background: #059a0a; }
+.admin-secondary-button { border: 1px solid rgb(212 212 212); background: white; color: rgb(38 38 38); }
+.admin-secondary-button:hover { background: rgb(250 250 250); }
+.admin-danger-button { background: rgb(220 38 38); color: white; }
+.admin-danger-button:hover { background: rgb(185 28 28); }
+.admin-danger-ghost-button { color: rgb(220 38 38); }
+.admin-danger-ghost-button:hover { background: rgb(254 242 242); }
+
+.admin-primary-button:disabled,
+.admin-secondary-button:disabled,
+.admin-danger-button:disabled,
+.admin-danger-ghost-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.admin-icon-button {
+  display: inline-flex;
+  width: 2rem;
+  height: 2rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(229 229 229);
+  border-radius: 0.5rem;
+  color: rgb(115 115 115);
+  transition: 150ms;
+}
+
+.admin-icon-button:hover { background: rgb(250 250 250); color: rgb(38 38 38); }
+
+.admin-badge,
+.status-badge,
+.admin-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.1875rem 0.4375rem;
+  border-radius: 0.5rem;
+  background: rgb(245 245 245);
+  color: rgb(82 82 82);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  line-height: 1rem;
+}
+
+.badge-update { background: rgb(239 246 255); color: rgb(29 78 216); }
+.badge-remove { background: rgb(254 242 242); color: rgb(220 38 38); }
+.status-badge { background: rgb(236 253 245); color: rgb(5 150 105); }
+.status-error { background: rgb(254 242 242); color: rgb(220 38 38); }
+.admin-count { flex-shrink: 0; border: 1px solid rgb(229 229 229); background: white; color: rgb(115 115 115); font-family: GeistMono, monospace; }
+
+.resource-card { min-width: 0; padding: 0.75rem; border: 1px solid rgb(245 245 245); border-radius: 0.75rem; }
+.resource-error { border-color: rgb(254 202 202); }
+.asset-preview { display: flex; height: 7rem; align-items: center; justify-content: center; padding: 1rem; border-radius: 0.625rem; background: rgb(250 250 250); }
+
+.wordmark-empty {
+  display: flex;
+  height: 10.25rem;
+  cursor: pointer;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  border: 1px dashed rgb(212 212 212);
+  border-radius: 0.625rem;
+  color: rgb(115 115 115);
+  font-size: 0.6875rem;
+  text-align: center;
+  transition: 150ms;
+}
+
+.wordmark-empty:hover { border-color: #06b30c; background: rgb(240 253 244 / 0.45); }
+
+.asset-row,
+.release-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.625rem 0.75rem;
+  border-radius: 0.75rem;
+  transition: background-color 150ms;
+}
+
+.asset-row:hover,
+.release-row:hover { background: rgb(250 250 250); }
+
+.dark .admin-panel,
+.dark .admin-secondary-button,
+.dark .admin-count { border-color: rgb(64 64 64); background: rgb(38 38 38); }
+.dark .admin-label { color: rgb(212 212 212); }
+.dark .admin-field { border-color: rgb(64 64 64); }
+.dark select.admin-field {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23a3a3a3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+}
+.dark .admin-field[aria-invalid='true'],
+.dark .admin-field-error { border-color: rgb(127 29 29); background: rgb(69 10 10 / 0.2); }
+.dark .admin-secondary-button { color: rgb(245 245 245); }
+.dark .admin-secondary-button:hover,
+.dark .admin-icon-button:hover,
+.dark .asset-row:hover,
+.dark .release-row:hover { background: rgb(38 38 38); }
+.dark .admin-danger-ghost-button:hover { background: rgb(69 10 10 / 0.25); }
+.dark .admin-icon-button,
+.dark .resource-card { border-color: rgb(64 64 64); }
+.dark .admin-badge { background: rgb(64 64 64); color: rgb(212 212 212); }
+.dark .badge-update { background: rgb(30 58 138 / 0.35); color: rgb(147 197 253); }
+.dark .badge-remove,
+.dark .status-error { background: rgb(127 29 29 / 0.3); color: rgb(252 165 165); }
+.dark .status-badge { background: rgb(6 78 59 / 0.35); color: rgb(110 231 183); }
+.dark .asset-preview { background: rgb(23 23 23); }
+.dark .wordmark-empty { border-color: rgb(82 82 82); }
+.dark .wordmark-empty:hover { border-color: #06b30c; background: rgb(5 46 22 / 0.25); }
