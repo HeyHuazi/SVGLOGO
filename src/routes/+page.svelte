@@ -1,6 +1,6 @@
 <!--
   [INPUT]: 依赖 svelte 的 onMount，@/data 的 svgsData，@/data/categories 的分类索引，@/types/svg 的 iSVG，sveltekit-search-params 的 queryParam
-  [OUTPUT]: 对外提供新版首页渲染，支持搜索/分类/排序/渐进加载/广告混排，并为首屏 Logo 分配图片请求优先级
+  [OUTPUT]: 对外提供新版首页渲染，支持搜索/分类/排序/渐进加载，并为首屏 Logo 分配图片请求优先级
   [POS]: routes 层的核心首页，消费生成数据索引并协调首屏资源调度
   [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md
 -->
@@ -18,7 +18,6 @@
   import HomeSearch from '@/components/homeSearch.svelte';
   import HomeSidebar from '@/components/homeSidebar.svelte';
   import SvgCard from '@/components/svgCard.svelte';
-  import AdCard from '@/components/adCard.svelte';
   import Footer from '@/components/footer.svelte';
   import { pinyinMatch } from '@/utils/pinyin';
   import EmptyState from '@/components/emptyState.svelte';
@@ -46,9 +45,6 @@
   const LOAD_BATCH_SIZE = 60;
   let visibleCount = INITIAL_VISIBLE_COUNT;
 
-  // 广告配置
-  const AD_INTERVAL = 15; // 每15个logo插入一个广告
-  const AD_START_POSITION = 5; // 从第5个位置开始插入广告
   const GRID_COLUMNS = 5; // 网格最大列数（xl:grid-cols-5）
   const HIGH_PRIORITY_LOGO_COUNT = GRID_COLUMNS;
   const EAGER_LOGO_COUNT = GRID_COLUMNS * 2;
@@ -61,57 +57,30 @@
     return 'low';
   }
 
-  // 计算广告位置
-  function getAdPositions(total: number): number[] {
-    const positions: number[] = [];
-    for (let i = AD_START_POSITION; i < total; i += AD_INTERVAL) {
-      // 在 i-2 到 i+2 范围内随机选择位置
-      const randomOffset = Math.floor(Math.random() * 5) - 2;
-      const position = i + randomOffset;
-      if (position < total && !positions.includes(position)) {
-        positions.push(position);
-      }
-    }
-    return positions.sort((a, b) => a - b);
-  }
-
-  // 混合 logo 和广告
-  function renderMixedContent(svgs: iSVG[], adPositions: number[]) {
-    const result: Array<{ type: 'svg' | 'ad'; data?: iSVG; index?: number }> = [];
-    let adIndex = 0;
-
-    svgs.forEach((svg, i) => {
-      if (!svg?.title) return; // 跳过无效数据
-      if (adPositions.includes(i)) {
-        result.push({ type: 'ad', index: adIndex++ });
-      }
-      result.push({ type: 'svg', data: svg, index: i });
-    });
-
-    return result;
-  }
-
   // Reactive: filtered results
   let filteredSvgs: { list: iSVG[]; total: number; isSearching: boolean } = { list: [], total: 0, isSearching: false };
-  $: adPositions = getAdPositions(filteredSvgs.total);
-  $: mixedContent = renderMixedContent(filteredSvgs.list, adPositions);
 
   // 搜索时自动滚动到页面顶部
   $: if (searchTerm.trim()) {
     setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 0);
   }
 
+  // 最近更新：有 addedAt 的按日期倒序排前，无 addedAt 的按 id 倒序排后
   const sortByLatest = (list: iSVG[]) =>
-    [...list].filter(Boolean).sort((a, b) => (b?.id ?? 0) - (a?.id ?? 0));
+    [...list].filter(Boolean).sort((a, b) => {
+      const hasA = Boolean(a?.addedAt);
+      const hasB = Boolean(b?.addedAt);
+      if (hasA && hasB) return b.addedAt!.localeCompare(a.addedAt!);
+      if (hasA) return -1;
+      if (hasB) return 1;
+      return (b?.id ?? 0) - (a?.id ?? 0);
+    });
 
   const getVisibleSvgs = (list: iSVG[], isSearching: boolean) => {
     if (isSearching) return list;
     const base = Math.min(visibleCount, list.length);
-    // 计算当前范围内有多少广告
-    const adCount = getAdPositions(base).length;
-    const totalItems = base + adCount;
     // 向上取整到 GRID_COLUMNS 的倍数，多取一些 logo 补齐最后一行
-    const remainder = totalItems % GRID_COLUMNS;
+    const remainder = base % GRID_COLUMNS;
     const needed = remainder === 0 ? 0 : GRID_COLUMNS - remainder;
     const adjusted = Math.min(base + needed, list.length);
     return list.slice(0, adjusted);
@@ -357,16 +326,14 @@
 
         <!-- Grid -->
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-          {#each mixedContent as item, i}
-            {#if item?.type === 'svg' && item?.data?.title}
+          {#each filteredSvgs.list as svg, i}
+            {#if svg?.title}
               <SvgCard
-                svgInfo={item.data}
-                index={item.index ?? 0}
-                imageLoadPriority={getImageLoadPriority(item.index ?? 0)}
+                svgInfo={svg}
+                index={i}
+                imageLoadPriority={getImageLoadPriority(i)}
                 showGroup={selectedCategory === '全部' && searchTerm.trim().length > 0}
               />
-            {:else if item.type === 'ad'}
-              <AdCard index={item.index || 0} />
             {/if}
           {/each}
         </div>
