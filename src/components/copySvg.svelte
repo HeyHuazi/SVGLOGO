@@ -1,15 +1,22 @@
+<!--
+  [INPUT]: 依赖 @/types/svg 的 iSVG、types/assets 的统一主题解析、lucide-svelte、toast、Popover 与 SVG/剪贴板工具
+  [OUTPUT]: 对外提供 CopySvg 组件，将当前主题对应的主 Logo 或 Wordmark 写入剪贴板
+  [POS]: components 层的共享 SVG 操作组件，被 svgCard 消费，不自行解释 single/themed 存储结构
+  [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md
+-->
 <script lang="ts">
-  import type { iSVG } from '@/types/svg';
+  import { resolveStoredAsset } from "@/types/assets";
+  import type { iSVG } from "@/types/svg";
 
-  import { ClipboardIcon, CopyIcon, Loader, X } from 'lucide-svelte';
-  import { toast } from 'svelte-sonner';
-  import * as Popover from '@/ui/popover';
+  import { ClipboardIcon, CopyIcon, Loader, X } from "lucide-svelte";
+  import { toast } from "svelte-sonner";
+  import * as Popover from "@/ui/popover";
 
   // Utils:
-  import { getSvgContent } from '@/utils/getSvgContent';
-  import { clipboard } from '@/utils/clipboard';
-  import { buttonStyles } from '@/ui/styles';
-  import { cn } from '@/utils/cn';
+  import { getSvgContent } from "@/utils/getSvgContent";
+  import { clipboard } from "@/utils/clipboard";
+  import { buttonStyles } from "@/ui/styles";
+  import { cn } from "@/utils/cn";
 
   // Props:
   export let iconSize = 24;
@@ -19,114 +26,109 @@
   let optionsOpen = false;
   let isLoading = false;
 
-  const getSvgUrl = () => {
-    let svgUrlToCopy;
-    const dark = document.documentElement.classList.contains('dark');
-
-    if (isWordmarkSvg) {
-      const svgHasTheme = typeof svgInfo.wordmark !== 'string';
-      if (!svgHasTheme) {
-        svgUrlToCopy =
-          typeof svgInfo.wordmark === 'string'
-            ? svgInfo.wordmark
-            : "出现异常，无法复制 SVG。";
-      }
-
-      svgUrlToCopy =
-        typeof svgInfo.wordmark !== 'string'
-          ? dark
-            ? svgInfo.wordmark?.dark
-            : svgInfo.wordmark?.light
-          : svgInfo.wordmark;
-    } else {
-      const svgHasTheme = typeof svgInfo.route !== 'string';
-      if (!svgHasTheme) {
-        svgUrlToCopy =
-          typeof svgInfo.route === 'string'
-            ? svgInfo.route
-            : "出现异常，无法复制 SVG。";
-      }
-      svgUrlToCopy =
-        typeof svgInfo.route !== 'string'
-          ? dark
-            ? svgInfo.route.dark
-            : svgInfo.route.light
-          : svgInfo.route;
-    }
-
-    return svgUrlToCopy;
+  const getSvgUrl = (): string => {
+    const theme = document.documentElement.classList.contains("dark")
+      ? "dark"
+      : "light";
+    const asset = isWordmarkSvg ? svgInfo.wordmark : svgInfo.route;
+    if (!asset) throw new Error("Wordmark 资源不存在");
+    return resolveStoredAsset(
+      asset,
+      theme,
+      `${svgInfo.title}${isWordmarkSvg ? " Wordmark" : " 主 Logo"}`,
+    );
   };
 
   // 复制 SVG 到剪贴板:
   const copyToClipboard = async () => {
-    const svgUrlToCopy = getSvgUrl();
     optionsOpen = false;
-
-    const content = await getSvgContent(svgUrlToCopy);
-    await clipboard(content);
-
-    const category = Array.isArray(svgInfo.category)
-      ? [...svgInfo.category].sort().join(' - ')
-      : svgInfo.category;
-
-    if (isWordmarkSvg) {
-      toast.success('已复制组合 SVG 到剪贴板', {
-        description: `${svgInfo.title} - ${category}`
-      });
-      return;
+    try {
+      const content = await getSvgContent(getSvgUrl());
+      await clipboard(content);
+      const category = Array.isArray(svgInfo.category)
+        ? [...svgInfo.category].sort().join(" - ")
+        : svgInfo.category;
+      toast.success(
+        isWordmarkSvg ? "已复制组合 SVG 到剪贴板" : "已复制到剪贴板",
+        {
+          description: `${svgInfo.title} - ${category}`,
+        },
+      );
+    } catch {
+      toast.error("复制 SVG 失败", { description: svgInfo.title });
     }
-
-    toast.success('已复制到剪贴板', {
-      description: `${svgInfo.title} - ${category}`
-    });
   };
+
+  const loadImage = (url: string) =>
+    new Promise<HTMLImageElement>((resolve, reject) => {
+      const image = new Image();
+      image.onload = () => resolve(image);
+      image.onerror = () => reject(new Error("SVG 图片加载失败"));
+      image.src = url;
+    });
+
+  const canvasBlob = (canvas: HTMLCanvasElement) =>
+    new Promise<Blob>((resolve, reject) => {
+      canvas.toBlob(
+        (blob) => (blob ? resolve(blob) : reject(new Error("PNG 转换失败"))),
+        "image/png",
+      );
+    });
 
   // 复制 PNG 到剪贴板:
   const copyPngToClipboard = async (width: number, height: number) => {
-    const svgUrlToCopy = getSvgUrl();
     optionsOpen = false;
     isLoading = true;
+    let objectUrl = "";
 
-    const response = await fetch(svgUrlToCopy);
-    const svgText = await response.text();
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    const img = new Image();
+    try {
+      const svgText = await getSvgContent(getSvgUrl());
+      objectUrl = URL.createObjectURL(
+        new Blob([svgText], { type: "image/svg+xml;charset=utf-8" }),
+      );
+      const image = await loadImage(objectUrl);
+      const canvas = document.createElement("canvas");
+      const context = canvas.getContext("2d");
+      if (!context) throw new Error("Canvas 不可用");
 
-    img.onload = async () => {
-      // Set the desired width and height
       canvas.width = width;
       canvas.height = height;
+      const ratio = image.naturalWidth / image.naturalHeight || 1;
+      const drawWidth = width / height > ratio ? height * ratio : width;
+      const drawHeight = width / height > ratio ? height : width / ratio;
+      context.clearRect(0, 0, width, height);
+      context.drawImage(
+        image,
+        (width - drawWidth) / 2,
+        (height - drawHeight) / 2,
+        drawWidth,
+        drawHeight,
+      );
 
-      // Adjust the aspect ratio if necessary
-      const aspectRatio = img.width / img.height;
-      if (width / height > aspectRatio) {
-        ctx?.drawImage(img, 0, 0, width, width / aspectRatio);
-      } else {
-        ctx?.drawImage(img, 0, 0, height * aspectRatio, height);
-      }
-
-      canvas.toBlob(async (blob) => {
-        if (blob) {
-          const clipboardItem = new ClipboardItem({ 'image/png': blob });
-          await navigator.clipboard.write([clipboardItem]);
-          toast.success('已复制 PNG 到剪贴板', {
-            description: `${svgInfo.title} - ${svgInfo.category}`
-          });
-        }
+      const blob = await canvasBlob(canvas);
+      await navigator.clipboard.write([
+        new ClipboardItem({ "image/png": blob }),
+      ]);
+      toast.success("已复制 PNG 到剪贴板", {
+        description: `${svgInfo.title} - ${svgInfo.category}`,
       });
-    };
-    img.src = 'data:image/svg+xml;base64,' + btoa(svgText);
-
-    isLoading = false;
+    } catch {
+      toast.error("复制 PNG 失败", { description: svgInfo.title });
+    } finally {
+      if (objectUrl) URL.revokeObjectURL(objectUrl);
+      isLoading = false;
+    }
   };
 </script>
 
-<Popover.Root open={optionsOpen} onOpenChange={(isOpen) => (optionsOpen = isOpen)}>
+<Popover.Root
+  open={optionsOpen}
+  onOpenChange={(isOpen) => (optionsOpen = isOpen)}
+>
   <Popover.Trigger
     title="复制 SVG 或 PNG"
     aria-label="复制 SVG 或 PNG"
-    class="flex items-center space-x-2 rounded-md min-w-[36px] min-h-[36px] p-2 text-[#737373] dark:text-[#737373] duration-100 hover:bg-neutral-200 dark:hover:bg-neutral-700/40"
+    class="flex min-h-[36px] min-w-[36px] items-center space-x-2 rounded-md p-2 text-[#737373] duration-100 hover:bg-neutral-200 dark:text-[#737373] dark:hover:bg-neutral-700/40"
   >
     {#if optionsOpen}
       <X size={iconSize} strokeWidth={iconStroke} />
@@ -138,15 +140,15 @@
   </Popover.Trigger>
   <Popover.Content class="flex flex-col space-y-2" sideOffset={0.3}>
     <button
-      class={cn(buttonStyles, 'rounded-md w-full')}
-      title={isWordmarkSvg ? '复制组合 SVG 到剪贴板' : '复制 SVG 到剪贴板'}
+      class={cn(buttonStyles, "w-full rounded-md")}
+      title={isWordmarkSvg ? "复制组合 SVG 到剪贴板" : "复制 SVG 到剪贴板"}
       on:click={() => copyToClipboard()}
     >
       <ClipboardIcon size={16} strokeWidth={2} />
       <span>复制 SVG</span>
     </button>
     <button
-      class={cn(buttonStyles, 'rounded-md w-full')}
+      class={cn(buttonStyles, "w-full rounded-md")}
       title="复制 PNG 到剪贴板"
       disabled={isLoading}
       on:click={() => copyPngToClipboard(500, 500)}

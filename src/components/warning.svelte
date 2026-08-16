@@ -1,3 +1,9 @@
+<!--
+  [INPUT]: 依赖 lucide-svelte 图标，$app/environment 的 browser，@/ui/styles 的 button 样式，@/utils/cn 的 className 合并
+  [OUTPUT]: 对外提供 Warning 布局警告组件
+  [POS]: 旧布局警告横幅，由 +layout.svelte 触达
+  [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md
+-->
 <script lang="ts">
   import { AlertTriangleIcon, Check } from 'lucide-svelte';
   import { browser } from '$app/environment';

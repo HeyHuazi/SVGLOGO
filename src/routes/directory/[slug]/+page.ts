@@ -1,33 +1,24 @@
+/*
+ * [INPUT]: 依赖路由 slug、生成 categories 索引与 SVG 数据
+ * [OUTPUT]: 对外提供目录页分类名称和匹配 SVG 列表，非法 slug 返回 404
+ * [POS]: routes/directory/[slug] 的数据加载器，以生成 slug 为唯一路由匹配依据
+ * [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md
+ */
+
 import { error } from '@sveltejs/kit';
 import type { PageLoad } from './$types';
-
+import { categories } from '@/data/categories';
 import { svgs } from '@/data/svgs';
-import type { iSVG } from '@/types/svg';
 
-export const load = (async ({ params }) => {
-  const { slug } = params;
+export const load = (({ params }) => {
+  const category = categories.find((item) => item.slug === params.slug);
+  if (!category) throw error(404, 'Not found');
 
-  // Check if slug is valid:
-  if (!slug) {
-    return error(404, 'Not found');
-  }
-
-  // Filter out the svg with the matching slug:
-  const svgsByCategory = svgs.filter((svg: iSVG) => {
-    if (Array.isArray(svg.category)) {
-      return svg.category.some(categoryItem => categoryItem.toLowerCase() === slug);
-    } else {
-      return svg.category.toLowerCase() === slug;
-    }
+  const svgsByCategory = svgs.filter((svg) => {
+    const values = Array.isArray(svg.category) ? svg.category : [svg.category];
+    return values.includes(category.slug as never);
   });
+  if (!svgsByCategory.length) throw error(404, 'Not found');
 
-  // If SVGs array is empty, category can't exist
-  if (svgsByCategory.length === 0) {
-    return error(404, 'Not found');
-  }
-
-  return {
-    category: slug as string,
-    svgs: svgsByCategory
-  };
+  return { category: category.name, svgs: svgsByCategory };
 }) satisfies PageLoad;

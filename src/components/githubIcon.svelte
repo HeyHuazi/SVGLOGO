@@ -1,3 +1,9 @@
+<!--
+  [INPUT]: 无外部依赖，纯 SVG 图标
+  [OUTPUT]: 对外提供 GithubIcon SVG 图标组件，支持 size/iconSize 参数
+  [POS]: components 层的图标组件，被 footer/navbar 等消费
+  [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md
+-->
 <script lang="ts">
   export let size: number | undefined = undefined;
   export let iconSize: number | undefined = undefined;

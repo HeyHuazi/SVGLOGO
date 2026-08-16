@@ -1,3 +1,9 @@
+<!--
+  [INPUT]: 依赖 svelte 的 onMount
+  [OUTPUT]: 对外提供 AdCard 组件，延迟加载外部广告脚本
+  [POS]: components 层的首页广告卡片，被 +page.svelte 消费
+  [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md
+-->
 <script lang="ts">
   import { onMount } from 'svelte';
 

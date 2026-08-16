@@ -1,3 +1,9 @@
+<!--
+  [INPUT]: 依赖 svelte 的 onMount/createEventDispatcher
+  [OUTPUT]: 对外提供 HomeSearch 首页搜索组件，派发 search/clear 事件
+  [POS]: components 层的新版首页搜索，被 +page.svelte 消费
+  [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md
+-->
 <script lang="ts">
   import { onMount, createEventDispatcher } from 'svelte';
 

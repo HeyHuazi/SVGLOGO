@@ -1,7 +1,31 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git show:*)"
+      "Bash(git show:*)",
+      "Bash(pnpm generate:svg *)",
+      "Bash(pnpm exec *)",
+      "Bash(git *)",
+      "Bash(pnpm list *)",
+      "Bash(pnpm check *)",
+      "Bash(pnpm add *)",
+      "Bash(rtk grep *)",
+      "Skill(code-review)",
+      "Bash(git -C /Users/huazi/Code/Developer/SVGLOGO status --short --branch)",
+      "Bash(git -C /Users/huazi/Code/Developer/SVGLOGO branch --show-current)",
+      "Bash(git -C /Users/huazi/Code/Developer/SVGLOGO remote -v)",
+      "Bash(git -C /Users/huazi/Code/Developer/SVGLOGO diff --stat HEAD)",
+      "Bash(git -C /Users/huazi/Code/Developer/SVGLOGO diff --name-status HEAD)",
+      "Bash(git -C /Users/huazi/Code/Developer/SVGLOGO log --oneline --decorate -15)",
+      "Bash(git -C /Users/huazi/Code/Developer/SVGLOGO diff --stat)",
+      "Bash(git -C /Users/huazi/Code/Developer/SVGLOGO diff --cached --stat)",
+      "Bash(rtk proxy *)",
+      "Bash(pnpm check:svg-meta)",
+      "Bash(pnpm check:generated)",
+      "Bash(pnpm build *)",
+      "Bash(pnpm test *)",
+      "Bash(pnpm install *)",
+      "Bash(pnpm check:size)",
+      "Bash(pnpm onlybuild *)"
     ]
   }
 }

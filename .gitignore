@@ -2,6 +2,10 @@
 *.log
 *.log.*
 node_modules
+.pnpm-store/
+
+# Foglamp scan publish cache
+.foglamp/
 
 # Environment variables
 .env
@@ -29,5 +33,5 @@ build/
 # Alma
 .alma-snapshots/
 
-# 生成的配置文件
-src/config/git-info.json
+# Agent worktrees
+.claude/worktrees/

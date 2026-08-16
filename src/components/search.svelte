@@ -1,3 +1,9 @@
+<!--
+  [INPUT]: 依赖 @/ui/styles 的 input 样式，lucide-svelte 图标
+  [OUTPUT]: 对外提供 Search 搜索组件，接收 searchTerm/placeholder props
+  [POS]: 旧目录页搜索，仅服务于 directory/[slug] 降级路由
+  [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md
+-->
 <script lang="ts">
   import { inputStyles } from '@/ui/styles';
   import { Command, SearchIcon, X } from 'lucide-svelte';

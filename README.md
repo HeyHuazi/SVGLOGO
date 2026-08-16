@@ -21,224 +21,100 @@
 
 ## 项目简介
 
-SVGLOGO 是一个面向中文用户的矢量标志素材站，聚焦国内常用品牌与组织标识，支持在线浏览、检索、复制与下载（SVG/PNG）。
-
-你可以在这里找到例如：
-- 国内社媒与互联网产品 Logo
-- 大学校徽与校园标识
-- 气象预警图标
-- 设计/开发常用工具 Logo
-
-> 持续更新中，欢迎提交你希望补充的 Logo。
-
----
+SVGLOGO 面向中文用户收录常用品牌与组织标识，支持关键词与拼音搜索、分类浏览、SVG/PNG 复制和下载。项目同时提供仅开发环境可用的本地资产工作台，将多文件 SVG 草稿原子写入资产库并维护发布批次。
 
 ## 功能特点
 
-- 🔍 关键词搜索与分类筛选
-- 🌓 浅色 / 深色版本支持
-- 📋 一键复制 SVG / PNG 到剪贴板
-- ⬇️ 下载 SVG / PNG（含多版本打包）
-- 🧩 支持 Wordmark（字标）展示与下载
-- 📊 自动获取 Git 提交信息
-- 🚀 支持 Vercel 和 Cloudflare 部署
-- ✨ 精心打磨的界面交互细节
-  - 🎯 分类滑动指示器动画
-  - ♾️ 无限滚动自动加载
-  - 🎨 动态主题色与焦点环
-
----
+- 关键词、拼音搜索与分类筛选
+- 浅色 / 深色版本与 Wordmark 支持
+- 一键复制或下载 SVG / PNG
+- 首屏优先加载与渐进式无限滚动
+- 多文件 SVG 草稿、原子批量入库和可恢复发布批次
+- Cloudflare Pages 部署
 
 ## 技术栈
 
-- [SvelteKit](https://kit.svelte.dev/) - 全栈框架
-- [TypeScript](https://www.typescriptlang.org/) - 类型安全
-- [Tailwind CSS](https://tailwindcss.com/) - 实用优先的 CSS 框架
-- [mdsvex](https://mdsvex.com/) - Markdown in Svelte
-- [Shiki](https://github.com/shikijs/shiki) - 语法高亮
-- [bits-ui](https://www.bits-ui.com) - 无头 UI 组件
-- [svelte-sonner](https://github.com/wobsoriano/svelte-sonner) - Toast 通知
-- [JSZip](https://stuk.github.io/jszip/) - ZIP 文件处理
-- [downloadjs](https://www.npmjs.com/package/downloadjs) - 文件下载
-- [Vitest](https://vitest.dev/) - 单元测试
-- [lucide-svelte](https://lucide.dev/) - 图标库
-- [clsx](https://github.com/lukeed/clsx) - 类名工具
-- [tailwind-merge](https://github.com/dcastil/tailwind-merge) - Tailwind 类名合并
-- [mode-watcher](https://github.com/huntabyte/mode-watcher) - 暗色模式监听
+SvelteKit 2 + Svelte 4 + TypeScript + Tailwind CSS + Vitest + YAML + Cloudflare adapter。
 
 ---
 
 ## 本地开发
 
-### 1) 环境要求
+### 环境要求
 
-- Node.js 18+
-- pnpm（推荐）
-
-### 2) 安装依赖
+- Node.js 20+
+- pnpm 10
 
 ```bash
 pnpm install
-```
-
-### 3) 启动开发环境
-
-```bash
 pnpm dev
 ```
 
 默认访问：<http://localhost:5173>
 
-### 4) 构建与预览
+开发环境中的资产管理后台：<http://localhost:5173/admin>
+
+后台直接维护当前 Git 工作区，不需要远程投稿服务或额外私有凭据。
+
+构建与 Cloudflare 本地预览：
 
 ```bash
-pnpm onlybuild
-pnpm preview
+pnpm build
+pnpm preview:cloudflare
 ```
-
-### 5) 获取 Git 提交信息
-
-```bash
-pnpm get:git-info
-```
-
-此脚本会自动获取最新的 Git 提交时间并写入配置文件，用于显示项目最后更新时间。
 
 ---
 
-## 项目结构（核心）
+## 资产流水线
+
+### 单一真相源
 
 ```text
-src/
-  components/        # UI 组件（搜索、卡片、下载、复制等）
-  config/            # 配置文件（git-info.json 等）
-  data/              # Logo 数据源（自动生成）
-  routes/            # 路由页面（首页、explore、api...）
-  types/             # TS 类型定义
-  lib/               # 工具函数和共享逻辑
-static/
-  library/           # SVG 资源文件（按分类组织）
-  images/            # 图片资源
-scripts/
-  scan-svgs.ts       # 扫描新增 SVG
-  generate-svgs.ts   # 生成数据文件
-  get-git-info.ts    # 获取 Git 提交信息
-  migrate-svgs.ts    # 迁移脚本
-  title-mappings.json # 文件名映射表
+static/library/{category}/*.svg
+static/library/{category}/_meta.yaml
 ```
 
----
+SVG 文件与分类 YAML 是资产事实；以下文件是可再生派生物，不应手动编辑：
 
-## 如何新增一个 Logo
-
-### 🚀 快速流程（推荐）
-
-#### 1) 放置 SVG 文件
-
-将 `.svg` 文件放到对应分类文件夹：
-
-```bash
-static/library/
-  ├── aigc/          # AI产品
-  ├── airline/       # 航空公司
-  ├── automotive/    # 汽车品牌
-  ├── company/       # 企业组织
-  ├── cosmetic/      # 美妆品牌
-  ├── goldJewelry/   # 黄金珠宝
-  ├── other/         # 其他
-  ├── pay/           # 金融支付
-  ├── school/        # 大学校徽
-  ├── social/        # 社交媒体
-  ├── tools/         # 工具产品
-  └── weather/       # 气象预警
+```text
+src/data/svgs.ts
+src/data/categories.ts
 ```
 
-**命名约定：**
-- 主 Logo：`brand.svg`（如 `xiaomi.svg`）
-- Wordmark：`brand_wordmark.svg`（如 `xiaomi_wordmark.svg`）
+数据流如下：
 
-#### 2) 运行扫描命令
-
-```bash
-pnpm scan:svg
+```text
+/admin 或维护工具
+        ↓
+SVG + _meta.yaml
+        ↓
+src/server/library-index.ts
+        ↓
+src/data/svgs.ts + src/data/categories.ts
+        ↓
+前台渲染
 ```
 
-脚本会自动：
-- ✅ 扫描新增的 SVG 文件
-- ✅ 智能提取标题（基于文件名或映射表）
-- ✅ 自动识别 wordmark（后缀 `_wordmark.svg`）
-- ✅ 更新 `_meta.yaml` 文件
+### 日常新增或更新 Logo
 
-**输出示例：**
-```bash
-🔍 扫描目录: static/library/
-━━━━━━━━━━━━━━━━━━━━━━━━━━
+日常维护统一使用 `/admin`：
 
-📂 company/
-  ✅ 新增: 1 个文件
-     → new-brand.svg
-  📝 已更新: _meta.yaml
+1. 将一个或多个 SVG 拖入后台草稿区。
+2. 确认每项标题、文件名、分类、官网、贡献者和新增/更新类型。
+3. 后台先对整批草稿执行文件名、冲突、URL 和 SVG 安全校验。
+4. 全批通过后，在同一事务中写入 SVG、YAML、发布草稿，并只生成一次前端索引。
+5. 任一步失败，整批资产、元数据、草稿和生成索引都会恢复。
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━
-📊 统计:
-  新增: 1 个
-  缺失: 0 个
+后台只在 SvelteKit `dev` 模式和 localhost 开放；生产环境不能调用本地写入能力。
 
-⚠️  提示: 请检查 _meta.yaml 并补充必要信息（如 URL）
-```
+### Wordmark、dark/light 与批量迁移
 
-#### 3) 补充必要信息（可选）
-
-编辑对应的 `_meta.yaml` 文件，补充 URL 等信息：
-
-```yaml
-# static/library/company/_meta.yaml
-items:
-  # ... 其他条目 ...
-  - title: 新品牌
-    file: new-brand.svg
-    url: https://example.com/  # ← 修正 URL（原为 TODO）
-```
-
-#### 4) 启动开发服务器
-
-```bash
-pnpm dev
-```
-
-脚本会自动生成 `src/data/svgs.ts`，你的新 Logo 已添加成功！
-
----
-
-### 📝 YAML 元数据格式
-
-每个分类文件夹下都有 `_meta.yaml` 文件，格式如下：
-
-#### 简单格式（只有必需字段）
-
-```yaml
-items:
-  - title: 小米
-    file: xiaomi.svg
-    url: https://www.mi.com/
-```
-
-#### 包含 Wordmark
-
-```yaml
-items:
-  - title: 字节跳动
-    file: bytedance.svg
-    wordmark: bytedance_wordmark.svg
-    url: https://www.bytedance.com/
-```
-
-#### 暗色/亮色双版本
+当前后台日常上传处理单个主 Logo。Wordmark、dark/light 双版本及大批量目录迁移仍通过 YAML 资产模型维护：
 
 ```yaml
 items:
   - title: 某品牌
-    file: 
+    file:
       dark: brand_dark.svg
       light: brand_light.svg
     wordmark:
@@ -247,259 +123,132 @@ items:
     url: https://example.com/
 ```
 
-**字段说明：**
-
-| 字段 | 必填 | 类型 | 说明 |
-|------|------|------|------|
-| `title` | ✅ | string | 显示名称 |
-| `file` | ✅ | string \| object | SVG 文件路径（相对路径） |
-| `url` | ✅ | string | 官网 URL（新条目自动填充 `"TODO"`） |
-| `wordmark` | ❌ | string \| object | Wordmark 文件路径 |
-
-**注意：** 
-- 分类由文件夹名自动决定（不需要在 YAML 中指定）
-- 一个图标只属于一个分类
-
----
-
-### 🛠️ 常用命令
-
-| 命令 | 用途 | 何时使用 |
-|------|------|----------|
-| `pnpm scan:svg` | 扫描新增 SVG，更新 YAML | 添加新文件后 |
-| `pnpm generate:svg` | 生成 svgs.ts | 自动执行（无需手动运行） |
-| `pnpm get:git-info` | 获取 Git 提交信息 | 构建时自动执行 |
-| `pnpm dev` | 启动开发服务器 | 自动生成 svgs.ts |
-| `pnpm build` | 构建生产版本 | 自动扫描+生成 |
-| `pnpm check` | 类型检查 | 开发时检查 |
-| `pnpm test` | 运行测试 | 确保代码质量 |
-
----
-
-### 💡 文件组织规则
-
-**分类体系（12 个分类）：**
-
-| 分类名称 | 文件夹 | 数量 | 说明 |
-|---------|-------|------|------|
-| AI产品 | aigc/ | 114 | AI 相关产品和服务 |
-| 航空公司 | airline/ | 56 | 航空公司 Logo |
-| 汽车品牌 | automotive/ | 7 | 汽车品牌 Logo |
-| 企业组织 | company/ | 73 | 企业和组织 |
-| 消费品牌 | consumerBrands/ | 3 | 消费品牌 |
-| 美妆品牌 | cosmetic/ | 41 | 化妆品品牌 |
-| 黄金珠宝 | goldJewelry/ | 17 | 黄金珠宝品牌 |
-| 其他 | other/ | 18 | 其他类别 |
-| 金融支付 | pay/ | 161 | 银行、支付工具 |
-| 大学校徽 | school/ | 120 | 大学校徽 |
-| 社交媒体 | social/ | 31 | 社交媒体平台 |
-| 工具产品 | tools/ | 41 | 工具和产品 |
-| 气象预警 | weather/ | 218 | 气象预警图标 |
-
-**规则：**
-- 按主要业务领域放文件夹
-- 文件夹名决定分类名（自动映射）
-- 不支持多分类（一个图标只属于一个分类）
-
----
-
-### 📂 文件结构
-
-```
-SVGLOGO/
-├── scripts/
-│   ├── scan-svgs.ts          # 扫描新增 SVG，更新 _meta.yaml
-│   ├── generate-svgs.ts      # 读取 YAML，生成 svgs.ts
-│   ├── migrate-svgs.ts       # 迁移脚本（仅首次使用）
-│   ├── get-git-info.ts       # 获取 Git 提交信息
-│   └── title-mappings.json   # 文件名 → 中文标题映射表
-│
-├── static/library/
-│   ├── aigc/
-│   │   ├── _meta.yaml        # AI产品元数据
-│   │   ├── ChatGPT.svg
-│   │   └── Claude.svg
-│   ├── company/
-│   │   ├── _meta.yaml        # 企业组织元数据
-│   │   ├── xiaomi.svg
-│   │   └── bytedance.svg
-│   └── ... (其他分类)
-│
-└── src/data/
-    └── svgs.ts               # 自动生成，请勿手动编辑
-```
-
----
-
-### 🔧 高级功能
-
-#### 自定义标题映射
-
-如果文件名无法自动识别为正确的中文名称，可以编辑 `scripts/title-mappings.json`：
-
-```json
-{
-  "xiaomi": "小米",
-  "bytedance": "字节跳动",
-  "newbrand": "新品牌"
-}
-```
-
-#### 批量添加
+完成维护后运行：
 
 ```bash
-# 一次性添加多个文件
-cp ~/Downloads/*.svg static/library/company/
+pnpm generate:svg
+```
 
-# 运行一次扫描
-pnpm scan:svg
+### 维护与灾难恢复
+
+`check:library` 只读检查磁盘 SVG 与 YAML 是否一致：
+
+```bash
+pnpm check:library
+```
+
+如果批量复制或历史迁移产生了未登记 SVG，可在人工确认后显式修复：
+
+```bash
+pnpm repair:library-meta
+```
+
+修复器会根据文件名和 `scripts/title-mappings.json` 补充条目，并可能生成 `url: TODO`。它不是日常入库入口；运行后必须人工检查 YAML，再执行 `pnpm generate:svg`。
+
+---
+
+## 常用命令
+
+| 命令 | 职责 |
+|---|---|
+| `pnpm dev` | 启动开发环境；启动前生成前端资产索引 |
+| `pnpm generate:svg` | 将 SVG/YAML 真相源原子编译为前端 TypeScript 索引 |
+| `pnpm check:library` | 只读检查 SVG 文件与 YAML 元数据一致性 |
+| `pnpm repair:library-meta` | 批量迁移或异常恢复时显式补录 YAML |
+| `pnpm check:generated` | 只读验证前端索引没有生成漂移 |
+| `pnpm check:size` | 检查 SVG 是否超过 200KB |
+| `pnpm prebuild` | 组合所有资产只读门禁 |
+| `pnpm check` | 执行 Svelte/TypeScript 检查 |
+| `pnpm test` | 运行 Vitest 测试 |
+| `pnpm build` | 通过资产门禁后构建 Cloudflare 版本 |
+
+`prebuild` 和 CI 不会修复或重写资产，只负责证明仓库当前状态可发布。
+
+---
+
+## 项目结构
+
+```text
+.github/workflows/quality.yml  # 类型、测试、资产、漂移、尺寸与构建门禁
+scripts/
+  generate-svgs.ts            # 共享编译器的 CLI 入口
+  check-generated.ts          # 只读生成漂移门禁
+  scan-svgs.ts                # 资产一致性检查与显式恢复
+  check-size.ts               # SVG 尺寸门禁
+  migrate-svgs.ts             # 历史资产迁移工具
+  title-mappings.json         # 文件名到品牌标题的维护映射
+src/
+  components/                 # 搜索、卡片、导航与下载视图组件
+  config/                     # 分类、友情链接与 SVG 质量真相源
+  data/                       # 自动生成索引、更新日志与发布草稿
+  routes/                     # 首页、兼容目录、API 与 dev-only Admin
+  server/library-index.ts     # Admin、CLI、CI 共享的资产索引编译器
+  types/                      # SVG 与分类领域类型
+  ui/                         # 底层 UI primitives
+  utils/                      # 浏览器与 SVG 工具
+static/library/               # SVG 与分类 YAML 资产真相源
 ```
 
 ---
 
-### ❌ 旧流程（已废弃）
+## 质量门禁
 
-<details>
-<summary>点击查看旧的手动编辑 svgs.ts 流程</summary>
+提交前至少运行：
 
-**不再推荐**：手动编辑 `src/data/svgs.ts`
-
-旧示例：
-```ts
-{
-  title: '示例',
-  category: '社交媒体',
-  route: '/library/example.svg',
-  url: 'https://example.com'
-}
+```bash
+pnpm check
+pnpm test
+pnpm prebuild
+pnpm onlybuild
 ```
 
-现在请使用上述自动化流程。
-</details>
+GitHub Actions 还会执行最终 `git diff --exit-code`，确保验证过程没有产生未提交文件。
 
 ---
 
 ## 部署
 
-### Vercel 部署
+项目使用 `@sveltejs/adapter-cloudflare` 构建 Cloudflare Pages 版本。
 
-项目已配置 Vercel 部署，支持自动部署。
-
-**配置文件：** `vercel.json`
-
-**特性：**
-- 静态资源缓存优化
-- SVG 文件正确 Content-Type
-- 自动重定向规则
-
-### Cloudflare 部署
-
-项目也支持 Cloudflare Workers/Pages 部署。
-
-**依赖：** `@sveltejs/adapter-cloudflare`
-
-**配置：** `.wrangler/` 目录
-
----
-
-## 环境变量（可选）
-
-如果需要本地调试 API 统计/限流相关能力，可配置 `.env`：
-
-```bash
-# API 限流
-SVGL_API_REQUESTS=1
-UPSTASH_REDIS_URL=""
-UPSTASH_REDIS_TOKEN=""
-
-# 统计分析
-PUBLIC_51LA_ID=""
-
-# 其他配置
-PUBLIC_SITE_URL="https://svglogo.top"
-```
+环境变量参考 [`.env.example`](./.env.example)，当前仅包含可选的站点统计配置。
 
 ---
 
 ## 贡献说明
 
-欢迎通过以下方式参与：
+欢迎提交 Logo、Issue、代码或文档改进。
 
-1. 提交 Logo 或修正素材信息
-2. 提交 Issue 反馈体验问题
-3. 提交 PR 优化功能或文档
+选择合适的贡献路径：
 
-### 提交前检查清单
+- **普通 Logo 投稿：** 使用 [Logo 投稿 Issue 模板](./.github/ISSUE_TEMPLATE/logo-submission.md)，附加 SVG 或官方资源地址。
+- **熟悉仓库结构的贡献者：** 直接提交 Pull Request，并同步 SVG 与分类 `_meta.yaml`。
+- **维护者本地处理：** 使用 dev-only `/admin` 多文件工作台完成校验、原子入库与发布批次维护。
 
-- [ ] 你拥有该 Logo 的使用权限，或其许可允许收录与展示
-- [ ] 文件命名、分类、链接信息准确
-- [ ] SVG 资源可正常渲染
-- [ ] 已运行 `pnpm scan:svg` 更新元数据
-- [ ] 已测试本地开发环境正常运行
+提交前检查：
 
-### 开发流程
+- 你拥有该 Logo 的使用权限，或其许可允许收录与展示。
+- 文件名、分类、标题与官网准确。
+- SVG 可以正常渲染且不包含脚本、事件处理器或外部资源。
+- 日常资产维护优先使用 `/admin`；旁路修改必须同步 YAML。
+- 已运行 `pnpm check`、`pnpm test` 和 `pnpm prebuild`。
 
-1. Fork 项目
-2. 创建功能分支
-3. 提交更改
-4. 推送到分支
-5. 创建 Pull Request
+开发流程：Fork → 创建分支 → 修改并验证 → 推送 → Pull Request。
 
 ---
 
 ## 版权声明
 
-本项目所展示矢量图形主要来源于网络公开信息整理，仅供学习与参考。相关商标及图形版权归原权利方所有。
-
-请勿在未经授权的情况下将素材用于商业用途；使用者应自行确认授权范围并承担相应法律责任。
-
----
+项目展示的矢量图形主要来源于网络公开信息整理，仅供学习与参考。商标及图形版权归原权利方所有；使用者应自行确认授权范围并承担相应责任。
 
 ## 致谢
 
-- 开源项目 [svgl](https://github.com/pheralb/svgl)（本项目的重要灵感来源）
+- [svgl](https://github.com/pheralb/svgl)
 - [中国大学矢量校徽合集](https://www.figma.com/community/file/916515339708288305)
 - [预警信号 ICON](https://www.figma.com/community/file/1133299341246601360)
-- 感谢社区朋友们对部署、设计和内容整理的帮助
-
----
+- 所有素材贡献者与社区协作者
 
 ## License
 
 [MIT](./LICENSE)
 
----
-
-## 更新日志
-
-### v4.2.1 (2026-04-15)
-
-- ✨ 界面交互细节优化（Phase 1-5，共 17 项）
-  - 动态 `theme-color` meta 标签随深色模式切换
-  - 焦点环颜色统一为品牌绿色（#06B30C）
-  - `prefers-reduced-motion` 无障碍支持
-  - 卡片悬停缩放与浮起动效
-  - 主题切换按钮旋转动画
-  - 分类侧边栏滑动高亮指示器
-  - 加载更多按钮 loading 状态
-  - 分类计数切换动画
-  - 回到顶部浮动按钮
-  - 分类切换自动平滑滚动
-  - 无限滚动自动加载（IntersectionObserver）
-  - Logo 卡片内阴影边缘
-  - 嵌套圆角一致性
-  - 卡片标题 tooltip
-  - 搜索框随机占位符示例
-  - Hero 区域绿色选中样式
-- 🎮 彩蛋功能
-  - 404 页面可拖拽 SVG 插画
-- 🔧 优化 `scan:svg` 脚本，支持自动识别并补充已有条目缺失的 wordmark
-- 🐛 修复侧边栏分类指示器与按钮的对齐问题
-- 📊 总计收录 **900** 个矢量图标
-
-### v4.2.0 (2026-04-08)
-- ✨ 新增 Git 提交信息自动获取功能
-- 🚀 支持 Cloudflare 部署
-- 📊 更新技术栈依赖
-- 📝 完善文档和贡献指南
-- 🔧 优化构建流程
+项目版本历史以 [src/data/changelog.json](./src/data/changelog.json) 为结构化真相源。

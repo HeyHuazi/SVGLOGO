@@ -1,3 +1,9 @@
+<!--
+  [INPUT]: 依赖 ./$types 的 PageData，@/types/svg 的 iSVG，sveltekit-search-params 的 queryParam，旧组件集（Container/Grid/Search/SvgCard/NotFound）
+  [OUTPUT]: 对外提供旧目录页分类导航视图
+  [POS]: routes/directory/[slug] 的降级路由，基于分类 slug 过滤 SVG
+  [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md
+-->
 <script lang="ts">
   import type { PageData } from './$types';
   import type { iSVG } from '@/types/svg';

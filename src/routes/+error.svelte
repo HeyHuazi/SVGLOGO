@@ -1,3 +1,9 @@
+<!--
+  [INPUT]: 依赖 $app/stores 的 page，$app/navigation 的 goto，svelte 的 onMount/onDestroy/fade
+  [OUTPUT]: 对外提供 SvelteKit 错误页渲染
+  [POS]: routes 层的全局错误边界，承接 SvelteKit 异常
+  [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md
+-->
 <script lang="ts">
   import { page } from '$app/stores';
   import { goto } from '$app/navigation';

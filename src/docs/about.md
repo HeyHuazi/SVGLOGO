@@ -3,10 +3,6 @@ title: 关于本站
 description: 专注收录国内矢量 LOGO
 ---
 
-<script>
-  import Endpoint from '../components/endpoints.svelte';
-</script>
-
 ## 关于
 
 本站将专注收录国内矢量 LOGO 素材，目前包含国内社媒、大学校徽、气象预警及工具产品等。

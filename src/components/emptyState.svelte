@@ -1,3 +1,9 @@
+<!--
+  [INPUT]: 无外部依赖，纯展示组件
+  [OUTPUT]: 对外提供 EmptyState 空状态组件，接收 searchTerm prop
+  [POS]: components 层的新版首页空状态，承接搜索无结果反馈
+  [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md
+-->
 <script lang="ts">
   export let searchTerm = '';
 </script>

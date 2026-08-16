@@ -1,3 +1,9 @@
+<!--
+  [INPUT]: 依赖 svelte 的 createEventDispatcher/onMount/tick，@/utils/cn 的 className 合并，@/data/categories 的分类索引
+  [OUTPUT]: 对外提供 HomeSidebar 分类侧栏组件，派发 selectCategory 事件
+  [POS]: components 层的新版首页侧栏，被 +page.svelte 消费
+  [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md
+-->
 <script lang="ts">
   import { createEventDispatcher, onMount, tick } from 'svelte';
   import { cn } from '@/utils/cn';

@@ -1,7 +1,9 @@
-<script lang="ts">
-   export let iconSize = 128;
-</script>
-
+<!--
+  [INPUT]: 无外部依赖，纯 SVG 品牌 Logo
+  [OUTPUT]: 对外提供固定 20px 的 HuaziLogo 品牌标识组件
+  [POS]: components 层的站点品牌 Logo，被 navbar 等消费
+  [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md
+-->
 <svg 
 name="HuaziLogo"
 width="20" height="20" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">

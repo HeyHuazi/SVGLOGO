@@ -1,6 +1,13 @@
+<!--
+  [INPUT]: 依赖 svelte 的 onMount，@/data 的 svgsData，@/data/categories 的分类索引，@/types/svg 的 iSVG，sveltekit-search-params 的 queryParam
+  [OUTPUT]: 对外提供新版首页渲染，支持搜索/分类/排序/渐进加载/广告混排，并为首屏 Logo 分配图片请求优先级
+  [POS]: routes 层的核心首页，消费生成数据索引并协调首屏资源调度
+  [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md
+-->
 <script lang="ts">
   import { onMount } from 'svelte';
   import { svgsData } from '@/data';
+  import { categories } from '@/data/categories';
   import type { iSVG } from '@/types/svg';
   import { queryParam } from 'sveltekit-search-params';
   import { ArrowUpDownIcon, ArrowDownUpIcon, Loader, ArrowUp } from 'lucide-svelte';
@@ -23,32 +30,10 @@
   const categoryParam = queryParam('category');
   const sortParam = queryParam('sort');
 
-  // Dynamically build category map from data (matches sidebar logic)
-  const OTHER_KEY = '其他';
-  const displayNames: Record<string, string> = { 'AI产品': 'AI 产品' };
-
-  const uniqueCategories = new Set<string>();
-  const rawCounts: Record<string, number> = {};
-  allSvgs.forEach((svg) => {
-    if (!svg) return;
-    const cats = Array.isArray(svg.category) ? svg.category : [svg.category];
-    cats.forEach((c) => {
-      if (!c) return;
-      uniqueCategories.add(c);
-      rawCounts[c] = (rawCounts[c] || 0) + 1;
-    });
-  });
-
-  const sortedCategories = [...uniqueCategories]
-    .filter((c) => c !== OTHER_KEY)
-    .sort((a, b) => (rawCounts[b] || 0) - (rawCounts[a] || 0));
-
+  // Category index: generated once from static/library metadata.
   const categoryMap: Record<string, string[]> = {
     '全部': [],
-    ...Object.fromEntries(
-      sortedCategories.map((cat) => [displayNames[cat] || cat, [cat]])
-    ),
-    ...(uniqueCategories.has(OTHER_KEY) ? { [OTHER_KEY]: [OTHER_KEY] } : {})
+    ...Object.fromEntries(categories.map((category) => [category.name, [category.slug]]))
   };
 
   // State
@@ -65,6 +50,16 @@
   const AD_INTERVAL = 15; // 每15个logo插入一个广告
   const AD_START_POSITION = 5; // 从第5个位置开始插入广告
   const GRID_COLUMNS = 5; // 网格最大列数（xl:grid-cols-5）
+  const HIGH_PRIORITY_LOGO_COUNT = GRID_COLUMNS;
+  const EAGER_LOGO_COUNT = GRID_COLUMNS * 2;
+
+  type ImageLoadPriority = 'high' | 'normal' | 'low';
+
+  function getImageLoadPriority(logoIndex: number): ImageLoadPriority {
+    if (logoIndex < HIGH_PRIORITY_LOGO_COUNT) return 'high';
+    if (logoIndex < EAGER_LOGO_COUNT) return 'normal';
+    return 'low';
+  }
 
   // 计算广告位置
   function getAdPositions(total: number): number[] {
@@ -364,7 +359,12 @@
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
           {#each mixedContent as item, i}
             {#if item?.type === 'svg' && item?.data?.title}
-              <SvgCard svgInfo={item.data} index={item.index || 0} showGroup={selectedCategory === '全部' && searchTerm.trim().length > 0} />
+              <SvgCard
+                svgInfo={item.data}
+                index={item.index ?? 0}
+                imageLoadPriority={getImageLoadPriority(item.index ?? 0)}
+                showGroup={selectedCategory === '全部' && searchTerm.trim().length > 0}
+              />
             {:else if item.type === 'ad'}
               <AdCard index={item.index || 0} />
             {/if}

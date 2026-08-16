@@ -1,6 +1,3 @@
-import type { iSVG } from '@/types/svg';
-import { svgs } from './svgs';
-
-export const svgsData = svgs.map((svg: iSVG, index: number) => {
-  return { id: index, ...svg };
-});
+// 自动生成数据的稳定公共入口。
+// svgs.ts 已包含构建期生成的 id，这里不再制造运行时假 ID。
+export { svgs as svgsData } from "./svgs";

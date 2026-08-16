@@ -1,3 +1,9 @@
+<!--
+  [INPUT]: 无外部依赖，纯 SVG 图标
+  [OUTPUT]: 对外提供 Logo 站点图标组件
+  [POS]: components 层的旧版站点 Logo，服务于导航和旧页面
+  [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md
+-->
 <svg 
 width="30"
 name="SVGL Logo"

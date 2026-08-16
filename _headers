@@ -1,7 +1,8 @@
 # 缓存控制策略 - Cloudflare Pages
 
 # SVG 图标文件 - 长期缓存（不可变）
-/static/library/*.svg
+# SvelteKit 将 static/ 映射到根路径，故 /library/* 而非 /static/library/*
+/library/*
   Cache-Control: public, max-age=31536000, immutable
 
 # 图片资源 - 中期缓存

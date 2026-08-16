@@ -1,10 +1,18 @@
+<!--
+  [INPUT]: 依赖 SvelteKit 开发环境标识、svelte 的 onMount、@/utils/cn 的 className 合并、mode-watcher 主题切换与 @/ui/styles 的导航样式
+  [OUTPUT]: 对外提供 Navbar 主导航组件，接收 currentPath prop，并仅在本地开发环境提供后台入口
+  [POS]: components 层的新版导航，被 +layout.svelte 消费；统一承载桌面与移动端公共入口，桌面端 GitHub 星标按钮由 githubStarButton 承载
+  [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md
+-->
 <script lang="ts">
   export let currentPath: string;
 
+  import { dev } from '$app/environment';
   import { onMount } from 'svelte';
   import { cn } from '@/utils/cn';
   import { toggleMode, mode } from 'mode-watcher';
   import { navLinkStyles, navCtaStyles } from '@/ui/styles';
+  import GithubStarButton from '@/components/githubStarButton.svelte';
 
   let stars: number | null = null;
   let menuOpen = false;
@@ -13,6 +21,7 @@
     { name: '首页', url: '/', external: false },
     { name: '关于', url: '/about', external: false },
     { name: '赞助支持', url: 'https://afdian.com/a/heyhuazi', external: true },
+    ...(dev ? [{ name: '后台', url: '/admin', external: false }] : []),
   ];
 
   const closeMenu = () => { menuOpen = false; };
@@ -71,20 +80,7 @@
     <!-- Right: Action Buttons -->
     <div class="flex items-center gap-2 md:gap-4">
       <!-- GitHub Button with Stars (desktop only) -->
-      <a
-        href="https://github.com/HeyHuazi/SVGLOGO"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="GitHub Stars"
-        class="hidden md:flex items-center justify-center gap-1.5 h-8 px-3 rounded-[10px] bg-white dark:bg-neutral-800 shadow-[#0A0A0B08_0px_-1px_0px_inset,#0A0A0B12_0px_0.5px_0px,#0A0A0B03_0px_9px_5px_-2px,#0A0A0B05_0px_5px_4px_-1px,#0A0A0B0A_0px_2px_3px_-1px,#0A0A0B1A_0px_0px_0px_0.5px] hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors duration-150"
-      >
-        <svg width="18" height="18" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0">
-          <path d="M128.001 0C57.317 0 0 57.307 0 128.001c0 56.554 36.676 104.535 87.535 121.46 6.397 1.185 8.746-2.777 8.746-6.158 0-3.052-.12-13.135-.174-23.83-35.61 7.742-43.124-15.103-43.124-15.103-5.823-14.795-14.213-18.73-14.213-18.73-11.613-7.944.876-7.78.876-7.78 12.853.902 19.621 13.19 19.621 13.19 11.417 19.568 29.945 13.911 37.249 10.64 1.149-8.272 4.466-13.92 8.127-17.116-28.431-3.236-58.318-14.212-58.318-63.258 0-13.975 5-25.394 13.188-34.358-1.329-3.224-5.71-16.242 1.24-33.874 0 0 10.749-3.44 35.21 13.121 10.21-2.836 21.16-4.258 32.038-4.307 10.878.049 21.837 1.47 32.066 4.307 24.431-16.56 35.165-13.12 35.165-13.12 6.967 17.63 2.584 30.65 1.255 33.873 8.207 8.964 13.173 20.383 13.173 34.358 0 49.163-29.944 59.988-58.447 63.157 4.591 3.972 8.682 11.762 8.682 23.704 0 17.126-.148 30.91-.148 35.126 0 3.407 2.304 7.398 8.792 6.14C219.37 232.5 256 184.537 256 128.002 256 57.307 198.691 0 128.001 0Z" fill="#000000" class="dark:fill-neutral-400" />
-        </svg>
-        {#if stars !== null}
-          <span class="text-xs font-medium text-black dark:text-neutral-300">{stars}</span>
-        {/if}
-      </a>
+      <GithubStarButton {stars} className="hidden md:flex" />
 
       <!-- Submit Icon Button (Green CTA) (desktop only) -->
       <button
