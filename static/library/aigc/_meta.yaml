@@ -140,10 +140,6 @@ items:
     file: AIStudio.svg
     url: https://aistudio.google.com/
     wordmark: AIStudio_wordmark.svg
-  - title: Deepmind
-    file: Deepmind.svg
-    url: https://deepmind.google/
-    wordmark: Deepmind_wordmark.svg
   - title: 紫东太初
     file: AiMass.svg
     url: https://ai-maas.wair.ac.cn/

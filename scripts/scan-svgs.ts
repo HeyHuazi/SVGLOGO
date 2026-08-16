@@ -1,3 +1,10 @@
+/*
+ * [INPUT]: 依赖 static/library、分类 YAML 与 title-mappings 品牌标题映射
+ * [OUTPUT]: 提供只读资产一致性检查，并在 --write 下补录孤儿 SVG 与缺失 Wordmark 关联
+ * [POS]: scripts 的资产事实门禁与维护恢复工具，不参与 Admin 日常入库
+ * [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md
+ */
+
 import { readdir, stat, readFile, writeFile } from 'fs/promises';
 import { join, basename, parse } from 'path';
 import { existsSync } from 'fs';
@@ -6,6 +13,7 @@ import * as YAML from 'yaml';
 // 配置
 const LIBRARY_DIR = join(process.cwd(), 'static/library');
 const MAPPINGS_FILE = join(process.cwd(), 'scripts/title-mappings.json');
+const writeChanges = process.argv.includes('--write');
 
 // 加载标题映射表
 async function loadTitleMappings(): Promise<Record<string, string>> {
@@ -45,7 +53,7 @@ function extractTitleFromFilename(filename: string, mappings: Record<string, str
 async function scanCategory(
   categoryDir: string,
   mappings: Record<string, string>
-): Promise<{ newItems: any[], deletedItems: string[], updatedWordmarks: string[], updatedMeta: any }> {
+): Promise<{ newItems: any[], deletedItems: string[], updatedWordmarks: string[], duplicatedRefs: string[], updatedMeta: any }> {
   const categorySlug = basename(categoryDir);
   const metaFile = join(categoryDir, '_meta.yaml');
   
@@ -64,25 +72,39 @@ async function scanCategory(
   
   // 已记录的文件（包含 file 和 wordmark）
   const recordedFiles = new Set<string>();
+  // 大小写折叠的重复引用检测（file -> 首个声明它的 title）
+  const seenByLower = new Map<string, string>();
+  const duplicatedRefs: string[] = [];
   for (const item of existingMeta.items) {
+    const files: string[] = [];
     if (typeof item.file === 'string') {
-      recordedFiles.add(item.file);
+      files.push(item.file);
     } else if (typeof item.file === 'object') {
-      if (item.file.dark) recordedFiles.add(item.file.dark);
-      if (item.file.light) recordedFiles.add(item.file.light);
+      if (item.file.dark) files.push(item.file.dark);
+      if (item.file.light) files.push(item.file.light);
     }
-    if (typeof item.wordmark === 'string') {
-      recordedFiles.add(item.wordmark);
+    if (typeof item.wordmark === 'string') files.push(item.wordmark);
+    for (const f of files) {
+      recordedFiles.add(f);
+      const key = f.toLowerCase();
+      const prev = seenByLower.get(key);
+      if (prev !== undefined && prev !== item.title) {
+        duplicatedRefs.push(`${f}（${prev} / ${item.title}）`);
+      } else if (prev === undefined) {
+        seenByLower.set(key, item.title);
+      }
     }
   }
   
   // 查找新文件
   const newFiles = svgFiles.filter(f => !recordedFiles.has(f));
   
-  // 查找已删除的文件
+  // 查找已删除的文件（大小写敏感：用 readdir 真实列表做成员判断，
+  // 避免 existsSync 在大小写不敏感文件系统上把拼错的大小写误判为存在）
+  const svgFileSet = new Set(svgFiles);
   const deletedFiles: string[] = [];
   for (const recorded of recordedFiles) {
-    if (!existsSync(join(categoryDir, recorded))) {
+    if (!svgFileSet.has(recorded)) {
       deletedFiles.push(recorded);
     }
   }
@@ -139,6 +161,7 @@ async function scanCategory(
     newItems,
     deletedItems: deletedFiles,
     updatedWordmarks,
+    duplicatedRefs,
     updatedMeta: existingMeta
   };
 }
@@ -172,6 +195,8 @@ async function main() {
   
   let totalNew = 0;
   let totalDeleted = 0;
+  let totalWordmarks = 0;
+  let totalDuplicated = 0;
   
   for (const category of categories) {
     const categoryDir = join(LIBRARY_DIR, category);
@@ -179,9 +204,9 @@ async function main() {
     
     if (!stats.isDirectory()) continue;
     
-    const { newItems, deletedItems, updatedWordmarks, updatedMeta } = await scanCategory(categoryDir, mappings);
+    const { newItems, deletedItems, updatedWordmarks, duplicatedRefs, updatedMeta } = await scanCategory(categoryDir, mappings);
     
-    if (newItems.length > 0 || deletedItems.length > 0 || updatedWordmarks.length > 0) {
+    if (newItems.length > 0 || deletedItems.length > 0 || updatedWordmarks.length > 0 || duplicatedRefs.length > 0) {
       console.log(`📂 ${category}/`);
       
       if (newItems.length > 0) {
@@ -205,8 +230,15 @@ async function main() {
         });
       }
       
+      if (duplicatedRefs.length > 0) {
+        console.log(`  ⚠️  重复引用（大小写折叠后冲突）: ${duplicatedRefs.length} 处`);
+        duplicatedRefs.forEach(ref => {
+          console.log(`     ✗ ${ref}`);
+        });
+      }
+      
       // 更新元数据文件
-      if (newItems.length > 0 || updatedWordmarks.length > 0) {
+      if (writeChanges && (newItems.length > 0 || updatedWordmarks.length > 0)) {
         const metaFile = join(categoryDir, '_meta.yaml');
         await updateMetaFile(metaFile, newItems, updatedMeta);
         console.log(`  📝 已更新: _meta.yaml`);
@@ -215,6 +247,8 @@ async function main() {
       console.log('');
       totalNew += newItems.length;
       totalDeleted += deletedItems.length;
+      totalWordmarks += updatedWordmarks.length;
+      totalDuplicated += duplicatedRefs.length;
     }
   }
   
@@ -222,10 +256,12 @@ async function main() {
   console.log('📊 统计:');
   console.log(`  新增: ${totalNew} 个`);
   console.log(`  缺失: ${totalDeleted} 个`);
+  console.log(`  待关联 Wordmark: ${totalWordmarks} 个`);
+  console.log(`  重复引用: ${totalDuplicated} 处`);
   
-  if (totalNew > 0) {
-    console.log('\n⚠️  提示: 请检查 _meta.yaml 并补充必要信息（如 URL）');
-  }
+  if (totalNew > 0) console.log('\n⚠️  提示: 请检查 _meta.yaml 并补充必要信息（如 URL）');
+  if (totalDuplicated > 0) console.log('\nℹ️  提示: 存在重复引用（同一文件被多条目共享，如预警图标别名），不影响校验结果');
+  if (!writeChanges && (totalNew > 0 || totalDeleted > 0 || totalWordmarks > 0)) process.exitCode = 1;
 }
 
-main().catch(console.error);
+main().catch((error) => { console.error(error); process.exitCode = 1; });
