@@ -544,6 +544,7 @@ export const svgs: iSVG[] = [
     title: "华友钴业",
     category: "企业组织",
     route: "/library/company/Huayoucobalt.svg",
+    addedAt: "2026-07-10",
   },
   {
     id: 76,
@@ -552,6 +553,7 @@ export const svgs: iSVG[] = [
     route: "/library/company/cast.svg",
     wordmark: "/library/company/cast_wordmark.svg",
     url: "https://www.cast.org.cn/",
+    addedAt: "2026-08-16",
   },
   {
     id: 77,
@@ -3118,6 +3120,7 @@ export const svgs: iSVG[] = [
     category: "工具产品",
     route: "/library/tools/iqiyi.svg",
     url: "https://www.iqiyi.com/",
+    addedAt: "2026-07-10",
   },
   {
     id: 457,
@@ -6594,5 +6597,6 @@ export const svgs: iSVG[] = [
     category: "消费品牌",
     route: "/library/consumerBrands/aimeite.svg",
     url: "https://www.airmate-china.com/",
+    addedAt: "2026-08-09",
   }
 ];

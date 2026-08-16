@@ -22,6 +22,7 @@ type MetaItem = {
   file: StoredAssetFile;
   wordmark?: StoredAssetFile;
   url?: string;
+  addedAt?: string;
 };
 type MetaFile = { order?: number; items: MetaItem[] };
 type RouteValue = StoredAssetFile;
@@ -31,6 +32,7 @@ type GeneratedSvg = {
   route: RouteValue;
   wordmark?: RouteValue;
   url?: string;
+  addedAt?: string;
 };
 
 export interface LibraryIndexOptions {
@@ -125,6 +127,7 @@ async function readCategory(libraryDir: string, folder: string) {
           }
         : {}),
       ...(url ? { url } : {}),
+      ...(item.addedAt ? { addedAt: item.addedAt } : {}),
     };
   });
   return { folder, order: meta.order ?? 999, items };
@@ -152,6 +155,7 @@ function generateSvgs(svgs: GeneratedSvg[]) {
       formatRoute("route", svg.route),
       ...(svg.wordmark ? [formatRoute("wordmark", svg.wordmark)] : []),
       ...(svg.url ? [`    url: ${literal(svg.url)},`] : []),
+      ...(svg.addedAt ? [`    addedAt: ${literal(svg.addedAt)},`] : []),
       "  }",
     ].join("\n"),
   );

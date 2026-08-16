@@ -20,4 +20,6 @@ export interface iSVG {
   route: StoredAssetFile;
   wordmark?: StoredAssetFile;
   url?: string;
+  /** 添加日期 YYYY-MM-DD，仅最新条目由 Admin 入库写入；老数据缺省 */
+  addedAt?: string;
 }
