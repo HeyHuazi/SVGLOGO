@@ -5,7 +5,7 @@
 成员清单
 /_ 新版首页组件 _/
 huaziLogo.svelte: Svelte 固定尺寸品牌标识组件，提供站点 Logo 图形
-adCard.svelte: Svelte 首页网格广告卡片，延迟加载广告脚本并保持卡片比例
+sponsorSection.svelte: Svelte 首页 Hero 下方赞助区域组件，数据驱动渲染赞助商卡片，虚线占位卡点击直接跳转爱发电赞助页（无弹窗）
 emptyState.svelte: Svelte 新版首页空状态组件，承接搜索无结果反馈
 footer.svelte: Svelte 新版页脚组件，展示版权、导航、友链与访问量
 heroSection.svelte: Svelte 新版首页 Hero 组件，承载首屏品牌叙事，并通过共享资源解析选择亮色界面 Logo 流

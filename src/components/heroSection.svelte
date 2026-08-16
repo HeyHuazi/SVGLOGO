@@ -31,7 +31,7 @@
 <section
   class="w-full bg-[#FAFAFA] selection:bg-[#06B30C]/20 selection:text-[#06B30C] dark:bg-neutral-900"
 >
-  <div class="mx-auto max-w-[1280px] px-7 pb-12 pt-12">
+  <div class="mx-auto max-w-[1280px] px-7 pb-5 pt-12">
     <div class="flex flex-col items-start gap-12 lg:flex-row lg:gap-8">
       <!-- Left: Text Content -->
       <div class="min-w-0 flex-1 lg:max-w-[590px]">

@@ -1,6 +1,6 @@
 <!--
-  [INPUT]: 依赖 svelte 的 onMount，@/data 的 svgsData，@/data/categories 的分类索引，@/types/svg 的 iSVG，sveltekit-search-params 的 queryParam
-  [OUTPUT]: 对外提供新版首页渲染，支持搜索/分类/排序/渐进加载，并为首屏 Logo 分配图片请求优先级
+  [INPUT]: 依赖 svelte 的 onMount，@/data 的 svgsData，@/data/categories 的分类索引，@/types/svg 的 iSVG，sveltekit-search-params 的 queryParam，@/components/sponsorSection 的赞助区域
+  [OUTPUT]: 对外提供新版首页渲染，支持搜索/分类/排序/渐进加载、Hero 下方赞助区域，并为首屏 Logo 分配图片请求优先级
   [POS]: routes 层的核心首页，消费生成数据索引并协调首屏资源调度
   [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md
 -->
@@ -15,6 +15,7 @@
 
   import Navbar from '@/components/navbar.svelte';
   import HeroSection from '@/components/heroSection.svelte';
+  import SponsorSection from '@/components/sponsorSection.svelte';
   import HomeSearch from '@/components/homeSearch.svelte';
   import HomeSidebar from '@/components/homeSidebar.svelte';
   import SvgCard from '@/components/svgCard.svelte';
@@ -278,6 +279,9 @@
 
 <!-- Hero Section -->
 <HeroSection />
+
+<!-- Sponsor Section -->
+<SponsorSection />
 
 <!-- Separator line -->
 <div class="w-full bg-[#FAFAFA] dark:bg-neutral-900">
