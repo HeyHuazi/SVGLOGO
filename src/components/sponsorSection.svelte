@@ -1,17 +1,30 @@
 <!--
-  [INPUT]: 依赖 @/config/sponsors 的 sponsors 与 SPONSOR_PLAN（price 展示、donateUrl 爱发电跳转）
+  [INPUT]: 依赖 @/config/sponsors 的 sponsors 与 SPONSOR_PLAN（price 展示、donateUrl 爱发电跳转）；Logo 按 logoShapes 多形状（path/ellipse）渲染，viewBox 取 logoViewBox；品牌色经 CSS 变量 + .dark 作用域实现深浅色自适应（黑色品牌深色模式用 darkColor）
   [OUTPUT]: 对外提供 SponsorSection 首页赞助区域组件，展示赞助商卡片，占位卡直接跳转爱发电赞助地址
   [POS]: components 层的首页 Hero 下方赞助区块，被 +page.svelte 消费
   [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md
 -->
 <script lang="ts">
-  import { sponsors, SPONSOR_PLAN } from '@/config/sponsors';
+  import { sponsors, SPONSOR_PLAN, type Sponsor } from '@/config/sponsors';
 
   // 网格 4 格，真实赞助商不足时用占位卡补齐
   const GRID_SLOTS = 4;
   const placeholderCount = Math.max(GRID_SLOTS - sponsors.length, 0);
 
   const donateUrl = SPONSOR_PLAN.donateUrl;
+
+  /** 生成品牌卡主题 CSS 变量：浅色用 color，深色用 darkColor（缺省沿用 color）；底色 6% 透明度，描边浅色 50%、深色 20%（白色高透明在深底上视觉重量已足够） */
+  function sponsorVars(sponsor: Sponsor): string {
+    const dark = sponsor.darkColor ?? sponsor.color;
+    return [
+      `--sp: ${sponsor.color}`,
+      `--sp-dark: ${dark}`,
+      `--sp-bg: ${sponsor.color}0f`,
+      `--sp-bg-dark: ${dark}0f`,
+      `--sp-border: ${sponsor.color}80`,
+      `--sp-border-dark: ${dark}33`
+    ].join('; ');
+  }
 </script>
 
 <section class="w-full bg-[#FAFAFA] pb-[30px] dark:bg-neutral-900">
@@ -26,21 +39,31 @@
           href={sponsor.url}
           target="_blank"
           rel="noopener noreferrer"
-          class="group relative flex min-h-[78px] flex-col items-center justify-center rounded-xl border p-3 text-center transition-all duration-300 hover:scale-[1.02] sm:p-3.5"
-          style={`background: ${sponsor.color}0f; border-color: ${sponsor.color}80;`}
+          class="sponsor-card group relative flex min-h-[78px] flex-col items-center justify-center rounded-xl border p-3 text-center transition-all duration-300 hover:scale-[1.02] sm:p-3.5"
+          style={sponsorVars(sponsor)}
         >
-          <span
-            class="text-[13.5px] font-bold tracking-tight text-neutral-900 dark:text-white"
-            style={`color: ${sponsor.color}`}
-          >
+          <span class="sponsor-name text-[13.5px] font-bold tracking-tight">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
+              viewBox={sponsor.logoViewBox ?? '0 0 24 24'}
               role="img"
               aria-label={sponsor.name}
               class="mr-2 inline h-5 w-5 shrink-0"
             >
-              <path d={sponsor.logoPath} fill={sponsor.color} />
+              {#each sponsor.logoShapes as shape}
+                {#if shape.d}
+                  <path d={shape.d} fill="currentColor" />
+                {:else if shape.ellipse}
+                  <ellipse
+                    cx={shape.ellipse.cx}
+                    cy={shape.ellipse.cy}
+                    rx={shape.ellipse.rx}
+                    ry={shape.ellipse.ry}
+                    transform={shape.ellipse.transform}
+                    fill="currentColor"
+                  />
+                {/if}
+              {/each}
             </svg>
             {sponsor.name}
           </span>
@@ -72,3 +95,23 @@
     </div>
   </div>
 </section>
+
+<style>
+  /* 品牌卡浅色主题：底色/描边用品牌色透明度变体，文字用品牌色 */
+  .sponsor-card {
+    background: var(--sp-bg);
+    border-color: var(--sp-border);
+  }
+  .sponsor-name {
+    color: var(--sp);
+  }
+
+  /* 深色主题：切换到 darkColor（黑色品牌 → 白色），保证深色背景可读 */
+  :global(.dark) .sponsor-card {
+    background: var(--sp-bg-dark);
+    border-color: var(--sp-border-dark);
+  }
+  :global(.dark) .sponsor-name {
+    color: var(--sp-dark);
+  }
+</style>
